@@ -30,7 +30,7 @@ class DBProvider {
     return _database;
   }
 
-  Future<String> getPath() async {
+  Future<String> get path async {
     Directory dir = await getApplicationDocumentsDirectory();
     return join(dir.path, "colors.db");
   }
@@ -38,14 +38,14 @@ class DBProvider {
   Future<Database> init() async {
     ByteData data = await rootBundle.load(join("assets", "colors.db"));
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    File file = File(await this.getPath());
+    File file = File(await this.path);
 
     if(!file.existsSync()) {
       print('Writing...');
       file.writeAsBytes(bytes);
     }
 
-    return await openDatabase(await this.getPath(), version: 1);
+    return await openDatabase(await this.path, version: 1);
   }
 
 }
