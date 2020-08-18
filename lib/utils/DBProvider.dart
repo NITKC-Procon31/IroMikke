@@ -10,6 +10,7 @@ class DBProvider {
 
   static DBProvider _instance;
   static Database _database;
+  static final String _name = "colors.db";
 
   DBProvider._();
 
@@ -32,11 +33,11 @@ class DBProvider {
 
   Future<String> get path async {
     Directory dir = await getApplicationDocumentsDirectory();
-    return join(dir.path, "colors.db");
+    return join(dir.path, _name);
   }
 
   Future<Database> init() async {
-    ByteData data = await rootBundle.load(join("assets", "colors.db"));
+    ByteData data = await rootBundle.load(join("assets", _name));
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
     File file = File(await this.path);
 
