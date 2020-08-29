@@ -23,7 +23,8 @@ class _TitlePageState extends State<TitlePage>{
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 173, 173),
       appBar: AppBar(
-        title: Text('いろみっけ'),
+        title: Text('いろみっけ！', style: TextStyle(fontFamily: 'Haranyan')),
+        backgroundColor: Colors.black,
       ),
       drawer: Drawer(),
       body: Center(

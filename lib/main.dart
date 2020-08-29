@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       title: "いろみっけ！",
 //      theme: ThemeData(
-//        primarySwatch: Color.fromARGB(255, 0, 0, 0),
+//        primarySwatch: ,
 //      ),
       home: TitlePage(),
     );
