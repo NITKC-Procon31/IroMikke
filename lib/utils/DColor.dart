@@ -1,10 +1,10 @@
 import 'package:delta_e/delta_e.dart';
 
-class Color {
+class DColor {
 
   int _r, _g, _b;
 
-  Color(this._r, this._g, this._b);
+  DColor(this._r, this._g, this._b);
 
   int get r => _r;
   int get g => _g;
@@ -24,7 +24,7 @@ class Color {
 
   List getRGB() => [this._r, this._g, this._b];
 
-  double operator -(Color col){
+  double operator -(DColor col){
     LabColor lab1 = LabColor.fromRGB(this._r, this._g, this._b);
     LabColor lab2 = LabColor.fromRGB(col.r, col.g, col.b);
 

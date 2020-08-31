@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iromikke/utils/DBProvider.dart';
-import 'package:iromikke/utils/Color.dart';
+import 'package:iromikke/utils/DColor.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'dart:async';
