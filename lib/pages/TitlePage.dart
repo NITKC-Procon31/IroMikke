@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iromikke/pages/irozukan/ZukanTitlePage.dart';
+
+import '../main.dart';
+import './irozukan/ZukanTitlePage.dart';
 
 //タイトル画面
 //---
@@ -10,7 +14,7 @@ import 'package:flutter/material.dart';
 //その他いくつかの未実装および修正
 //---
 //Pixel3を前提としている状態であるため改善が必要
-//Matherial TheminというものでThemeを一括管理できるそうなので活用したい
+//Material Theming というものでThemeを一括管理できるそうなので活用したい
 
 class TitlePage extends StatefulWidget{
 
@@ -18,7 +22,11 @@ class TitlePage extends StatefulWidget{
   _TitlePageState createState() => _TitlePageState();
 }
 
+enum _GameMode {irooni, irosagashi, iroquiz, zukan}
+
 class _TitlePageState extends State<TitlePage>{
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,7 @@ class _TitlePageState extends State<TitlePage>{
           children: <Widget>[
             _showLogo(),
             Expanded(
-              child: _showGameModeGrid(),
+              child: _showGameModeGrid(context),
             ),
           ],
         ),
@@ -58,7 +66,7 @@ class _TitlePageState extends State<TitlePage>{
   }
 
   //各モードへのボタンを表示するGridView
-  GridView _showGameModeGrid(){
+  GridView _showGameModeGrid(BuildContext context){
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 20,
@@ -70,10 +78,10 @@ class _TitlePageState extends State<TitlePage>{
       padding: const EdgeInsets.all(32.0),
         physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        _gameModeGridRow('assets/Images/irooni.png', 'いろおに', 0, Color.fromARGB(255, 254, 129, 129)),
-        _gameModeGridRow('assets/Images/irosagashi.png', 'いろさがし', 1, Color.fromARGB(255, 167, 128, 255)),
-        _gameModeGridRow('assets/Images/iroquiz.png', 'いろクイズ', 2, Color.fromARGB(255, 148, 247, 255)),
-        _gameModeGridRow('assets/Images/zukan.png', 'ずかん', 3, Color.fromARGB(255, 180, 255, 128)),
+        _gameModeGridRow(context, 'assets/Images/irooni.png', 'いろおに', _GameMode.irooni, Color.fromARGB(255, 254, 129, 129)),
+        _gameModeGridRow(context, 'assets/Images/irosagashi.png', 'いろさがし', _GameMode.irosagashi, Color.fromARGB(255, 167, 128, 255)),
+        _gameModeGridRow(context, 'assets/Images/iroquiz.png', 'いろクイズ', _GameMode.iroquiz, Color.fromARGB(255, 148, 247, 255)),
+        _gameModeGridRow(context, 'assets/Images/zukan.png', 'ずかん', _GameMode.zukan, Color.fromARGB(255, 180, 255, 128)),
       ],
     );
   }
@@ -81,10 +89,10 @@ class _TitlePageState extends State<TitlePage>{
   //各ボタンのContainer
   //Containerの子にGestureDetectorなのか逆なのか
   //タップ時の動作を追加する予定
-  Widget _gameModeGridRow(String imagePath, String title, int number, Color fontColor){
+  Widget _gameModeGridRow(BuildContext context, String imagePath, String title, var gameMode, Color fontColor){
     return GestureDetector(
       behavior: HitTestBehavior.deferToChild,
-      onTap: () => print(title), // _onGameModeButtonTapped(number),
+      onTap: () => _onGameModeButtonTapped(context, gameMode),
       child: Container(
         width: 100,
         height: 150,
@@ -110,5 +118,29 @@ class _TitlePageState extends State<TitlePage>{
   }
 
   //実際の動作はここに書く予定
-  _onGameModeButtonTapped(int number){}
+  _onGameModeButtonTapped(BuildContext context, var gameMode){
+    switch(gameMode){
+      case _GameMode.irooni:
+        //ここに追記
+        break;
+      case _GameMode.irosagashi:
+        //ここに追記
+        break;
+      case _GameMode.iroquiz:
+        //ここに追記
+        break;
+      case _GameMode.zukan:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context){
+              return ZukanTitlePage();
+            }
+          ),
+        );
+        break;
+      default:
+        print('TitlPage.dart/_onGameModeButtonTapped() 無効な値');
+    }
+  }
 }
