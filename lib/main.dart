@@ -21,10 +21,13 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "いろみっけ！",
-//      theme: ThemeData(
-//        primarySwatch: ,
-//      ),
-      home: TitlePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.black,
+      ),
+      initialRoute: '/',
+      routes: {
+
+      },
     );
   }
 }
