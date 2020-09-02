@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iromikke/pages/irozukan/ZukanTitlePage.dart';
 
-import '../main.dart';
-import './irozukan/ZukanTitlePage.dart';
+import 'package:iromikke/pages/irozukan/ZukanTitlePage.dart';
 
 //タイトル画面
 //---

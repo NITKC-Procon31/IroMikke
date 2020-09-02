@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
-import '../TitlePage.dart';
-
 //図鑑画面
 //---
 //todo
