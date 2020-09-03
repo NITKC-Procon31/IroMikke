@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../main.dart';
-import '../TitlePage.dart';
-import './ZukanPage.dart';
+import 'package:iromikke/pages/irozukan/ZukanPage.dart';
 
 //図鑑タイトル画面
 //---

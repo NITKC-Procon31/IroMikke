@@ -4,9 +4,6 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../utils/DBProvider.dart';
 
-import '../../main.dart';
-import '../TitlePage.dart';
-
 //図鑑画面
 //---
 //todo
