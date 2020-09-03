@@ -26,18 +26,22 @@ class _ZukanTitlePageState extends State<ZukanTitlePage>{
         title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'haranyan', ),),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context){
-                  return ZukanPage();
-                },
+        child: Column(
+          children: [
+            GestureDetector(
+              behavior: HitTestBehavior.deferToChild,
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ZukanPage()
+                ),
               ),
-            );
-          },
-          child: Text('test'),
+              child: Container(
+                height: 70,
+                child: Image.asset('assets/Images/irozukan/zukan_button1.png', fit: BoxFit.fitHeight,),
+              ),
+            ),
+          ],
         ),
       ),
     );

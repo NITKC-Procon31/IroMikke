@@ -78,10 +78,10 @@ class _TitlePageState extends State<TitlePage>{
       padding: const EdgeInsets.all(32.0),
         physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
-        _gameModeGridRow(context, 'assets/Images/irooni.png', 'いろおに', _GameMode.irooni, Color.fromARGB(255, 254, 129, 129)),
-        _gameModeGridRow(context, 'assets/Images/irosagashi.png', 'いろさがし', _GameMode.irosagashi, Color.fromARGB(255, 167, 128, 255)),
-        _gameModeGridRow(context, 'assets/Images/iroquiz.png', 'いろクイズ', _GameMode.iroquiz, Color.fromARGB(255, 148, 247, 255)),
-        _gameModeGridRow(context, 'assets/Images/zukan.png', 'ずかん', _GameMode.zukan, Color.fromARGB(255, 180, 255, 128)),
+        _gameModeGridElement(context, 'assets/Images/irooni.png', 'いろおに', _GameMode.irooni, Color.fromARGB(255, 254, 129, 129)),
+        _gameModeGridElement(context, 'assets/Images/irosagashi.png', 'いろさがし', _GameMode.irosagashi, Color.fromARGB(255, 167, 128, 255)),
+        _gameModeGridElement(context, 'assets/Images/iroquiz.png', 'いろクイズ', _GameMode.iroquiz, Color.fromARGB(255, 148, 247, 255)),
+        _gameModeGridElement(context, 'assets/Images/zukan.png', 'ずかん', _GameMode.zukan, Color.fromARGB(255, 180, 255, 128)),
       ],
     );
   }
@@ -89,7 +89,7 @@ class _TitlePageState extends State<TitlePage>{
   //各ボタンのContainer
   //Containerの子にGestureDetectorなのか逆なのか
   //タップ時の動作を追加する予定
-  Widget _gameModeGridRow(BuildContext context, String imagePath, String title, var gameMode, Color fontColor){
+  Widget _gameModeGridElement(BuildContext context, String imagePath, String title, var gameMode, Color fontColor){
     return GestureDetector(
       behavior: HitTestBehavior.deferToChild,
       onTap: () => _onGameModeButtonTapped(context, gameMode),

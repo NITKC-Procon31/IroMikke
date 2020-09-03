@@ -51,6 +51,7 @@ flutter:
   assets:
     - assets/
     - assets/Images/
+    - assets/Images/irozukan/
 
   fonts:
     - family: Haranyan
