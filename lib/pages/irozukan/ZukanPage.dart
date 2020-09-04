@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iromikke/utils/DBProvider.dart';
-import 'package:sqflite/sqflite.dart';
 
-import '../../utils/DBProvider.dart';
+import 'package:iromikke/utils/DBProvider.dart';
+
+import 'package:sqflite/sqflite.dart';
 
 //図鑑画面
 //---
@@ -27,7 +27,7 @@ class _ZukanPageState extends State<ZukanPage>{
   Future<void> initState() async{
     super.initState();
     _provider = DBProvider();
-    _database = await _provider.init();
+    _database = await _provider.database;
   }
 
   @override
