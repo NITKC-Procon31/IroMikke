@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+
 import 'package:iromikke/pages/TitlePage.dart';
+
+import 'package:iromikke/pages/irozukan/ZukanTitlePage.dart';
+import 'package:iromikke/pages/irozukan/ZukanPage.dart';
 
 //todo
 //NavigatorクラスのNamed系メソッドのほうが便利そうなため使用できるように変更
@@ -17,6 +21,8 @@ class MyApp extends StatelessWidget{
       initialRoute: '/',
       routes: {
         '/': (context) => TitlePage(),
+        '/zukan/title': (context) => ZukanTitlePage(),
+        '/zukan/zukan': (context) => ZukanPage(),
       }
     );
   }
