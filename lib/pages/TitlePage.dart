@@ -128,13 +128,9 @@ class _TitlePageState extends State<TitlePage>{
         //ここに追記
         break;
       case _GameMode.zukan:
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context){
-              return ZukanTitlePage();
-            }
-          ),
+          '/zukan/title',
         );
         break;
       default:

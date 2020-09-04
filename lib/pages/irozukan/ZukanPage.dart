@@ -23,12 +23,12 @@ class _ZukanPageState extends State<ZukanPage>{
   DBProvider _provider;
   Database _database;
 
-//  @override
-//  void initState(){
-//    super.initState();
-//    _provider = DBProvider();
-//    _database = _provider.init();
-//  }
+  @override
+  Future<void> initState() async{
+    super.initState();
+    _provider = DBProvider();
+    _database = await _provider.init();
+  }
 
   @override
   Widget build(BuildContext context) {

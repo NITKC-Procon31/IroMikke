@@ -21,18 +21,17 @@ class _ZukanTitlePageState extends State<ZukanTitlePage>{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'haranyan', ),),
+        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'haranyan',),),
+
       ),
       body: Center(
         child: Column(
           children: [
             GestureDetector(
               behavior: HitTestBehavior.deferToChild,
-              onTap: () => Navigator.push(
+              onTap: () => Navigator.pushNamed(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => ZukanPage()
-                ),
+                '/zukan/zukan',
               ),
               child: Container(
                 height: 70,
