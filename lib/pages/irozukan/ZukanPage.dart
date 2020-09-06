@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/src/exception.dart';
 
 import 'package:iromikke/utils/DBProvider.dart';
-
-import 'package:sqflite/sqflite.dart';
 
 //図鑑画面
 //---
@@ -37,26 +37,38 @@ class _ZukanPageState extends State<ZukanPage>{
         backgroundColor: Colors.cyan,
         title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'haranyan', ),),
       ),
-
-      body: _colorZukanList(),
+      body: Stack(
+        children: [
+          Container(
+            constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage('assets/Images/irozukan/irozukan_background.png'),
+              ),
+            ),
+          ),
+          _iroZukanList(),
+        ],
+      ),
     );
   }
 
-  ListView _colorZukanList(){
+  ListView _iroZukanList(){
     return ListView(
       children: [
-        _colorZukanRow(Colors.cyan, 'しあん'),
-        _colorZukanRow(Colors.blue, 'あお'),
+        _iroZukanRow(Colors.cyan, 'シアン'),
+        _iroZukanRow(Colors.white, 'しろ'),
       ],
     );
   }
 
-  Widget _colorZukanRow(Color color, String name){
+  Widget _iroZukanRow(Color color, String name){
     return Card(
       elevation: 0,
       color: Color.fromARGB(50, 0, 150, 255),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(0),
       ),
       child: ListTile(
         leading: Container(
