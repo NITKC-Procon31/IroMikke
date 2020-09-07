@@ -31,7 +31,7 @@ class _TitlePageState extends State<TitlePage>{
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 173, 173),
       appBar: AppBar(
-        title: Text('いろみっけ！', style: TextStyle(fontFamily: 'Haranyan')),
+        title: Text('いろみっけ！', style: TextStyle(fontFamily: 'satsuki', color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold,)),
         backgroundColor: Colors.black,
       ),
       drawer: Drawer(),
@@ -108,7 +108,7 @@ class _TitlePageState extends State<TitlePage>{
               padding: EdgeInsets.fromLTRB(5.0, 15.0, 5.0, 10.0),
               child: Image.asset(imagePath),
             ),
-            Text(title, style: TextStyle(fontFamily: 'Haranyan', fontSize: 25, color: fontColor),),
+            Text(title, style: TextStyle(fontFamily: 'satsuki', fontSize: 25, color: fontColor, fontWeight: FontWeight.bold),),
           ],
         ),
       ),

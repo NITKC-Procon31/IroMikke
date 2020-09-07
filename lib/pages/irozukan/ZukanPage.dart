@@ -40,7 +40,7 @@ class _ZukanPageState extends State<ZukanPage>{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 126, 137, 161),
-        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'satsuki', ),),
+        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'satsuki', fontWeight: FontWeight.bold, fontSize: 40.0),),
       ),
       body: Stack(
         children: [
@@ -107,7 +107,7 @@ class _ZukanPageState extends State<ZukanPage>{
   Widget _iroZukanRow(BuildContext context, Color color, String name){
     return Card(
       elevation: 0,
-      color: Color.fromARGB(0, 255, 255, 255),
+      color: Color.fromARGB(100, 255, 255, 255),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
       ),

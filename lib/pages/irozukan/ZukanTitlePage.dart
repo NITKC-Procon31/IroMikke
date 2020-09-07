@@ -20,26 +20,42 @@ class _ZukanTitlePageState extends State<ZukanTitlePage>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'haranyan',),),
-
+        backgroundColor: Color.fromARGB(255, 126, 137, 161),
+        title: null//Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'satsuki', fontWeight: FontWeight.bold, fontSize: 40.0),),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            GestureDetector(
-              behavior: HitTestBehavior.deferToChild,
-              onTap: () => Navigator.pushNamed(
-                context,
-                '/zukan/zukan',
-              ),
-              child: Container(
-                height: 70,
-                child: Image.asset('assets/Images/irozukan/zukan_button1.png', fit: BoxFit.fitHeight,),
+      body: Stack(
+        children: [
+          Container(
+            constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage('assets/Images/irozukan/irozukan_background.png'),
               ),
             ),
-          ],
-        ),
+          ),
+          Center(
+            child: Column(
+              children: [
+                GestureDetector(
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 100.0,
+                        width: 200.0,
+                        color: Colors.white,
+                      ),
+                      Text('ずかんをみる', style: TextStyle(color: Color.fromARGB(255, 44, 129, 166), fontSize: 60.0, fontWeight: FontWeight.bold, fontFamily: 'satsuki',),),
+                    ],
+                  ),
+                  onTapUp: (details){
+                    Navigator.pushNamed(context, '/zukan/zukan');
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
