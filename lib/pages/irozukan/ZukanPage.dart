@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/src/exception.dart';
@@ -10,6 +12,7 @@ import 'package:iromikke/utils/DBProvider.dart';
 //素材を受け取り追加
 //図鑑のリストビューを実装
 //データベースへのアクセスが必要になるのでその辺
+//図鑑のデータ量が膨大なため、NestedScrollView等を用いて複数ページにすることを検討
 //---
 
 class ZukanPage extends StatefulWidget{
@@ -22,20 +25,22 @@ class _ZukanPageState extends State<ZukanPage>{
 
   DBProvider _provider;
   Database _database;
+  List<Map<String, dynamic>> _zukan;
 
   @override
-  Future<void> initState() async{
+  void initState() {
     super.initState();
     _provider = DBProvider();
-    _database = await _provider.database;
+//    _database = await _provider.database;
+//    _zukan = await _database.rawQuery('SELECT * FROM colors');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'haranyan', ),),
+        backgroundColor: Color.fromARGB(255, 126, 137, 161),
+        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'satsuki', ),),
       ),
       body: Stack(
         children: [
@@ -44,29 +49,65 @@ class _ZukanPageState extends State<ZukanPage>{
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('assets/Images/irozukan/irozukan_background.png'),
+                image: AssetImage('assets/Images/irozukan/irozukan_background2.png'),
               ),
             ),
           ),
-          _iroZukanList(),
+          FutureBuilder(
+            future: _initZukan(),
+            builder: (context, snapshot){
+              if(snapshot.connectionState == ConnectionState.done){
+                if(snapshot.hasError){
+                  return Center(
+                    child: Text('エラーがはっせいしました', style: TextStyle(fontSize: 45.0, color: Colors.black, fontFamily: 'Haranyan'),),
+                  );
+                }
+                if(!snapshot.hasData){
+                  return Center(
+                    child: Text('データをしゅとくできませんでした', style: TextStyle(fontSize: 45.0, color: Colors.black, fontFamily: 'Haranyan'),),
+                  );
+                }
+                return _iroZukanList(context);
+              }
+              else{
+                return const CircularProgressIndicator();
+              }
+            },
+          ),
+          //_iroZukanList(context),
         ],
       ),
     );
   }
 
-  ListView _iroZukanList(){
-    return ListView(
-      children: [
-        _iroZukanRow(Colors.cyan, 'シアン'),
-        _iroZukanRow(Colors.white, 'しろ'),
-      ],
+  Future<int> _initZukan() async{
+    _database = await _provider.database;
+    _zukan = await _database.rawQuery('SELECT * FROM colors');
+    return 1;
+  }
+
+  Widget _iroZukanList(BuildContext context){
+    return Scrollbar(
+        child: ListView.separated(
+          itemCount: _zukan.length,
+          itemBuilder: (context, index){
+            Color color = Color.fromARGB(255, _zukan[index]['red'], _zukan[index]['green'], _zukan[index]['blue']);
+            return _iroZukanRow(context, color, _zukan[index]['kana']);
+          },
+          separatorBuilder: (context, index){
+            return Container(
+              height: 7.0,
+              color: Colors.white,
+            );
+          },
+        )
     );
   }
 
-  Widget _iroZukanRow(Color color, String name){
+  Widget _iroZukanRow(BuildContext context, Color color, String name){
     return Card(
       elevation: 0,
-      color: Color.fromARGB(50, 0, 150, 255),
+      color: Color.fromARGB(0, 255, 255, 255),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
       ),
@@ -79,7 +120,7 @@ class _ZukanPageState extends State<ZukanPage>{
             border: Border.all(color: Colors.white, width: 4.0,),
           ),
         ),
-        title: Text(name, style: TextStyle(fontSize: 40.0, fontFamily: 'Haranyan'),),
+        title: Text(name, style: TextStyle(fontSize: 31.0, fontFamily: 'satsuki', fontWeight: FontWeight.bold,),),
       ),
     );
   }

@@ -8,6 +8,7 @@ import 'package:iromikke/pages/irozukan/ZukanPage.dart';
 
 //todo
 //NavigatorクラスのNamed系メソッドのほうが便利そうなため使用できるように変更
+//さつき源代明朝を使うのであれば SIL Open Font Licence に基づいたライセンス表示が必要
 //
 
 void main() => runApp(MyApp());
