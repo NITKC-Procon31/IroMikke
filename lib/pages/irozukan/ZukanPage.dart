@@ -120,7 +120,15 @@ class _ZukanPageState extends State<ZukanPage>{
             border: Border.all(color: Colors.white, width: 4.0,),
           ),
         ),
-        title: Text(name, style: TextStyle(fontSize: 31.0, fontFamily: 'satsuki', fontWeight: FontWeight.bold,),),
+        title: Text(
+          name,
+          style: TextStyle(
+            fontSize: 38.0,
+            fontFamily: 'satsuki',
+            fontWeight: FontWeight.bold,
+            letterSpacing: -8.0,
+          ),
+        ),
       ),
     );
   }
