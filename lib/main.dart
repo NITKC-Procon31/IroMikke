@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:camera/camera.dart';
 
 import 'package:iromikke/pages/TitlePage.dart';
 
@@ -11,21 +11,23 @@ import 'package:iromikke/pages/irozukan/ZukanPage.dart';
 //さつき源代明朝を使うのであれば SIL Open Font Licence に基づいたライセンス表示が必要
 //
 
-void main() => runApp(MyApp());
+List<CameraDescription> cameras; //カメラのリストを作成
 
-class MyApp extends StatelessWidget{
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  //ここまでカメラのリストを初期化、取得。
+  runApp(MyApp());
+}
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "いろみっけ！",
-      initialRoute: '/',
-      routes: {
-        '/': (context) => TitlePage(),
-        '/zukan/title': (context) => ZukanTitlePage(),
-        '/zukan/zukan': (context) => ZukanPage(),
-      }
-    );
+    return MaterialApp(title: "いろみっけ！", initialRoute: '/', routes: {
+      '/': (context) => TitlePage(),
+      '/zukan/title': (context) => ZukanTitlePage(),
+      '/zukan/zukan': (context) => ZukanPage(),
+    });
   }
 }
 
