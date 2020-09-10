@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 //
 
 //このようにカメラを指定してください
-//List<CameraDescription> cameras;
+List<CameraDescription> cameras;
 
 //Future<void> main() async{
 //WidgetsFlutterBinding.ensureInitialized();
