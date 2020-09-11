@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
-import 'package:iromikke/pages/TitlePage.dart';
+import 'package:iromikke/pages/title_page.dart';
 
-import 'package:iromikke/pages/irozukan/ZukanTitlePage.dart';
-import 'package:iromikke/pages/irozukan/ZukanPage.dart';
+import 'package:iromikke/pages/irozukan/zukan_title_page.dart';
+import 'package:iromikke/pages/irozukan/zukan_play_page.dart';
 
 //todo
 //NavigatorクラスのNamed系メソッドのほうが便利そうなため使用できるように変更

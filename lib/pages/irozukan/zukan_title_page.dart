@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:iromikke/pages/irozukan/ZukanPage.dart';
-
 //図鑑タイトル画面
 //---
 //todo

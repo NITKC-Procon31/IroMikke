@@ -136,7 +136,7 @@ class _TitlePageState extends State<TitlePage> {
         );
         break;
       default:
-        print('TitlePage.dart/_onGameModeButtonTapped() 無効な値');
+        print('title_page.dart/_onGameModeButtonTapped() 無効な値');
     }
   }
 }

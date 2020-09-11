@@ -46,7 +46,7 @@ class _ZukanPageState extends State<ZukanPage>{
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('assets/Images/irozukan/irozukan_background2.png'),
+                image: AssetImage('assets/Images/irozukan/irozukan_background_2.png'),
               ),
             ),
           ),
