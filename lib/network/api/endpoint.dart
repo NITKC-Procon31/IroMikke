@@ -1,4 +1,4 @@
-import 'package:iromikke/network/api/Method.dart';
+import 'package:iromikke/network/api/method.dart';
 
 class EndPoint {
 
