@@ -24,7 +24,7 @@ class DColor {
 
   List getRGB() => [this._r, this._g, this._b];
 
-  double operator -(DColor col){
+  double distance(DColor col){
     LabColor lab1 = LabColor.fromRGB(this._r, this._g, this._b);
     LabColor lab2 = LabColor.fromRGB(col.r, col.g, col.b);
 
