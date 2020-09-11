@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:iromikke/utils/DColor.dart';
+import 'package:iromikke/utils/d_color.dart';
 
 void main(){
   test('CIEDE2000 test', (){
