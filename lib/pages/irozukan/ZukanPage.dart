@@ -2,9 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite/src/exception.dart';
 
-import 'package:iromikke/utils/DBProvider.dart';
+import 'package:iromikke/service/color_database.dart';
 
 //図鑑画面
 //---
@@ -23,16 +22,14 @@ class ZukanPage extends StatefulWidget{
 
 class _ZukanPageState extends State<ZukanPage>{
 
-  DBProvider _provider;
+  ColorDatabase _provider;
   Database _database;
   List<Map<String, dynamic>> _zukan;
 
   @override
   void initState() {
     super.initState();
-    _provider = DBProvider();
-//    _database = await _provider.database;
-//    _zukan = await _database.rawQuery('SELECT * FROM colors');
+    _provider = ColorDatabase();
   }
 
   @override
