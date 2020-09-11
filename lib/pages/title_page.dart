@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 //タップ時の動作の実装
 //各ボタンにタイトルを追加 ← 8/30実装
 //その他いくつかの未実装および修正
+//StatefulWidgetにした理由がわからないのでStatelessWidgetへの変更を検討
 //---
 //Pixel3を前提としている状態であるため改善が必要
 //Material Theming というものでThemeを一括管理できるそうなので活用したい

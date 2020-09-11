@@ -12,15 +12,16 @@ import 'package:iromikke/service/color_database.dart';
 //図鑑のリストビューを実装
 //データベースへのアクセスが必要になるのでその辺
 //図鑑のデータ量が膨大なため、NestedScrollView等を用いて複数ページにすることを検討
+//StatelessWidgetへの変更を検討
 //---
 
-class ZukanPage extends StatefulWidget{
+class ZukanPlayPage extends StatefulWidget{
 
   @override
-  _ZukanPageState createState() => _ZukanPageState();
+  _ZukanPlayPageState createState() => _ZukanPlayPageState();
 }
 
-class _ZukanPageState extends State<ZukanPage>{
+class _ZukanPlayPageState extends State<ZukanPlayPage>{
 
   ColorDatabase _provider;
   Database _database;

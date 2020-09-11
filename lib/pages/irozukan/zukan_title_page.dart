@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 //---
 //todo
 //素材を受け取り追加
+//StatefulWidgetである必要性がなさそうなのでStatelessWidgetに変更を検討
 //---
 
 class ZukanTitlePage extends StatefulWidget{

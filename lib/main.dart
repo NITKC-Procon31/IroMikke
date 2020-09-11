@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:iromikke/pages/log_in_page.dart';
 
 import 'package:iromikke/pages/title_page.dart';
+import 'package:iromikke/pages/log_in_page.dart';
 
 import 'package:iromikke/pages/irozukan/zukan_title_page.dart';
 import 'package:iromikke/pages/irozukan/zukan_play_page.dart';
@@ -28,9 +30,10 @@ class MyApp extends StatelessWidget {
         title: "いろみっけ！",
         initialRoute: '/',
         routes: {
-          '/': (context) => TitlePage(),
+          '/': (context) => LogInPage(),
+          '/title': (context) => TitlePage(),
           '/zukan/title': (context) => ZukanTitlePage(),
-          '/zukan/zukan': (context) => ZukanPage(),
+          '/zukan/zukan': (context) => ZukanPlayPage(),
         }
     );
   }
