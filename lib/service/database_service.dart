@@ -20,12 +20,12 @@ abstract class DatabaseService {
     return join(dir.path, this.name);
   }
 
-  Future<Database> init() async{
+  Future<Database> init() async {
     ByteData data = await rootBundle.load(join("assets", this.name));
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
     File file = File(await this.path);
 
-    if(!file.existsSync()) {
+    if(!file.existsSync()){
       print('Writing...');
       file.writeAsBytes(bytes);
     }

@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:iromikke/pages/irozukan/ZukanTitlePage.dart';
-
 //タイトル画面
 //---
 // todo
@@ -14,17 +12,21 @@ import 'package:iromikke/pages/irozukan/ZukanTitlePage.dart';
 //Pixel3を前提としている状態であるため改善が必要
 //Material Theming というものでThemeを一括管理できるそうなので活用したい
 
-class TitlePage extends StatefulWidget{
+class TitlePage extends StatefulWidget {
 
   @override
   _TitlePageState createState() => _TitlePageState();
+
 }
 
-enum _GameMode {irooni, irosagashi, iroquiz, zukan}
+enum _GameMode {
+  irooni,
+  irosagashi,
+  iroquiz,
+  zukan
+}
 
-class _TitlePageState extends State<TitlePage>{
-
-
+class _TitlePageState extends State<TitlePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +136,7 @@ class _TitlePageState extends State<TitlePage>{
         );
         break;
       default:
-        print('TitlPage.dart/_onGameModeButtonTapped() 無効な値');
+        print('TitlePage.dart/_onGameModeButtonTapped() 無効な値');
     }
   }
 }
