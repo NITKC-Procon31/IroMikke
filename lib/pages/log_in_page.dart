@@ -52,10 +52,7 @@ class LogInPage extends StatelessWidget{
             //たぶんFutureBuilderなりを使ってデータベース操作に対応するはず
             RaisedButton(
               child: Text('けってい'),
-              onPressed: () => _buttonAble ? Navigator.pushNamed(
-                  context,
-                  '/title',
-              ) : null,
+              onPressed: () => _buttonAble ? Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false) : null,
             ),
           ],
         ),
