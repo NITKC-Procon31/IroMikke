@@ -3,10 +3,11 @@ import 'dart:async';
 
 class LogInPage extends StatelessWidget{
 
+  int inputMax = 8; //_validataの内部は手動で変更してくださいごめんなさい
   bool _buttonAble = false;
   final _controller = StreamController<String>();
   final _validata = StreamTransformer<String, String>.fromHandlers(
-    handleData: (value, sink){
+    handleData: (value, sink,){
       if(value.length > 8){
         sink.addError('なまえは8もじまで！');
       }
@@ -39,7 +40,7 @@ class LogInPage extends StatelessWidget{
                   onChanged: (String data){
                     _controller.sink.add(data);
                     //もっとスマートにできそう
-                    _buttonAble = (0 < data.length) &&(data.length < 9);
+                    _buttonAble = (0 < data.length) &&(data.length <= inputMax );
                   },
                   decoration: InputDecoration(
                     errorText: snapshot.hasError ? snapshot.error : null,

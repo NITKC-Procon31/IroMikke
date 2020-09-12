@@ -27,7 +27,15 @@ class TitlePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 173, 173),
       appBar: AppBar(
-        title: Text('いろみっけ！', style: TextStyle(fontFamily: 'satsuki', color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold,)),
+        title: Text(
+          'いろみっけ！',
+          style: TextStyle(
+            fontFamily: 'satsuki',
+            color: Colors.white,
+            fontSize: 40.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Colors.black,
       ),
       drawer: Drawer(),
@@ -122,6 +130,10 @@ class TitlePage extends StatelessWidget {
         break;
       case _GameMode.iroquiz:
         //ここに追記
+        Navigator.pushNamed(
+          context,
+          '/quiz/title',
+        );
         break;
       case _GameMode.zukan:
         Navigator.pushNamed(
