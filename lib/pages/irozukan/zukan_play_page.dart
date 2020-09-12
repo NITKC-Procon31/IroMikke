@@ -15,22 +15,17 @@ import 'package:iromikke/service/color_database.dart';
 //StatelessWidgetへの変更を検討
 //---
 
-class ZukanPlayPage extends StatefulWidget{
-
-  @override
-  _ZukanPlayPageState createState() => _ZukanPlayPageState();
-}
-
-class _ZukanPlayPageState extends State<ZukanPlayPage>{
+class ZukanPlayPage extends StatelessWidget{
 
   ColorDatabase _provider;
   Database _database;
   List<Map<String, dynamic>> _zukan;
 
-  @override
-  void initState() {
-    super.initState();
+  Future<int> _initZukan() async{
     _provider = ColorDatabase();
+    _database = await _provider.database;
+    _zukan = await _database.rawQuery('SELECT * FROM colors');
+    return 1;
   }
 
   @override
@@ -76,12 +71,6 @@ class _ZukanPlayPageState extends State<ZukanPlayPage>{
         ],
       ),
     );
-  }
-
-  Future<int> _initZukan() async{
-    _database = await _provider.database;
-    _zukan = await _database.rawQuery('SELECT * FROM colors');
-    return 1;
   }
 
   Widget _iroZukanList(BuildContext context){

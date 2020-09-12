@@ -8,13 +8,7 @@ import 'package:flutter/material.dart';
 //StatefulWidgetである必要性がなさそうなのでStatelessWidgetに変更を検討
 //---
 
-class ZukanTitlePage extends StatefulWidget{
-
-  @override
-  _ZukanTitlePageState createState() => _ZukanTitlePageState();
-}
-
-class _ZukanTitlePageState extends State<ZukanTitlePage>{
+class ZukanTitlePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {

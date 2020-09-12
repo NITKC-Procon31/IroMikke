@@ -13,13 +13,6 @@ import 'package:flutter/material.dart';
 //Pixel3を前提としている状態であるため改善が必要
 //Material Theming というものでThemeを一括管理できるそうなので活用したい
 
-class TitlePage extends StatefulWidget {
-
-  @override
-  _TitlePageState createState() => _TitlePageState();
-
-}
-
 enum _GameMode {
   irooni,
   irosagashi,
@@ -27,7 +20,7 @@ enum _GameMode {
   zukan
 }
 
-class _TitlePageState extends State<TitlePage> {
+class TitlePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
