@@ -6,6 +6,12 @@ class DColor {
 
   DColor(this._r, this._g, this._b);
 
+  factory DColor.fromHex(String hex) => DColor(
+    int.parse(hex.substring(1, 3), radix: 16),
+    int.parse(hex.substring(3, 5), radix: 16),
+    int.parse(hex.substring(5, 7), radix: 16)
+  );
+
   int get r => _r;
   int get g => _g;
   int get b => _b;
@@ -30,4 +36,8 @@ class DColor {
 
     return deltaE00(lab1, lab2);
   }
+
+  @override
+  String toString() => 'Color: ${this._r}, ${this._g}, ${this._b}';
+
 }
