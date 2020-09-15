@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:iromikke/entity/traditional_color.dart';
 
 import 'package:provider/provider.dart';
 
@@ -66,13 +67,12 @@ class ZukanPlayPage extends StatelessWidget{
   }
 
   Widget _iroZukanList(BuildContext context){
-    final ColorModel model = Provider.of<ColorModel>(context, listen: false);
-    print(model.getLength());
+    final ColorModel model = Provider.of<ColorModel>(context, listen: true);
     return Scrollbar(
         child: ListView.separated(
           itemCount: model.getLength(),
           itemBuilder: (context, index){
-            final tColor = model.getById(index + 1);
+            final TraditionalColor tColor = model.getById(index + 1);
             Color color = Color.fromARGB(255, tColor.color.r, tColor.color.g, tColor.color.b);
             return _iroZukanRow(context, color, tColor.kana);
           },
