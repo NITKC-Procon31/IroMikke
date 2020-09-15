@@ -67,6 +67,7 @@ class ZukanPlayPage extends StatelessWidget{
 
   Widget _iroZukanList(BuildContext context){
     final ColorModel model = Provider.of<ColorModel>(context, listen: false);
+    print(model.getLength());
     return Scrollbar(
         child: ListView.separated(
           itemCount: model.getLength(),
@@ -86,28 +87,33 @@ class ZukanPlayPage extends StatelessWidget{
   }
 
   Widget _iroZukanRow(BuildContext context, Color color, String name){
-    return Card(
-      elevation: 0,
-      color: Color.fromARGB(100, 255, 255, 255),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0),
-      ),
-      child: ListTile(
-        leading: Container(
-          width: 50.0,
-          height: 50.0,
-          decoration: BoxDecoration(
-            color: color,
-            border: Border.all(color: Colors.white, width: 4.0,),
-          ),
+    return GestureDetector(
+      onTap: () {
+        print(name);
+      },
+      child: Card(
+        elevation: 0,
+        color: Color.fromARGB(100, 255, 255, 255),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(0),
         ),
-        title: Text(
-          name,
-          style: TextStyle(
-            fontSize: 38.0,
-            fontFamily: 'satsuki',
-            fontWeight: FontWeight.bold,
-            letterSpacing: -8.0,
+        child: ListTile(
+          leading: Container(
+            width: 50.0,
+            height: 50.0,
+            decoration: BoxDecoration(
+              color: color,
+              border: Border.all(color: Colors.white, width: 4.0,),
+            ),
+          ),
+          title: Text(
+            name,
+            style: TextStyle(
+              fontSize: 38.0,
+              fontFamily: 'satsuki',
+              fontWeight: FontWeight.bold,
+              letterSpacing: -8.0,
+            ),
           ),
         ),
       ),

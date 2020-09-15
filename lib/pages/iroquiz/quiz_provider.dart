@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'package:iromikke/service/color_database.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:provider/provider.dart';
+
+import 'package:iromikke/model/color_model.dart';
 
 enum _QuizType{
   colorName,
@@ -13,28 +14,13 @@ class QuizProvider {
 
   var _quizMode;
   List<Map<String, dynamic>> _optionList;
-  var _answerIndex;
+  List<bool> _isAnswer = [false, false, false];
 
-  ColorDatabase _provider;
-  Database _database;
-  List<Map<String, dynamic>> _databaseList;
+  final ColorModel model = ColorModel();
 
-  int get quizeMode => _quizMode;
-
-  List get optionList => _optionList;
-
-  int get answerIndex => _answerIndex;
 
   QuizProvider(){
-    _quizMode =
-    //_quizMode = Random().nextInt(3);
-    _getDatabase();
-  }
-
-  Future _getDatabase() async{
-    _provider = ColorDatabase();
-    _database = await _provider.database;
-    _databaseList = await _database.rawQuery('SELECT * FROM colors');
+    _quizMode = _QuizType.colorName;
   }
 
   void _initQuiz(){
@@ -55,5 +41,8 @@ class QuizProvider {
 
   void _provideColorNameQuiz(){
     //色名当てクイズ作成処理
+    int answerIndex = Random().nextInt(3);
+    _isAnswer[answerIndex] = true;
+
   }
 }
