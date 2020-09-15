@@ -1,9 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 
-import 'package:iromikke/service/color_database.dart';
+import 'package:provider/provider.dart';
+
+import 'package:iromikke/model/color_model.dart';
 
 //図鑑画面
 //---
@@ -16,17 +17,6 @@ import 'package:iromikke/service/color_database.dart';
 //---
 
 class ZukanPlayPage extends StatelessWidget{
-
-  ColorDatabase _provider;
-  Database _database;
-  List<Map<String, dynamic>> _zukan;
-
-  Future<int> _initZukan() async{
-    _provider = ColorDatabase();
-    _database = await _provider.database;
-    _zukan = await _database.rawQuery('SELECT * FROM colors');
-    return 1;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +36,7 @@ class ZukanPlayPage extends StatelessWidget{
               ),
             ),
           ),
+          /*
           FutureBuilder(
             future: _initZukan(),
             builder: (context, snapshot){
@@ -67,19 +58,22 @@ class ZukanPlayPage extends StatelessWidget{
               }
             },
           ),
-          //_iroZukanList(context),
+          */
+          _iroZukanList(context)
         ],
       ),
     );
   }
 
   Widget _iroZukanList(BuildContext context){
+    final ColorModel model = Provider.of<ColorModel>(context, listen: false);
     return Scrollbar(
         child: ListView.separated(
-          itemCount: _zukan.length,
+          itemCount: model.getLength(),
           itemBuilder: (context, index){
-            Color color = Color.fromARGB(255, _zukan[index]['red'], _zukan[index]['green'], _zukan[index]['blue']);
-            return _iroZukanRow(context, color, _zukan[index]['kana']);
+            final tColor = model.getById(index + 1);
+            Color color = Color.fromARGB(255, tColor.color.r, tColor.color.g, tColor.color.b);
+            return _iroZukanRow(context, color, tColor.kana);
           },
           separatorBuilder: (context, index){
             return Container(
