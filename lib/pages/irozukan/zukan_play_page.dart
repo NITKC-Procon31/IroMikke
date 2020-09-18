@@ -73,7 +73,7 @@ class ZukanPlayPage extends StatelessWidget{
           itemCount: model.getLength(),
           itemBuilder: (context, index){
             final TraditionalColor tColor = model.getById(index + 1);
-            Color color = Color.fromARGB(255, tColor.color.r, tColor.color.g, tColor.color.b);
+            Color color = Color.fromARGB(255, tColor.rgb.r, tColor.rgb.g, tColor.rgb.b);
             return _iroZukanRow(context, color, tColor.kana);
           },
           separatorBuilder: (context, index){
