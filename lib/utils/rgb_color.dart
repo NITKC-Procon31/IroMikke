@@ -38,6 +38,6 @@ class RGBColor {
   }
 
   @override
-  String toString() => 'Color: ${this._r}, ${this._g}, ${this._b}';
+  String toString() => 'RGB: ${this._r}, ${this._g}, ${this._b}';
 
 }
