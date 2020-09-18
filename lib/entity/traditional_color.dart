@@ -1,9 +1,9 @@
-import 'package:iromikke/utils/d_color.dart';
+import 'package:iromikke/utils/rgb_color.dart';
 
 class TraditionalColor {
 
   int id;
-  DColor color;
+  RGBColor color;
   String name, kana, hex;
 
   TraditionalColor({this.id, this.name, this.kana, this.hex, this.color});
@@ -13,7 +13,7 @@ class TraditionalColor {
     name: data['name'],
     kana: data['kana'],
     hex: data['hex'],
-    color: DColor(data['red'], data['green'], data['blue'])
+    color: RGBColor(data['red'], data['green'], data['blue'])
   );
 
   Map<String, dynamic> toDatabaseJson() => {
