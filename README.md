@@ -11,4 +11,4 @@
 - **[path_provider](https://pub.dev/packages/path_provider)**
 - **[camera](https://pub.dev/packages/camera)**
 - **[provider](https://pub.dev/packages/provider)**
-
+- **[image](https://pub.dev/packages/image)**
