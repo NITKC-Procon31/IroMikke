@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:camera/camera.dart';
 
@@ -12,10 +13,10 @@ import 'package:iromikke/pages/irozukan/zukan_title_page.dart';
 import 'package:iromikke/pages/irozukan/zukan_play_page.dart';
 
 //iroquiz
-import 'package:iromikke/pages/iroquiz/quiz_title_page.dart';
-import 'package:iromikke/pages/iroquiz/quiz_question_page.dart';
-import 'package:iromikke/pages/iroquiz/quiz_answer_page.dart';
-import 'package:iromikke/pages/iroquiz/quiz_score_page.dart';
+import 'package:iromikke/pages/iroquiz/widgets/quiz_title_page.dart';
+import 'package:iromikke/pages/iroquiz/widgets/quiz_question_page.dart';
+import 'package:iromikke/pages/iroquiz/widgets/quiz_answer_page.dart';
+import 'package:iromikke/pages/iroquiz/widgets/quiz_score_page.dart';
 
 import 'package:iromikke/model/color_model.dart';
 
@@ -32,7 +33,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
   //ここまでカメラのリストを初期化、取得。
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(new MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {

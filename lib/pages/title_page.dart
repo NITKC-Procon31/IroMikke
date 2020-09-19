@@ -42,8 +42,12 @@ class TitlePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
-            _showLogo(),
             Expanded(
+              flex: 2,
+              child: _showLogo(),
+            ),
+            Expanded(
+              flex: 8,
               child: _showGameModeGrid(context),
             ),
           ],
@@ -55,19 +59,19 @@ class TitlePage extends StatelessWidget {
   //ロゴを表示
   Container _showLogo(){
     return Container(
-      height: 185,
       alignment: Alignment.center,
       decoration: const BoxDecoration(
         //color: Colors.greenAccent,
         image: DecorationImage(
-          fit: BoxFit.fitWidth,
-          image: AssetImage('assets/Images/iromikke_logo.png'),
+          fit: BoxFit.contain,
+          image: AssetImage('assets/Images/iromikke_logo_v2.png'),
         ),
       ),
     );
   }
 
   //各モードへのボタンを表示するGridView
+  //いいやり方を思いつかなければListViewに変更するかも
   GridView _showGameModeGrid(BuildContext context){
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -77,7 +81,7 @@ class TitlePage extends StatelessWidget {
         childAspectRatio: 0.7,
       ),
       primary: false,
-      padding: const EdgeInsets.all(32.0),
+      padding: const EdgeInsets.all(10.0),
         physics: NeverScrollableScrollPhysics(),
       children: <Widget>[
         _gameModeGridElement(context, 'assets/Images/irooni.png', 'いろおに', _GameMode.irooni, Color.fromARGB(255, 254, 129, 129)),
@@ -96,8 +100,8 @@ class TitlePage extends StatelessWidget {
       behavior: HitTestBehavior.deferToChild,
       onTap: () => _onGameModeButtonTapped(context, gameMode),
       child: Container(
-        width: 100,
-        height: 150,
+//        width: 100,
+//        height: 150,
         decoration: BoxDecoration(
           //border: Border.all(color: Colors.black, width: 3),
           color: Colors.white,
