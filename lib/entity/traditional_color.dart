@@ -17,7 +17,6 @@ class TraditionalColor {
     hex: data['hex'],
     rgb: RGBColor(data['red'], data['green'], data['blue']),
     cmyk: CMYKColor(data['cyan'], data['magenta'], data['yellow'], data['keyplate'])
-
   );
 
   Map<String, dynamic> toDatabaseJson() => {

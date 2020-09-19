@@ -20,18 +20,17 @@ class ColorModel with ChangeNotifier {
   }
 
   TraditionalColor getById(int id) {
-    TraditionalColor result = null;
-    _allColors.forEach((TraditionalColor color) {
-      if (color.id == id) {
-        result = color;
+    for(final TraditionalColor color in _allColors){
+      if(color.id == id){
+        return color;
       }
-    });
+    }
 
-    return result;
+    return null;
   }
 
   List<TraditionalColor> getAll() => this._allColors;
 
-  int getLength() => this._allColors.length;
+  int get length => this._allColors.length;
 
 }
