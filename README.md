@@ -12,3 +12,4 @@
 - **[camera](https://pub.dev/packages/camera)**
 - **[provider](https://pub.dev/packages/provider)**
 - **[image](https://pub.dev/packages/image)**
+- **[messagepack](https://pub.dev/packages/messagepack)**

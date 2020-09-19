@@ -137,6 +137,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.8"
+  messagepack:
+    dependency: "direct main"
+    description:
+      name: messagepack
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   meta:
     dependency: transitive
     description:
