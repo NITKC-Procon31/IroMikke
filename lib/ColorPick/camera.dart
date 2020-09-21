@@ -1,17 +1,15 @@
 import 'dart:async';
 import 'dart:io';
-
+//package
 import 'package:flutter/material.dart';
-
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
+//files
+import 'package:iromikke/main.dart';
 
 //やること
 //プレビューのレイアウトが簡素なので改良する
 //
-
-//このようにカメラを指定してください
-List<CameraDescription> cameras;
 
 //Future<void> main() async{
 //WidgetsFlutterBinding.ensureInitialized();
@@ -96,13 +94,13 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
         setState(() {
           imagePath = filePath;
         });
-        //if(filePath != null){
-        //Navigator.pushNamed(
-        //  context,
-        //'/'
-        //arguments: imagePath,//画像を渡す部分
-        // )
-        //}
+        if (filePath != null) {
+          Navigator.pushNamed(
+            context,
+            '/colorpick',
+            arguments: imagePath, //画像を渡す部分
+          );
+        }
       }
     });
   }
