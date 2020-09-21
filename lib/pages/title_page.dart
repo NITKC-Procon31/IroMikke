@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:iromikke/model/user_model.dart';
+
+import 'package:provider/provider.dart';
+
 //タイトル画面
 //---
 // todo
@@ -24,6 +28,7 @@ class TitlePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _initUser(context);
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 255, 173, 173),
       appBar: AppBar(
@@ -148,5 +153,9 @@ class TitlePage extends StatelessWidget {
       default:
         print('title_page.dart/_onGameModeButtonTapped() 無効な値');
     }
+  }
+
+  void _initUser(BuildContext context){
+    Provider.of<UserModel>(context); // 気持ち悪いけど、Userのフィールドがnullになる対策...
   }
 }

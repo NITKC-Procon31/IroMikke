@@ -18,9 +18,9 @@ import 'package:iromikke/pages/iroquiz/widgets/quiz_question_page.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_answer_page.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_score_page.dart';
 
+//model
 import 'package:iromikke/model/color_model.dart';
-
-
+import 'package:iromikke/model/user_model.dart';
 
 //todo
 //NavigatorクラスのNamed系メソッドのほうが便利そうなため使用できるように変更
@@ -49,6 +49,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<ColorModel>(
           create: (context) => ColorModel(),
+        ),
+        ChangeNotifierProvider<UserModel>(
+          create: (context) => UserModel(),
         )
       ],
       child: MaterialApp(
