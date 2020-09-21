@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+
+import 'package:camera/camera.dart';
+
 //other
 import 'package:iromikke/pages/log_in_page.dart';
 import 'package:iromikke/pages/title_page.dart';
@@ -25,7 +28,14 @@ import 'package:iromikke/model/user_color_model.dart';
 //さつき源代明朝を使うのであれば SIL Open Font Licence に基づいたライセンス表示が必要
 //
 
-void main() => runApp(MyApp());
+List<CameraDescription> cameras;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
 
