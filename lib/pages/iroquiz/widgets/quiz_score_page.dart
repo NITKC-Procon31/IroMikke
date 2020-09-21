@@ -33,24 +33,23 @@ class QuizScorePage extends StatelessWidget{
             ),
           ),
           //画面遷移テスト用のボタン
-          Row(
-            children: [
-              RaisedButton(
-                child: Text('もういっかい'),
-                onPressed: () {
-                  QuizProvider.closeInstance();
-                  Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
-                },
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.0),
-              ),
-              RaisedButton(
-                child: Text('たいとる'),
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/title', ModalRoute.withName('/title')),
-              ),
-              Text('${_quizProvider.correctedCount} / ${_quizProvider.quizCount}'),
-            ],
+          Center(
+            child: Column(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  color: Colors.green,
+                  margin: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  color: Colors.green,
+                  margin: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+                ),
+              ],
+            ),
           ),
         ],
       ),
