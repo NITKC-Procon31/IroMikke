@@ -13,11 +13,42 @@ enum QuizType{
   colorDerivation,
 }
 
+//なんちゃってシングルトン化
+//一連の制限時間内では同じインスタンスを使う感じ
+
 class QuizProvider {
 
+  static QuizProvider _instance;
   Math.Random random = Math.Random();
+  int _quizCount = 0;
+  int _correctedCount = 0;
+
+  QuizProvider._();
+
+  int get quizCount => _quizCount;
+  int get correctedCount => _correctedCount;
+
+  factory QuizProvider(){
+    if (_instance == null) {
+      _instance = QuizProvider._();
+    }
+    return _instance;
+  }
+
+  static bool hasInstance(){
+    return _instance != null;
+  }
+
+  static void closeInstance(){
+    _instance = null;
+  }
+
+  void answerCorrected(){
+    _correctedCount++;
+  }
 
   Future<QuizData> initQuiz() async{
+    _quizCount++;
     var quizMode = QuizType.colorName;
     switch(quizMode){
       case QuizType.colorName:

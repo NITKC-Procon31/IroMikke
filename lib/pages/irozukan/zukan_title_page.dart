@@ -38,10 +38,9 @@ class ZukanTitlePage extends StatelessWidget{
                   },
                   behavior: HitTestBehavior.deferToChild,
                   child: Container(
-                    width: 340.0,
-                    height: 70.0,
+                    width: MediaQuery.of(context).size.width * 0.9,
                     alignment: Alignment.center,
-                    margin: EdgeInsets.only(top: 80.0),
+                    margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
                       boxShadow: const [
@@ -67,10 +66,9 @@ class ZukanTitlePage extends StatelessWidget{
                   },
                   behavior: HitTestBehavior.deferToChild,
                   child: Container(
-                    width: 340.0,
-                    height: 70.0,
+                    width: MediaQuery.of(context).size.width * 0.9,
                     alignment: Alignment.center,
-                    margin: EdgeInsets.only(top: 80.0),
+                    margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
                       boxShadow: const [
@@ -100,7 +98,7 @@ class ZukanTitlePage extends StatelessWidget{
   Widget _zukanTitle(BuildContext context){
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(top: 50.0),
+      margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

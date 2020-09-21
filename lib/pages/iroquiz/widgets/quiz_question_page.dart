@@ -3,10 +3,13 @@ import 'package:iromikke/entity/traditional_color.dart';
 
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_data.dart';
+import 'package:iromikke/pages/iroquiz/widgets/quiz_color_name_widget.dart';
 
 class QuizQuestionPage extends StatelessWidget{
 
+  QuizProvider _quizProvider;
   QuizData _quizData;
+  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class QuizQuestionPage extends StatelessWidget{
                     child: Text('データをしゅとくできませんでした', style: TextStyle(fontSize: 45.0, color: Colors.black, fontFamily: 'Haranyan'),),
                   );
                 }
-                return _colorNameQuizWidget(context);
+                return _quizWidget(context);
               }
               else{
                 return const CircularProgressIndicator();
@@ -62,79 +65,36 @@ class QuizQuestionPage extends StatelessWidget{
           ),
         ],
       ),
+      floatingActionButton:FloatingActionButton(
+        child: Icon(Icons.navigate_next),
+        onPressed: () {
+          if(_quizData.userAnswer == _quizData.answerIndex){
+            _quizProvider.answerCorrected();
+          }
+          if(_quizProvider.quizCount < 10){
+            Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
+          }
+          else{
+            Navigator.pushNamedAndRemoveUntil(context, '/quiz/score', ModalRoute.withName('/quiz/title'));
+          }
+        },
+        tooltip: 'floating action buton',
+      ),
     );
   }
 
   Future<int> getQuiz() async{
-    _quizData = await QuizProvider().initQuiz();
-    print(_quizData.toString());
+    _quizProvider = QuizProvider();
+    _quizData = await _quizProvider.initQuiz();
+    print('${_quizProvider.quizCount}問目,${_quizData.toString()}');
     return 1;
   }
 
-  Widget _colorNameQuizWidget(BuildContext context){
-    TraditionalColor tColor = _quizData.optionList[_quizData.answerIndex];
-    Color answer = Color.fromARGB(255, tColor.rgb.r, tColor.rgb.g, tColor.rgb.b);
+  Widget _quizWidget(BuildContext context){
     return Column(
       children: [
-        Container(
-          alignment: Alignment.center,
-          child: Text(
-            'Qこの色はなに色？',
-            style: TextStyle(
-              fontFamily: 'satsuki',
-              color: Color.fromARGB(255, 83, 42, 35),
-              fontSize: 40.0,
-              fontWeight: FontWeight.bold,
-              letterSpacing: -4.0,
-            ),
-          ),
-          margin: EdgeInsets.all(10.0),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width * 0.6,
-          height: MediaQuery.of(context).size.width * 0.6,
-          margin: EdgeInsets.all(5.0),
-          decoration: BoxDecoration(
-            color: answer,
-            border: Border.all(
-              color: Color.fromARGB(255, 83, 42, 35),
-              width: 5.0,
-            ),
-          ),
-        ),
-        _colorNameQuizRow(context, 0),
-        _colorNameQuizRow(context, 1),
-        _colorNameQuizRow(context, 2),
+        ColorNameQuizWidget(_quizData),
       ],
-    );
-  }
-
-  Widget _colorNameQuizRow(BuildContext context, int index){
-    return GestureDetector(
-      behavior: HitTestBehavior.deferToChild,
-      child: Container(
-        margin: EdgeInsets.all(10.0),
-        padding: EdgeInsets.all(4.0),
-        width: MediaQuery.of(context).size.width * 0.8,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(
-            color: Color.fromARGB(255, 83, 42, 35),
-            width: 5.0,
-          ),
-        ),
-        child: Text(
-          _quizData.optionList[index].kana,
-          style: TextStyle(
-            fontFamily: 'satsuki',
-            fontWeight: FontWeight.bold,
-            fontSize: 40.0,
-            color: Color.fromARGB(255, 83, 42, 35),
-            letterSpacing: -8.0,
-          ),
-        ),
-      ),
     );
   }
 }

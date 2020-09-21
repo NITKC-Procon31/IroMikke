@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
+
 class QuizScorePage extends StatelessWidget{
+  QuizProvider _quizProvider;
 
   @override
   Widget build(BuildContext context) {
+    _quizProvider = QuizProvider();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 150, 211, 28),
@@ -33,15 +37,19 @@ class QuizScorePage extends StatelessWidget{
             children: [
               RaisedButton(
                 child: Text('もういっかい'),
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', (route) => false),
+                onPressed: () {
+                  QuizProvider.closeInstance();
+                  Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
+                },
               ),
               Padding(
                 padding: EdgeInsets.only(left: 10.0),
               ),
               RaisedButton(
                 child: Text('たいとる'),
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false),
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/title', ModalRoute.withName('/title')),
               ),
+              Text('${_quizProvider.correctedCount} / ${_quizProvider.quizCount}'),
             ],
           ),
         ],

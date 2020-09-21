@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_data.dart';
 
 class QuizAnswerPage extends StatelessWidget{
 
+  QuizData _quizData;
+
   @override
   Widget build(BuildContext context) {
+    _quizData = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 150, 211, 28),
@@ -29,19 +33,8 @@ class QuizAnswerPage extends StatelessWidget{
             ),
           ),
           //画面遷移テスト用のボタン
-          Row(
+          Column(
             children: [
-              RaisedButton(
-                child: Text('つぎのもんだい'),
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', (route) => false),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.0),
-              ),
-              RaisedButton(
-                child: Text('すこあ'),
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, '/quiz/score', (route) => false),
-              ),
             ],
           ),
         ],

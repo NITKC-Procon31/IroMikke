@@ -3,25 +3,24 @@ import 'dart:async';
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
 
 class QuizData{
-  final int maxSecond = 60;
+  final int maxSecond = 10;
 
   List<dynamic> _opttionList = List();
   var _quizMode;
   int _answerIndex;
-  Timer _timer;
+  bool _pressed = false;
 
-  int get tickCount => _timer.tick;
+  int _userAnswer = -1;
+
   int get quizMode => _quizMode.index;
   int get answerIndex => _answerIndex;
   List get optionList => _opttionList;
+  bool get pressed => _pressed;
+  int get userAnswer => _userAnswer;
 
-  QuizData(this._quizMode, this._opttionList, this._answerIndex){
-    //_timer = Timer(Duration(seconds: maxSecond), null);
-  }
+  set userAnswer(int index) => 0 <= index && index < 3 ? _userAnswer = index : print('予期せぬ値');
 
-  void stopTimer(){
-    _timer.cancel();
-  }
+  QuizData(this._quizMode, this._opttionList, this._answerIndex);
 
   String toString(){
     switch(_quizMode){
@@ -37,5 +36,9 @@ class QuizData{
       default:
         return '予期せぬ quizMode';
     }
+  }
+
+  void onPressed(){
+    _pressed = true;
   }
 }
