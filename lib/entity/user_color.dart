@@ -1,3 +1,5 @@
+import 'package:scidart/numdart.dart';
+
 class UserColor {
 
   int id;
@@ -7,12 +9,12 @@ class UserColor {
 
   factory UserColor.fromDatabaseJson(Map<String, dynamic> data) => UserColor(
     id: data['id'],
-    flag: (data['flag'] == 1 ? true : false)
+    flag: intToBool(data['flag'])
   );
 
   Map<String, dynamic> toDatabaseJson() => {
     'id': this.id,
-    'flag': this.flag
+    'flag': boolToInt(this.flag)
   };
 
 }
