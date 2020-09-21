@@ -13,3 +13,4 @@
 - **[provider](https://pub.dev/packages/provider)**
 - **[image](https://pub.dev/packages/image)**
 - **[messagepack](https://pub.dev/packages/messagepack)**
+- **[scidart](https://pub.dev/packages/scidart)**
