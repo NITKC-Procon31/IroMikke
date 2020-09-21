@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:camera/camera.dart';
 import 'package:provider/provider.dart';
 //other
 import 'package:iromikke/pages/log_in_page.dart';
@@ -24,43 +24,32 @@ import 'package:iromikke/model/user_color_model.dart';
 //NavigatorクラスのNamed系メソッドのほうが便利そうなため使用できるように変更
 //さつき源代明朝を使うのであれば SIL Open Font Licence に基づいたライセンス表示が必要
 //
-
-void main() => runApp(MyApp());
+List<CameraDescription> cameras;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  runApp(new MyApp());
+}
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<ColorModel>(
-          create: (context) => ColorModel()
-        ),
-        ChangeNotifierProvider<UserModel>(
-          create: (context) => UserModel()
-        ),
-        ChangeNotifierProvider<UserColorModel>(
-          create: (context) => UserColorModel()
-        )
-      ],
-      child: MaterialApp(
-          title: "いろみっけ！",
-          initialRoute: '/',
-          routes: {
-            '/': (context) => LogInPage(),
-            '/title': (context) => TitlePage(),
-
-            '/zukan/title': (context) => ZukanTitlePage(),
-            '/zukan/zukan': (context) => ZukanPlayPage(),
-
-            '/quiz/title': (context) => QuizTitlePage(),
-            '/quiz/question': (context) => QuizQuestionPage(),
-            '/quiz/answer': (context) => QuizAnswerPage(),
-            '/quiz/score': (context) => QuizScorePage(),
-          }
-      )
-    );
+        providers: [
+          ChangeNotifierProvider<ColorModel>(create: (context) => ColorModel()),
+          ChangeNotifierProvider<UserModel>(create: (context) => UserModel()),
+          ChangeNotifierProvider<UserColorModel>(
+              create: (context) => UserColorModel())
+        ],
+        child: MaterialApp(title: "いろみっけ！", initialRoute: '/', routes: {
+          '/': (context) => LogInPage(),
+          '/title': (context) => TitlePage(),
+          '/zukan/title': (context) => ZukanTitlePage(),
+          '/zukan/zukan': (context) => ZukanPlayPage(),
+          '/quiz/title': (context) => QuizTitlePage(),
+          '/quiz/question': (context) => QuizQuestionPage(),
+          '/quiz/answer': (context) => QuizAnswerPage(),
+          '/quiz/score': (context) => QuizScorePage(),
+        }));
   }
-
 }
