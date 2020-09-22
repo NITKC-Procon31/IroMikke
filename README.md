@@ -14,3 +14,4 @@
 - **[image](https://pub.dev/packages/image)**
 - **[messagepack](https://pub.dev/packages/messagepack)**
 - **[scidart](https://pub.dev/packages/scidart)**
+- **[http](https://pub.dev/packages/http)**

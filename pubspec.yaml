@@ -31,6 +31,7 @@ dependencies:
   image: ^2.1.14
   messagepack: ^0.1.1
   scidart: ^0.0.1-dev.6
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:
