@@ -9,7 +9,7 @@ class QuizScorePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    final UserModel model = Provider.of(context, listen: true);
+    final UserModel model = Provider.of<UserModel>(context, listen: true);
     if(model.highScore == null || model.highScore < _quizProvider.correctedCount * 10){
       model.highScore = _quizProvider.correctedCount * 10;
     }

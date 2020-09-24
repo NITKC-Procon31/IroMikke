@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:iromikke/model/user_color_model.dart';
 
 import 'package:provider/provider.dart';
 
@@ -68,15 +69,16 @@ class ZukanPlayPage extends StatelessWidget{
   }
 
   Widget _iroZukanList(BuildContext context){
-    final ColorModel model = Provider.of<ColorModel>(context, listen: true);
-    print(model.length);
+    final ColorModel colorModel = Provider.of<ColorModel>(context, listen: true);
+    final UserColorModel userColorModel = Provider.of<UserColorModel>(context, listen: true);
+    print(colorModel.length);
     return Scrollbar(
         child: ListView.separated(
-          itemCount: model.length,
+          itemCount: colorModel.length,
           itemBuilder: (context, index){
-            final TraditionalColor tColor = model.getById(index + 1);
+            final TraditionalColor tColor = colorModel.getById(index + 1);
             Color color = Color.fromARGB(255, tColor.rgb.r, tColor.rgb.g, tColor.rgb.b);
-            return _iroZukanRow(context, color, tColor.kana);
+            return _iroZukanRow(context, color, userColorModel.isFound(index + 1) ? tColor.kana : '？？？');
           },
           separatorBuilder: (context, index){
             return Container(
