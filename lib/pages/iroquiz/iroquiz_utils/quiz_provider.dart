@@ -23,6 +23,8 @@ class QuizProvider {
   int _quizCount = 0;
   int _correctedCount = 0;
 
+  static const int quizMax = 10;
+
   QuizProvider._();
 
   int get quizCount => _quizCount;

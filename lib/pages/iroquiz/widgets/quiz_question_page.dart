@@ -9,7 +9,6 @@ class QuizQuestionPage extends StatelessWidget{
 
   QuizProvider _quizProvider;
   QuizData _quizData;
-  bool _pressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +67,16 @@ class QuizQuestionPage extends StatelessWidget{
       floatingActionButton:FloatingActionButton(
         child: Icon(Icons.navigate_next),
         onPressed: () {
-          if(_quizData.userAnswer == _quizData.answerIndex){
-            _quizProvider.answerCorrected();
-          }
-          if(_quizProvider.quizCount < 10){
-            Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
-          }
-          else{
-            Navigator.pushNamedAndRemoveUntil(context, '/quiz/score', ModalRoute.withName('/quiz/title'));
+          if(_quizData.pressed){
+            if(_quizData.userAnswer == _quizData.answerIndex){
+              _quizProvider.answerCorrected();
+            }
+            if(_quizProvider.quizCount < QuizProvider.quizMax){
+              Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
+            }
+            else{
+              Navigator.pushNamedAndRemoveUntil(context, '/quiz/score', ModalRoute.withName('/quiz/title'));
+            }
           }
         },
         tooltip: 'floating action buton',

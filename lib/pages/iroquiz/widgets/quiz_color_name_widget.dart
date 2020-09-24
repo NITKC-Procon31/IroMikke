@@ -96,7 +96,7 @@ class _ColorNameQuizListState extends State<_ColorNameQuizList>{
         width: MediaQuery.of(context).size.width * 0.8,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: _quizData.pressed ? (index == _quizData.userAnswer ? Colors.yellow : Colors.white) : Colors.white,
           border: Border.all(
             color: _quizData.pressed ? (index == _quizData.answerIndex ? Colors.red : Colors.blue) : Color.fromARGB(255, 83, 42, 35),
             width: 5.0,
