@@ -70,7 +70,6 @@ class MyApp extends StatelessWidget {
             //iroquiz
             '/quiz/title': (context) => QuizTitlePage(),
             '/quiz/question': (context) => QuizQuestionPage(),
-            '/quiz/answer': (context) => QuizAnswerPage(),
             '/quiz/score': (context) => QuizScorePage(),
 
             //irosagashi
