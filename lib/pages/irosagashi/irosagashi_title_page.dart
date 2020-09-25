@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
 
-class QuizTitlePage extends StatelessWidget{
+class IrosagashiTitlePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +8,7 @@ class QuizTitlePage extends StatelessWidget{
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 150, 211, 28),
         title: Text(
-          'いろくいず',
+          'いろさがし',
           style: TextStyle(
             fontFamily: 'satsuki',
             fontSize: 40.0,
@@ -23,10 +22,10 @@ class QuizTitlePage extends StatelessWidget{
           Container(
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fitWidth,
-                image: AssetImage('assets/Images/iroquiz/iroquiz_background.png'),
-              ),
+//              image: DecorationImage(
+//                fit: BoxFit.fitWidth,
+//                image: AssetImage('assets/Images/iroquiz/iroquiz_background.png'),
+//              ),
             ),
           ),
           Column(
@@ -34,10 +33,8 @@ class QuizTitlePage extends StatelessWidget{
               _quizTitle(context),
               GestureDetector(
                 onTapUp: (details){
-                  if(QuizProvider.hasInstance()){
-                    QuizProvider.closeInstance();
-                  }
-                  Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
+                  print('nya-nn');
+                  //Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
                 },
                 behavior: HitTestBehavior.deferToChild,
                 child: Container(
@@ -54,7 +51,7 @@ class QuizTitlePage extends StatelessWidget{
                   child: Text(
                     'あそぶ',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 40, 206, 40),
+                      color: Color.fromARGB(255, 235, 86, 6),
                       fontSize: 60.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'satsuki',
@@ -83,7 +80,7 @@ class QuizTitlePage extends StatelessWidget{
                   child: Text(
                     'あそびかた',
                     style: TextStyle(
-                      color: Color.fromARGB(255, 40, 206, 40),
+                      color: Color.fromARGB(255, 247, 81, 0),
                       fontSize: 60.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'satsuki',
@@ -127,7 +124,7 @@ class QuizTitlePage extends StatelessWidget{
                 ),
               ),
               Text(
-                'く',
+                'さ',
                 style: TextStyle(
                   fontSize: 70.0,
                   fontWeight: FontWeight.bold,
@@ -136,7 +133,7 @@ class QuizTitlePage extends StatelessWidget{
                 ),
               ),
               Text(
-                'い',
+                'が',
                 style: TextStyle(
                   fontSize: 70.0,
                   fontWeight: FontWeight.bold,
@@ -145,7 +142,7 @@ class QuizTitlePage extends StatelessWidget{
                 ),
               ),
               Text(
-                'ず',
+                'し',
                 style: TextStyle(
                   fontSize: 70.0,
                   fontWeight: FontWeight.bold,
@@ -163,7 +160,7 @@ class QuizTitlePage extends StatelessWidget{
                 style: TextStyle(
                   fontSize: 70.0,
                   fontFamily: 'satsuki',
-                  color: Color.fromARGB(255, 170, 255, 0),
+                  color: Color.fromARGB(255, 235, 86, 6),
                 ),
               ),
               Text(
@@ -171,31 +168,31 @@ class QuizTitlePage extends StatelessWidget{
                 style: TextStyle(
                   fontSize: 70.0,
                   fontFamily: 'satsuki',
-                  color: Color.fromARGB(255, 40, 206, 40),
+                  color: Color.fromARGB(255, 247, 181, 0),
                 ),
               ),
               Text(
-                'く',
+                'さ',
                 style: TextStyle(
                   fontSize: 70.0,
                   fontFamily: 'satsuki',
-                  color: Color.fromARGB(255, 127, 255, 127),
+                  color: Color.fromARGB(255, 239, 120, 0),
                 ),
               ),
               Text(
-                'い',
+                'が',
                 style: TextStyle(
                   fontSize: 70.0,
                   fontFamily: 'satsuki',
-                  color: Color.fromARGB(255, 40, 206, 40),
+                  color: Color.fromARGB(255, 247, 181, 0),
                 ),
               ),
               Text(
-                'ず',
+                'し',
                 style: TextStyle(
                   fontSize: 70.0,
                   fontFamily: 'satsuki',
-                  color: Color.fromARGB(255, 170, 255, 0),
+                  color: Color.fromARGB(255, 235, 86, 6),
                 ),
               ),
             ],

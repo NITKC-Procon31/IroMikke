@@ -18,6 +18,9 @@ import 'package:iromikke/pages/iroquiz/widgets/quiz_question_page.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_answer_page.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_score_page.dart';
 
+//irosagashi
+import 'package:iromikke/pages/irosagashi/irosagashi_title_page.dart';
+
 //model
 import 'package:iromikke/model/color_model.dart';
 import 'package:iromikke/model/user_model.dart';
@@ -61,13 +64,18 @@ class MyApp extends StatelessWidget {
             '/': (context) => LogInPage(),
             '/title': (context) => TitlePage(),
 
+            //irozukan
             '/zukan/title': (context) => ZukanTitlePage(),
             '/zukan/zukan': (context) => ZukanPlayPage(),
 
+            //iroquiz
             '/quiz/title': (context) => QuizTitlePage(),
             '/quiz/question': (context) => QuizQuestionPage(),
             '/quiz/answer': (context) => QuizAnswerPage(),
             '/quiz/score': (context) => QuizScorePage(),
+
+            //irosagashi
+            '/irosagashi/title': (context) => IrosagashiTitlePage(),
           }
       )
     );

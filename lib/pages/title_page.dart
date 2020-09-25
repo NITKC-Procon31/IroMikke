@@ -149,6 +149,10 @@ class TitlePage extends StatelessWidget {
         break;
       case _GameMode.irosagashi:
         //ここに追記
+        Navigator.pushNamed(
+          context,
+          '/irosagashi/title'
+        );
         break;
       case _GameMode.iroquiz:
         //ここに追記
