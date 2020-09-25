@@ -15,7 +15,6 @@ import 'package:iromikke/pages/irozukan/zukan_play_page.dart';
 //iroquiz
 import 'package:iromikke/pages/iroquiz/widgets/quiz_title_page.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_question_page.dart';
-import 'package:iromikke/pages/iroquiz/widgets/quiz_answer_page.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_score_page.dart';
 
 //irosagashi
