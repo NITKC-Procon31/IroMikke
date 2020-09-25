@@ -47,13 +47,9 @@ class TitlePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: <Widget>[
+            _showLogo(context),
             Expanded(
-              flex: 2,
-              child: _showLogo(),
-            ),
-            Expanded(
-              flex: 8,
-              child: _showGameModeList(context),
+              child: _showGameModeGrid(context),
             ),
           ],
         ),
@@ -62,9 +58,10 @@ class TitlePage extends StatelessWidget {
   }
 
   //ロゴを表示
-  Container _showLogo(){
+  Container _showLogo(BuildContext context){
     return Container(
       alignment: Alignment.center,
+      height: MediaQuery.of(context).size.height * 0.2,
       decoration: const BoxDecoration(
         //color: Colors.greenAccent,
         image: DecorationImage(
@@ -77,14 +74,22 @@ class TitlePage extends StatelessWidget {
 
   //各モードへのボタンを表示するGridView
   //いいやり方を思いつかなければListViewに変更するかも
-  Widget _showGameModeList(BuildContext context){
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: [
-        _gameModeListElement(context, 'assets/Images/irooni.png', 'いろおに', _GameMode.irooni, Color.fromARGB(255, 254, 129, 126)),
-        _gameModeListElement(context, 'assets/Images/irosagashi.png', 'いろさがし', _GameMode.irosagashi, Color.fromARGB(255, 167, 128, 255)),
-        _gameModeListElement(context, 'assets/Images/iroquiz.png', 'いろくいず', _GameMode.iroquiz, Color.fromARGB(255, 128, 247, 255)),
-        _gameModeListElement(context, 'assets/Images/zukan.png', 'いろずかん', _GameMode.zukan, Color.fromARGB(255, 180, 255, 128)),
+  Widget _showGameModeGrid(BuildContext context){
+    return GridView(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        crossAxisCount: 2,
+        childAspectRatio: 0.9,
+      ),
+      primary: false,
+      padding: const EdgeInsets.all(10.0),
+      physics: NeverScrollableScrollPhysics(),
+      children: <Widget>[
+        _gameModeGridElement(context, 'assets/Images/irooni.png', 'いろおに', _GameMode.irooni, Color.fromARGB(255, 254, 129, 129)),
+        _gameModeGridElement(context, 'assets/Images/irosagashi.png', 'いろさがし', _GameMode.irosagashi, Color.fromARGB(255, 167, 128, 255)),
+        _gameModeGridElement(context, 'assets/Images/iroquiz.png', 'いろクイズ', _GameMode.iroquiz, Color.fromARGB(255, 148, 247, 255)),
+        _gameModeGridElement(context, 'assets/Images/zukan.png', 'ずかん', _GameMode.zukan, Color.fromARGB(255, 180, 255, 128)),
       ],
     );
   }
@@ -92,19 +97,21 @@ class TitlePage extends StatelessWidget {
   //各ボタンのContainer
   //Containerの子にGestureDetectorなのか逆なのか
   //タップ時の動作を追加する予定
-  Widget _gameModeListElement(BuildContext context, String imagePath, String title, var gameMode, Color fontColor){
+  Widget _gameModeGridElement(BuildContext context, String imagePath, String title, var gameMode, Color fontColor){
     return GestureDetector(
       behavior: HitTestBehavior.deferToChild,
       onTap: () => _onGameModeButtonTapped(context, gameMode),
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.9,
-        height: MediaQuery.of(context).size.height * 0.5,
-        margin: EdgeInsets.fromLTRB(
-          MediaQuery.of(context).size.width * 0.05,
-          MediaQuery.of(context).size.height * 0.02,
-          MediaQuery.of(context).size.width * 0.1,
-          MediaQuery.of(context).size.height * 0.02
-        ),
+        width: MediaQuery.of(context).size.width * 0.4,
+        height: MediaQuery.of(context).size.height * 0.3,
+//        width: MediaQuery.of(context).size.width * 0.9,
+//        height: MediaQuery.of(context).size.height * 0.5,
+//        margin: EdgeInsets.fromLTRB(
+//          MediaQuery.of(context).size.width * 0.05,
+//          MediaQuery.of(context).size.height * 0.02,
+//          MediaQuery.of(context).size.width * 0.1,
+//          MediaQuery.of(context).size.height * 0.02
+//        ),
         decoration: BoxDecoration(
           //border: Border.all(color: Colors.black, width: 3),
           color: Colors.white,
@@ -112,14 +119,22 @@ class TitlePage extends StatelessWidget {
           boxShadow: const[
             BoxShadow(color: Color.fromARGB(255, 132, 50, 50), blurRadius: 5,),
           ],
+//          image: DecorationImage(
+//            image: AssetImage(imagePath),
+//            fit: BoxFit.fitWidth,
+//          ),
         ),
+        //child: Text(title, style: TextStyle(fontFamily: 'satsuki', fontSize: 35, color: fontColor, fontWeight: FontWeight.bold, letterSpacing: -4),),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.01),
+            Expanded(
+              flex: 8,
               child: Image.asset(imagePath),
             ),
-            Text(title, style: TextStyle(fontFamily: 'satsuki', fontSize: 50, color: fontColor, fontWeight: FontWeight.bold),),
+            Expanded(
+              flex: 2,
+              child: Text(title, style: TextStyle(fontFamily: 'satsuki', fontSize: 34, color: fontColor, fontWeight: FontWeight.bold, letterSpacing: -4),),
+            ),
           ],
         ),
       ),
