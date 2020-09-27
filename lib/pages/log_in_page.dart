@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:image/image.dart';
 
 import 'dart:async';
 
+import 'package:iromikke/model/user_model.dart';
+import 'package:iromikke/network/api/api_client.dart';
+import 'package:provider/provider.dart';
+
 class LogInPage extends StatelessWidget {
 
-  int inputMax = 8; //_validateの内部は手動で変更してくださいごめんなさい
+  final _textFieldcontroller = TextEditingController();
+  final int inputMax = 8; //_validateの内部は手動で変更してくださいごめんなさい
   bool _buttonAble = false;
+  UserModel _model;
   final _controller = StreamController<String>();
   final _validator = StreamTransformer<String, String>.fromHandlers(
     handleData: (value, sink) {
@@ -30,33 +37,84 @@ class LogInPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            StreamBuilder<String>(
-              stream: _controller.stream.transform(_validator),
-              builder: (context, snapshot) {
-                return TextField(
-                  onChanged: (String data) {
-                    _controller.sink.add(data);
-                    //もっとスマートにできそう
-                    _buttonAble = (0 < data.length) &&(data.length <= inputMax );
-                  },
-                  decoration: InputDecoration(
-                    errorText: snapshot.hasError ? snapshot.error : null,
+      body: FutureBuilder(
+        future: _fanc(),
+        builder: (context, snapshot){
+          if(snapshot.connectionState == ConnectionState.done){
+            if(snapshot.hasError){
+              print('えらー');
+              return Text('えらー');
+            }
+            if(!snapshot.hasData){
+              return Text('ぬる');
+            }
+            return Center(
+              child: Column(
+                children: [
+                  StreamBuilder<String>(
+                    stream: _controller.stream.transform(_validator),
+                    builder: (context, snapshot) {
+                      return TextField(
+                        controller: _textFieldcontroller,
+                        onChanged: (String data) {
+                          _controller.sink.add(data);
+                          //もっとスマートにできそう
+                          _buttonAble = (0 < data.length) &&(data.length <= inputMax );
+                        },
+                        decoration: InputDecoration(
+                          errorText: snapshot.hasError ? snapshot.error : null,
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-
-            //たぶんFutureBuilderなりを使ってデータベース操作に対応するはず
-            RaisedButton(
-              child: Text('けってい'),
-              onPressed: () => _buttonAble ? Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false) : null,
-            ),
-          ],
-        ),
+//                  TextField(
+//                    maxLength: inputMax,
+//                    controller: _TextFieldcontroller,
+//                    onChanged: (String data){
+//                      _buttonAble = (0 < data.length) &&(data.length <= inputMax );
+//                    },
+//                  ),
+                  //たぶんFutureBuilderなりを使ってデータベース操作に対応するはず
+                  RaisedButton(
+                    child: Text('けってい'),
+//                    onPressed: () => _buttonAble ? (){
+//                      print(_textFieldcontroller.text);
+//                      _registerUser(_textFieldcontroller.text);
+//                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
+//                    } : print('ぬるぽ'),
+                    onPressed: (){
+                      print(_textFieldcontroller.text);
+                      _registerUser('てきとう');
+                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
+                    },
+                  ),
+                ],
+              ),
+            );
+          }
+          else{
+            return const CircularProgressIndicator();
+          }
+        },
       ),
     );
+  }
+
+  Future<void> _fanc() async{
+    _model = UserModel();
+    while(!_model.flag){
+      await Future.delayed(Duration(milliseconds: 1));
+    }
+    return 1;
+  }
+
+  void _registerUser(String userName){
+    ApiClient client = ApiClient();
+    try{
+      client.registerUser(userName, _model);
+    }
+    catch(ex){
+      print('よくわかんないえらー');
+    }
   }
 }

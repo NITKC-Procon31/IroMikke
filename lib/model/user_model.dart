@@ -7,11 +7,13 @@ import 'package:iromikke/repository/user_repository.dart';
 class UserModel with ChangeNotifier {
 
   User _user;
+  bool _flag = false;
 
   final UserRepository repo = UserRepository();
 
   UserModel(){
     _fetch();
+    _flag = true;
   }
 
   void _fetch() async {
@@ -24,6 +26,8 @@ class UserModel with ChangeNotifier {
   int get viewerId => this._user.viewerId;
   int get highScore => this._user.highScore;
   int get uiColor => this._user.uiColor;
+
+  bool get flag => this._flag;
 
   set name(String name){
     _user.name = name;
