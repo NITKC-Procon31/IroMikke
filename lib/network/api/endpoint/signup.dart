@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:iromikke/network/api/endpoint.dart';
-import 'package:iromikke/network/api/method.dart';
+import 'package:iromikke/network/api/endpoint/endpoint.dart';
+import 'package:iromikke/network/api/endpoint/method.dart';
 
 class SignUp implements EndPoint {
 

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:iromikke/network/api/signup.dart';
+import 'package:iromikke/network/api/endpoint/signup.dart';
 
 void main(){
   test('SignUp test', (){
