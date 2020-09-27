@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'dart:async';
 
-class LogInPage extends StatelessWidget{
+class LogInPage extends StatelessWidget {
 
-  int inputMax = 8; //_validataの内部は手動で変更してくださいごめんなさい
+  int inputMax = 8; //_validateの内部は手動で変更してくださいごめんなさい
   bool _buttonAble = false;
   final _controller = StreamController<String>();
-  final _validata = StreamTransformer<String, String>.fromHandlers(
-    handleData: (value, sink,){
-      if(value.length > 8){
+  final _validator = StreamTransformer<String, String>.fromHandlers(
+    handleData: (value, sink) {
+      if (value.length > 8) {
         sink.addError('なまえは8もじまで！');
-      }
-      else{
+      } else {
         sink.add(null);
       }
     },
@@ -34,10 +34,10 @@ class LogInPage extends StatelessWidget{
         child: Column(
           children: [
             StreamBuilder<String>(
-              stream: _controller.stream.transform(_validata),
-              builder: (context, snapshot){
+              stream: _controller.stream.transform(_validator),
+              builder: (context, snapshot) {
                 return TextField(
-                  onChanged: (String data){
+                  onChanged: (String data) {
                     _controller.sink.add(data);
                     //もっとスマートにできそう
                     _buttonAble = (0 < data.length) &&(data.length <= inputMax );
