@@ -7,30 +7,13 @@ import 'package:path_provider/path_provider.dart';
 //files
 import 'package:iromikke/main.dart';
 
-//やること
-//プレビューのレイアウトが簡素なので改良する
-//
+class IrosagashiCameraPage extends StatefulWidget{
 
-//Future<void> main() async{
-//WidgetsFlutterBinding.ensureInitialized();
-//cameras = await availableCameras();
-//runApp(
-//  MaterialApp(
-//theme: ThemeData.dark(),
-//home: CameraPage(
-//),
-//)
-//);
-//}
-
-class CameraPage extends StatefulWidget {
   @override
-  _CameraPageState createState() {
-    return _CameraPageState();
-  }
+  _IrosagashiCameraPageState createState() => _IrosagashiCameraPageState();
 }
 
-class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
+class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with WidgetsBindingObserver{
   CameraController controller;
   String imagePath;
   Future<void> _initializedControllerF; //なんでエラーなってるかわからないが動く
@@ -40,7 +23,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     controller = CameraController(
         cameras[0], //利用できるカメラリストから特定のカメラを選択。
         ResolutionPreset.medium //解像度
-        );
+    );
     _initializedControllerF = controller.initialize(); //カメラコントローラを初期化
     WidgetsBinding.instance.addObserver(this);
   }
@@ -69,27 +52,38 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: const Text('CameraPage')),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 235, 126, 1),
+        title: const Text(
+          'いろさがし',
+          style: TextStyle(
+            fontFamily: 'satsuki',
+            fontSize: 40.0,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: Column(
         children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              color: const Color.fromARGB(a, r, g, b),
-              child: Row(
-                children: [
-                  Text(
-                    'のこり',
-                    style: TextStyle(
-                      fontFamily: 'satsuki',
-                    ),
+          Container(
+            color: const Color.fromARGB(255, 215, 106, 1),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text(
+                  'のこり',
+                  style: TextStyle(
+                    fontFamily: 'satsuki',
+                    color: Colors.white,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Expanded(
-            flex: 9,
             child: FutureBuilder<void>(
               future: _initializedControllerF,
               builder: (context, snapshot) {
@@ -98,8 +92,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                 } else {
                   return Center(child: CircularProgressIndicator());
                 }
-              },
-            ),
+              }),
           ),
         ],
       ),
@@ -121,7 +114,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
         if (filePath != null) {
           Navigator.pushNamed(
             context,
-            '/colorpick',
+            '/irosagashi/colorPick',
             arguments: imagePath, //画像を渡す部分
           );
         }

@@ -19,6 +19,8 @@ import 'package:iromikke/pages/iroquiz/widgets/quiz_score_page.dart';
 
 //irosagashi
 import 'package:iromikke/pages/irosagashi/irosagashi_title_page.dart';
+import 'package:iromikke/pages/irosagashi/irosagashi_camera_page.dart';
+import 'package:iromikke/pages/irosagashi/irosagashi_color_pick_page.dart';
 
 //model
 import 'package:iromikke/model/color_model.dart';
@@ -57,25 +59,29 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-          title: "いろみっけ！",
-          initialRoute: '/',
-          routes: {
-            '/': (context) => LogInPage(),
-            '/title': (context) => TitlePage(),
+        title: "いろみっけ！",
+        initialRoute: '/',
+        routes: {
+          '/': (context) => LogInPage(),
+          '/title': (context) => TitlePage(),
 
-            //irozukan
-            '/zukan/title': (context) => ZukanTitlePage(),
-            '/zukan/zukan': (context) => ZukanPlayPage(),
+          //irozukan
+          '/zukan/title': (context) => ZukanTitlePage(),
+          '/zukan/zukan': (context) => ZukanPlayPage(),
 
-            //iroquiz
-            '/quiz/title': (context) => QuizTitlePage(),
-            '/quiz/question': (context) => QuizQuestionPage(),
-            '/quiz/score': (context) => QuizScorePage(),
+          //iroquiz
+          '/quiz/title': (context) => QuizTitlePage(),
+          '/quiz/question': (context) => QuizQuestionPage(),
+          '/quiz/score': (context) => QuizScorePage(),
 
-            //irosagashi
-            '/irosagashi/title': (context) => IrosagashiTitlePage(),
-          }
-      )
+          //irosagashi
+          '/irosagashi/title': (context) => IrosagashiTitlePage(),
+          '/irosagashi/camera': (context) => IrosagashiCameraPage(),
+          '/irosagashi/colorPick': (context) => IrosagashiColorPickPage(),
+        },
+        //その時が来たらfalseにするのかもしれない
+        debugShowCheckedModeBanner: true,
+      ),
     );
   }
 

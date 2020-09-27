@@ -6,7 +6,7 @@ class IrosagashiTitlePage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 150, 211, 28),
+        backgroundColor: Color.fromARGB(255, 235, 126, 1),
         title: Text(
           'いろさがし',
           style: TextStyle(
@@ -34,7 +34,7 @@ class IrosagashiTitlePage extends StatelessWidget{
               GestureDetector(
                 onTapUp: (details){
                   print('nya-nn');
-                  //Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
+                  Navigator.pushNamed(context, '/irosagashi/camera');
                 },
                 behavior: HitTestBehavior.deferToChild,
                 child: Container(

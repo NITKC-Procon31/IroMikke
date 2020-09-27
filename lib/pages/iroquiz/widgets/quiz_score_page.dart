@@ -145,6 +145,7 @@ class QuizScorePage extends StatelessWidget{
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
+                letterSpacing: -2,
               ),
             ),
 //            Text(

@@ -49,12 +49,12 @@ class QuizProvider {
     _correctedCount++;
   }
 
-  Future<QuizData> initQuiz() async{
+  QuizData initQuiz(ColorModel model){
     _quizCount++;
     var quizMode = QuizType.colorName;
     switch(quizMode){
       case QuizType.colorName:
-        return await _provideColorNameQuiz();
+        return _provideColorNameQuiz(model);
         break;
       case QuizType.colorDerivation:
         //return _colorDerivation();
@@ -68,12 +68,8 @@ class QuizProvider {
     }
   }
 
-  Future<QuizData> _provideColorNameQuiz() async{
-    final ColorModel model = ColorModel();
+  QuizData _provideColorNameQuiz(ColorModel model){
     List<TraditionalColor> optionList = List();
-    while(model.length == 0){
-      await Future.delayed(Duration(milliseconds: 1));
-    }
     optionList.add(model.getById(random.nextInt(model.length) + 1));
     int startIndex = random.nextInt(model.length);
     for(int i = 0; i < model.length && optionList.length < 3; i++){
