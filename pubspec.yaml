@@ -29,7 +29,6 @@ dependencies:
   camera: ^0.5.8+5
   provider: ^4.3.2+2
   image: ^2.1.14
-  messagepack: ^0.1.1
   scidart: ^0.0.1-dev.6
   http: ^0.12.2
   web_socket_channel: ^1.1.0
