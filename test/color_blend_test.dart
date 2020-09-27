@@ -22,5 +22,4 @@ void main(){
     print('RGB2 + RGB3 = $blend23');
     print('RGB1 + RGB3 = $blend13');
   });
-
 }

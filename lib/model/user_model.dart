@@ -13,7 +13,7 @@ class UserModel with ChangeNotifier {
 
   UserModel(){
     _fetch();
-    _flag = true;
+    this._flag = true;
   }
 
   void _fetch() async {
@@ -29,27 +29,27 @@ class UserModel with ChangeNotifier {
 
   bool get flag => this._flag;
 
-  set name(String name){
+  set name(String name) {
     _user.name = name;
     this._updateUser();
   }
 
-  set userId(int userId){
+  set userId(int userId) {
     _user.userId = userId;
     this._updateUser();
   }
 
-  set viewerId(int viewerId){
+  set viewerId(int viewerId) {
     _user.viewerId = viewerId;
     this._updateUser();
   }
 
-  set highScore(int score){
+  set highScore(int score) {
     _user.highScore = score;
     this._updateUser();
   }
 
-  set uiColor(int id){
+  set uiColor(int id) {
     _user.uiColor = id;
     this._updateUser();
   }

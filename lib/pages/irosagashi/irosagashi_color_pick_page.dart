@@ -11,17 +11,19 @@ import 'package:flutter/rendering.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart' show rootBundle;
 
-class IrosagashiColorPickPage extends StatefulWidget{
+class IrosagashiColorPickPage extends StatefulWidget {
 
   @override
   _IrosagashiColorPickPageState createState() => _IrosagashiColorPickPageState();
+
 }
 
-class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
+class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
+
   String imagePath;
   GlobalKey paintKey = GlobalKey();
   bool _isPanDowned = false;
-//Snapshotで実装しています
+  // Snapshotで実装しています
 
   bool useSnapshot = true;
 
@@ -33,7 +35,6 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
     super.initState();
   }
 
-  String _text;
   @override
   Widget build(BuildContext context) {
     imagePath = ModalRoute.of(context).settings.arguments; //画像を渡される
@@ -144,7 +145,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
                       ),
                     ),
 //                    Container(
-//                      //色の選択確認部分
+//                      // 色の選択確認部分
 //                        margin: EdgeInsets.all(70),
 //                        width: 50,
 //                        height: 50,
@@ -155,7 +156,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
 //                            boxShadow: [
 //                              BoxShadow(
 //                                  blurRadius: 4, offset: Offset(0, 2)), //影
-//                              //重いようであれば削除
+//                              // 重いようであれば削除
 //                            ])),
 //                    Positioned(
 //                      child: Text('{$selectedColor}',
@@ -171,9 +172,9 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
               }
             }));
   }
-  //globalPosition  = アプリ内の絶対座標
-  //localPosition = Widget内の相対座標
-  //座標は基本的にdouble型で取得されています
+  // globalPosition  = アプリ内の絶対座標
+  // localPosition = Widget内の相対座標
+  // 座標は基本的にdouble型で取得されています
 
   void searchPixel(Offset globalPosition) async {
     if (photo == null) {
@@ -183,7 +184,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
   }
 
   void _calculatePixel(Offset globalPosition) {
-    //curretnKeyを参考にwidgetのサイズ、位置(RenderBoxインスタンス)を取得
+    // currentKeyを参考にwidgetのサイズ、位置(RenderBoxインスタンス)を取得
     RenderBox box = paintKey.currentContext.findRenderObject();
     Offset localPosition = box.globalToLocal(globalPosition); //座標を代入
 
@@ -191,7 +192,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
     double pixelY = localPosition.dy;
 
     int pixel32 = photo.getPixelSafe(pixelX.toInt(), pixelY.toInt());
-    //int型に変換
+    // int型に変換
 
     int hex = toArgb(pixel32);
     _stateController.add(Color(hex));
@@ -203,12 +204,12 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
   }
 
   Future<void> loadSnapshotBytes() async {
-    //Widgetを画像化
+    // Widgetを画像化
     RenderRepaintBoundary boxPaint = paintKey.currentContext.findRenderObject();
     ui.Image capture = await boxPaint.toImage();
     ByteData imageBytes =
     await capture.toByteData(format: ui.ImageByteFormat.png);
-    //pngに圧縮してバイナリデータとして代入？
+    // pngに圧縮してバイナリデータとして代入？
     setImageBytes(imageBytes);
     capture.dispose();
   }
@@ -223,6 +224,6 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage>{
     int abgrR = (argbColor >> 16) & 0xFF;
     int abgrB = (argbColor & 0xFF);
     return (argbColor & 0xFF00FF00) | (abgrB << 16) | abgrR;
-  } //imageライブラリがKML(#AABBGGRR)を使用しているので通常の#AARRGGBに変換
+  } // imageライブラリがKML(#AABBGGRR)を使用しているので通常の#AARRGGBに変換
 
 }

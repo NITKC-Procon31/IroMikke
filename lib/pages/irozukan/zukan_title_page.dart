@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//図鑑タイトル画面
-//---
-//todo
-//素材を受け取り追加
-//StatefulWidgetである必要性がなさそうなのでStatelessWidgetに変更を検討
-//---
+// 図鑑タイトル画面
+// ---
+// todo
+// 素材を受け取り追加
+// StatefulWidgetである必要性がなさそうなのでStatelessWidgetに変更を検討
+// ---
 
-class ZukanTitlePage extends StatelessWidget{
+class ZukanTitlePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class ZukanTitlePage extends StatelessWidget{
     );
   }
 
-  Widget _zukanTitle(BuildContext context){
+  Widget _zukanTitle(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),

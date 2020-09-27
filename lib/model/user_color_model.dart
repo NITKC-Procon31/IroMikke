@@ -10,7 +10,7 @@ class UserColorModel with ChangeNotifier {
 
   final UserColorRepository repo = UserColorRepository();
 
-  UserColorModel(){
+  UserColorModel() {
     _fetch();
   }
 
@@ -20,7 +20,7 @@ class UserColorModel with ChangeNotifier {
   }
 
   bool isFound(int id) {
-    if(_allColors.length > id){
+    if (_allColors.length > id) {
       return _allColors[id].flag;
     }
 

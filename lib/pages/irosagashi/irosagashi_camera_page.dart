@@ -7,13 +7,14 @@ import 'package:path_provider/path_provider.dart';
 //files
 import 'package:iromikke/main.dart';
 
-class IrosagashiCameraPage extends StatefulWidget{
+class IrosagashiCameraPage extends StatefulWidget {
 
   @override
   _IrosagashiCameraPageState createState() => _IrosagashiCameraPageState();
+
 }
 
-class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with WidgetsBindingObserver{
+class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with WidgetsBindingObserver {
   CameraController controller;
   String imagePath;
   Future<void> _initializedControllerF; //なんでエラーなってるかわからないが動く

@@ -1,8 +1,7 @@
-import 'dart:async';
-
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
 
-class QuizData{
+class QuizData {
+
   final int maxSecond = 10;
 
   List<dynamic> _optionList = List();
@@ -22,8 +21,8 @@ class QuizData{
 
   QuizData(this._quizMode, this._optionList, this._answerIndex);
 
-  String toString(){
-    switch(_quizMode){
+  String toString() {
+    switch (_quizMode) {
       case QuizType.colorName:
         return '${_optionList[0].kana}, ${_optionList[1].kana}, ${_optionList[2].kana}, ans = ${_optionList[_answerIndex].kana}';
         break;
@@ -38,7 +37,8 @@ class QuizData{
     }
   }
 
-  void onPressed(){
+  void onPressed() {
     _pressed = true;
   }
+
 }

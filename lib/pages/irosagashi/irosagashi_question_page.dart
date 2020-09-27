@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class IrosagashiQuestionPage extends StatelessWidget{
+class IrosagashiQuestionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {

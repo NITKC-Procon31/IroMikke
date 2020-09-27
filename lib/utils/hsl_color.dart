@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:iromikke/utils/rgb_color.dart';
 
 class HSLColor {

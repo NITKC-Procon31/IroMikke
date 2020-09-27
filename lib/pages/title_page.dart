@@ -5,17 +5,17 @@ import 'package:iromikke/model/user_model.dart';
 
 import 'package:provider/provider.dart';
 
-//タイトル画面
-//---
+// タイトル画面
+// ---
 // todo
-//drawerの実装
-//タップ時の動作の実装
-//各ボタンにタイトルを追加 ← 8/30実装
-//その他いくつかの未実装および修正
-//StatefulWidgetにした理由がわからないのでStatelessWidgetへの変更を検討
-//---
-//Pixel3を前提としている状態であるため改善が必要
-//Material Theming というものでThemeを一括管理できるそうなので活用したい
+// drawerの実装
+// タップ時の動作の実装
+// 各ボタンにタイトルを追加 ← 8/30実装
+// その他いくつかの未実装および修正
+// StatefulWidgetにした理由がわからないのでStatelessWidgetへの変更を検討
+// ---
+// Pixel3を前提としている状態であるため改善が必要
+// Material Theming というものでThemeを一括管理できるそうなので活用したい
 
 enum _GameMode {
   irooni,
@@ -57,8 +57,8 @@ class TitlePage extends StatelessWidget {
     );
   }
 
-  //ロゴを表示
-  Container _showLogo(BuildContext context){
+  // ロゴを表示
+  Container _showLogo(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       height: MediaQuery.of(context).size.height * 0.2,
@@ -72,9 +72,9 @@ class TitlePage extends StatelessWidget {
     );
   }
 
-  //各モードへのボタンを表示するGridView
-  //いいやり方を思いつかなければListViewに変更するかも
-  Widget _showGameModeGrid(BuildContext context){
+  // 各モードへのボタンを表示するGridView
+  // いいやり方を思いつかなければListViewに変更するかも
+  Widget _showGameModeGrid(BuildContext context) {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 10,
@@ -94,10 +94,10 @@ class TitlePage extends StatelessWidget {
     );
   }
 
-  //各ボタンのContainer
-  //Containerの子にGestureDetectorなのか逆なのか
-  //タップ時の動作を追加する予定
-  Widget _gameModeGridElement(BuildContext context, String imagePath, String title, var gameMode, Color fontColor){
+  // 各ボタンのContainer
+  // Containerの子にGestureDetectorなのか逆なのか
+  // タップ時の動作を追加する予定
+  Widget _gameModeGridElement(BuildContext context, String imagePath, String title, var gameMode, Color fontColor) {
     return GestureDetector(
       behavior: HitTestBehavior.deferToChild,
       onTap: () => _onGameModeButtonTapped(context, gameMode),
@@ -117,7 +117,7 @@ class TitlePage extends StatelessWidget {
           color: Colors.white,
           borderRadius: const BorderRadius.all(Radius.circular(30)),
           boxShadow: const[
-            BoxShadow(color: Color.fromARGB(255, 132, 50, 50), blurRadius: 5,),
+            BoxShadow(color: Color.fromARGB(255, 132, 50, 50), blurRadius: 5),
           ],
 //          image: DecorationImage(
 //            image: AssetImage(imagePath),
@@ -142,7 +142,7 @@ class TitlePage extends StatelessWidget {
   }
 
   //実際の動作はここに書く予定
-  _onGameModeButtonTapped(BuildContext context, var gameMode){
+  _onGameModeButtonTapped(BuildContext context, var gameMode) {
     switch(gameMode){
       case _GameMode.irooni:
         //ここに追記
@@ -175,4 +175,5 @@ class TitlePage extends StatelessWidget {
   void _initUser(BuildContext context){
     Provider.of<UserModel>(context); // 気持ち悪いけど、Userのフィールドがnullになる対策...
   }
+
 }

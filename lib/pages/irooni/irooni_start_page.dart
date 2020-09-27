@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-class IrooniStartPage extends StatefulWidget{
+class IrooniStartPage extends StatefulWidget {
 
   @override
   _IrooniStartPageState createState() => _IrooniStartPageState();
+
 }
 
-class _IrooniStartPageState extends State<IrooniStartPage>{
+class _IrooniStartPageState extends State<IrooniStartPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +27,15 @@ class _IrooniStartPageState extends State<IrooniStartPage>{
       body: FutureBuilder(
         future: fanc(),
         builder: (context, snapshot){
-          if(snapshot.connectionState == ConnectionState.done){
-            if(snapshot.hasError){
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
               return Center(child: Text('エラー'),);
             }
-            if(!snapshot.hasData){
+            if (!snapshot.hasData) {
               return Center(child: Text('ぬる'),);
             }
             return Center(child: Text('せいこう'),);
-          }
-          else{
+          } else {
             return Center(child: Text('少し待ってね'),);
           }
         },
@@ -43,7 +43,8 @@ class _IrooniStartPageState extends State<IrooniStartPage>{
     );
   }
 
-  Future<int> fanc() async{
+  Future<int> fanc() async {
     return Future.delayed(Duration(seconds: 1)).then((_) => 1);
   }
+
 }

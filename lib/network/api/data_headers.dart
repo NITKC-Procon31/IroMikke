@@ -2,7 +2,7 @@ class DataHeaders {
 
   int _viewerId, _userId, _timeStamp, _resultCode;
 
-  DataHeaders({int viewerId, int userId, int timeStamp, int resultCode}){
+  DataHeaders({int viewerId, int userId, int timeStamp, int resultCode}) {
     this._viewerId = viewerId;
     this._userId = userId;
     this._timeStamp = timeStamp;

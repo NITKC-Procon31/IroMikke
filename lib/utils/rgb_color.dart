@@ -16,21 +16,21 @@ class RGBColor {
   int get g => _g;
   int get b => _b;
 
-  set r(int red){
+  set r(int red) {
     this._r = red & 0xff;
   }
 
-  set g(int green){
+  set g(int green) {
     this._g = green & 0xff;
   }
 
-  set b(int blue){
+  set b(int blue) {
     this.b = blue & 0xff;
   }
 
   List getRGB() => [this._r, this._g, this._b];
 
-  double distance(RGBColor col){
+  double distance(RGBColor col) {
     LabColor lab1 = LabColor.fromRGB(this._r, this._g, this._b);
     LabColor lab2 = LabColor.fromRGB(col.r, col.g, col.b);
 

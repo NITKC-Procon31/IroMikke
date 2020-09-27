@@ -9,17 +9,17 @@ import 'package:iromikke/model/color_model.dart';
 
 import 'package:iromikke/entity/traditional_color.dart';
 
-//図鑑画面
-//---
-//todo
-//素材を受け取り追加
-//図鑑のリストビューを実装
-//データベースへのアクセスが必要になるのでその辺
-//図鑑のデータ量が膨大なため、NestedScrollView等を用いて複数ページにすることを検討
-//StatelessWidgetへの変更を検討
-//---
+// 図鑑画面
+// ---
+// todo
+// 素材を受け取り追加
+// 図鑑のリストビューを実装
+// データベースへのアクセスが必要になるのでその辺
+// 図鑑のデータ量が膨大なため、NestedScrollView等を用いて複数ページにすることを検討
+// StatelessWidgetへの変更を検討
+// ---
 
-class ZukanPlayPage extends StatelessWidget{
+class ZukanPlayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -68,10 +68,9 @@ class ZukanPlayPage extends StatelessWidget{
     );
   }
 
-  Widget _iroZukanList(BuildContext context){
+  Widget _iroZukanList(BuildContext context) {
     final ColorModel colorModel = Provider.of<ColorModel>(context, listen: true);
     final UserColorModel userColorModel = Provider.of<UserColorModel>(context, listen: true);
-    print(colorModel.length);
     return Scrollbar(
         child: ListView.separated(
           itemCount: colorModel.length,
@@ -90,7 +89,7 @@ class ZukanPlayPage extends StatelessWidget{
     );
   }
 
-  Widget _iroZukanRow(BuildContext context, Color color, String name){
+  Widget _iroZukanRow(BuildContext context, Color color, String name) {
     return GestureDetector(
       onTap: () {
         print(name);

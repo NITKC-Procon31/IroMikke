@@ -11,8 +11,8 @@ class ColorDatabase extends DatabaseService {
 
   ColorDatabase._();
 
-  factory ColorDatabase(){
-    if(_instance == null){
+  factory ColorDatabase() {
+    if (_instance == null) {
       _instance = ColorDatabase._();
     }
 

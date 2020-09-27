@@ -9,7 +9,7 @@ class SignUp implements EndPoint {
   int _userId;
   String _name;
 
-  SignUp({int viewerId, int userId, String name}){
+  SignUp({int viewerId, int userId, String name}) {
     this._viewerId = viewerId;
     this._userId = userId;
     this._name = name;
@@ -23,15 +23,15 @@ class SignUp implements EndPoint {
   int get userId => this._userId;
   String get name => this._name;
 
-  set viewerId(int id){
+  set viewerId(int id) {
     this._viewerId = id;
   }
 
-  set userId(int id){
+  set userId(int id) {
     this._userId = id;
   }
 
-  set name(String name){
+  set name(String name) {
     this._name = name;
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image/image.dart';
 
 import 'dart:async';
 
@@ -10,9 +9,10 @@ import 'package:provider/provider.dart';
 class LogInPage extends StatelessWidget {
 
   final _textFieldcontroller = TextEditingController();
-  final int inputMax = 8; //_validateの内部は手動で変更してくださいごめんなさい
+  final int inputMax = 8;
   bool _buttonAble = false;
   UserModel _model;
+
   final _controller = StreamController<String>();
   final _validator = StreamTransformer<String, String>.fromHandlers(
     handleData: (value, sink) {
@@ -40,12 +40,12 @@ class LogInPage extends StatelessWidget {
       body: FutureBuilder(
         future: _fanc(),
         builder: (context, snapshot){
-          if(snapshot.connectionState == ConnectionState.done){
-            if(snapshot.hasError){
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
               print('えらー');
               return Text('えらー');
             }
-            if(!snapshot.hasData){
+            if (!snapshot.hasData) {
               return Text('ぬる');
             }
             return Center(
@@ -58,7 +58,7 @@ class LogInPage extends StatelessWidget {
                         controller: _textFieldcontroller,
                         onChanged: (String data) {
                           _controller.sink.add(data);
-                          //もっとスマートにできそう
+                          // もっとスマートにできそう
                           _buttonAble = (0 < data.length) &&(data.length <= inputMax );
                         },
                         decoration: InputDecoration(
@@ -74,7 +74,7 @@ class LogInPage extends StatelessWidget {
 //                      _buttonAble = (0 < data.length) &&(data.length <= inputMax );
 //                    },
 //                  ),
-                  //たぶんFutureBuilderなりを使ってデータベース操作に対応するはず
+                  // たぶんFutureBuilderなりを使ってデータベース操作に対応するはず
                   RaisedButton(
                     child: Text('けってい'),
 //                    onPressed: () => _buttonAble ? (){
@@ -82,7 +82,7 @@ class LogInPage extends StatelessWidget {
 //                      _registerUser(_textFieldcontroller.text);
 //                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
 //                    } : print('ぬるぽ'),
-                    onPressed: (){
+                    onPressed: () {
                       print(_textFieldcontroller.text);
                       _registerUser('てきとう');
                       Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
@@ -91,8 +91,7 @@ class LogInPage extends StatelessWidget {
                 ],
               ),
             );
-          }
-          else{
+          } else {
             return const CircularProgressIndicator();
           }
         },
@@ -100,20 +99,19 @@ class LogInPage extends StatelessWidget {
     );
   }
 
-  Future<void> _fanc() async{
+  Future<void> _fanc() async {
     _model = UserModel();
-    while(!_model.flag){
+    while (!_model.flag) {
       await Future.delayed(Duration(milliseconds: 1));
     }
     return 1;
   }
 
-  void _registerUser(String userName){
+  void _registerUser(String userName) {
     ApiClient client = ApiClient();
-    try{
+    try {
       client.registerUser(userName, _model);
-    }
-    catch(ex){
+    } catch(ex) {
       print('よくわかんないえらー');
     }
   }

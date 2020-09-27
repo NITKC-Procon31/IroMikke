@@ -12,7 +12,7 @@ class UserDatabase extends DatabaseService {
   UserDatabase._();
 
   factory UserDatabase(){
-    if(_instance == null){
+    if (_instance == null) {
       _instance = UserDatabase._();
     }
 

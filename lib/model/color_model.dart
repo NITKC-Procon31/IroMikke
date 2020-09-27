@@ -10,7 +10,7 @@ class ColorModel with ChangeNotifier {
 
   final ColorRepository repo = ColorRepository();
 
-  ColorModel(){
+  ColorModel() {
     _fetch();
   }
 
@@ -20,8 +20,8 @@ class ColorModel with ChangeNotifier {
   }
 
   TraditionalColor getById(int id) {
-    for(final TraditionalColor color in _allColors){
-      if(color.id == id){
+    for (final TraditionalColor color in _allColors) {
+      if (color.id == id) {
         return color;
       }
     }
