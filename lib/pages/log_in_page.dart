@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 
 import 'package:iromikke/model/user_model.dart';
 import 'package:iromikke/network/api/api_client.dart';
+
 import 'package:provider/provider.dart';
 
 class LogInPage extends StatelessWidget {
@@ -38,7 +39,7 @@ class LogInPage extends StatelessWidget {
         ),
       ),
       body: FutureBuilder(
-        future: _fanc(),
+        future: _checkModel(context),
         builder: (context, snapshot){
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
@@ -83,8 +84,7 @@ class LogInPage extends StatelessWidget {
 //                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
 //                    } : print('ぬるぽ'),
                     onPressed: () {
-                      print(_textFieldcontroller.text);
-                      _registerUser('てきとう');
+                      _registerUser(_textFieldcontroller.text);
                       Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
                     },
                   ),
@@ -99,18 +99,19 @@ class LogInPage extends StatelessWidget {
     );
   }
 
-  Future<void> _fanc() async {
-    _model = UserModel();
-    while (!_model.flag) {
+  Future<int> _checkModel(BuildContext context) async {
+    this._model = Provider.of<UserModel>(context, listen: false);
+    while (!this._model.flag) {
       await Future.delayed(Duration(milliseconds: 1));
     }
+
     return 1;
   }
 
   void _registerUser(String userName) {
     ApiClient client = ApiClient();
     try {
-      client.registerUser(userName, _model);
+      client.registerUser(userName, this._model);
     } catch(ex) {
       print('よくわかんないえらー');
     }

@@ -33,6 +33,7 @@ class ApiClient {
     DataHeaders dataHeaders = DataHeaders.fromMap(mp['data_headers']);
     model.userId = dataHeaders.userId;
     model.viewerId = dataHeaders.viewerId;
+    model.name = name;
   }
 
 }
