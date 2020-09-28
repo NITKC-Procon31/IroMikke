@@ -21,6 +21,7 @@ class UserModel with ChangeNotifier {
     notifyListeners();
   }
 
+  int get id => this._user.id;
   String get name => this._user.name;
   int get userId => this._user.userId;
   int get viewerId => this._user.viewerId;

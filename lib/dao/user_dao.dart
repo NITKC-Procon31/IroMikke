@@ -24,7 +24,7 @@ class UserDao {
   Future<int> update(User user) async {
     final db = await provider.database;
     var result = await db.update(tableName, user.toDatabaseJson(),
-        where: "viewer_id = ?", whereArgs: [user.viewerId]);
+        where: "id = ?", whereArgs: [user.id]);
 
     return result;
   }
