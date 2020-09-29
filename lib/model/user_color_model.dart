@@ -10,6 +10,8 @@ class UserColorModel with ChangeNotifier {
 
   final UserColorRepository repo = UserColorRepository();
 
+  bool get isNull => _allColors.length == 0;
+
   UserColorModel() {
     _fetch();
   }

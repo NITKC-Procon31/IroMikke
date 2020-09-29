@@ -10,15 +10,15 @@ import 'package:provider/provider.dart';
 class LogInPage extends StatelessWidget {
 
   final _textFieldcontroller = TextEditingController();
-  final int inputMax = 8;
+  final int _inputMax = 10;
   bool _buttonAble = false;
   UserModel _model;
 
   final _controller = StreamController<String>();
   final _validator = StreamTransformer<String, String>.fromHandlers(
     handleData: (value, sink) {
-      if (value.length > 8) {
-        sink.addError('なまえは8もじまで！');
+      if (value.length > 10) {
+        sink.addError('なまえは10もじまで！');
       } else {
         sink.add(null);
       }
@@ -60,7 +60,7 @@ class LogInPage extends StatelessWidget {
                         onChanged: (String data) {
                           _controller.sink.add(data);
                           // もっとスマートにできそう
-                          _buttonAble = (0 < data.length) &&(data.length <= inputMax );
+                          _buttonAble = (0 < data.length) &&(data.length <= _inputMax );
                         },
                         decoration: InputDecoration(
                           errorText: snapshot.hasError ? snapshot.error : null,
@@ -78,15 +78,16 @@ class LogInPage extends StatelessWidget {
                   // たぶんFutureBuilderなりを使ってデータベース操作に対応するはず
                   RaisedButton(
                     child: Text('けってい'),
-//                    onPressed: () => _buttonAble ? (){
-//                      print(_textFieldcontroller.text);
+                    onPressed: (){
+                      if(this._buttonAble){
+                        _registerUser(_textFieldcontroller.text);
+                        Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
+                      }
+                    }
+//                    onPressed: () {
 //                      _registerUser(_textFieldcontroller.text);
 //                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
-//                    } : print('ぬるぽ'),
-                    onPressed: () {
-                      _registerUser(_textFieldcontroller.text);
-                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
-                    },
+//                    },
                   ),
                 ],
               ),
@@ -101,7 +102,7 @@ class LogInPage extends StatelessWidget {
 
   Future<int> _checkModel(BuildContext context) async {
     this._model = Provider.of<UserModel>(context, listen: false);
-    while (!this._model.flag) {
+    while (this._model.isNull) {
       await Future.delayed(Duration(milliseconds: 1));
     }
 

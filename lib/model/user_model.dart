@@ -6,14 +6,12 @@ import 'package:iromikke/repository/user_repository.dart';
 
 class UserModel with ChangeNotifier {
 
-  User _user;
-  bool _flag = false;
+  User _user = null;
 
   final UserRepository repo = UserRepository();
 
   UserModel(){
     _fetch();
-    this._flag = true;
   }
 
   void _fetch() async {
@@ -28,7 +26,7 @@ class UserModel with ChangeNotifier {
   int get highScore => this._user.highScore;
   int get uiColor => this._user.uiColor;
 
-  bool get flag => this._flag;
+  bool get isNull => this._user == null;
 
   set name(String name) {
     _user.name = name;

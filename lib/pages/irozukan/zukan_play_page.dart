@@ -71,6 +71,7 @@ class ZukanPlayPage extends StatelessWidget {
   Widget _iroZukanList(BuildContext context) {
     final ColorModel colorModel = Provider.of<ColorModel>(context, listen: true);
     final UserColorModel userColorModel = Provider.of<UserColorModel>(context, listen: true);
+    print(colorModel.length);
     return Scrollbar(
         child: ListView.separated(
           itemCount: colorModel.length,
