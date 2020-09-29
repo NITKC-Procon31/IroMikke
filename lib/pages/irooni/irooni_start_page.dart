@@ -36,7 +36,7 @@ class _IrooniStartPageState extends State<IrooniStartPage> {
             }
             return Center(child: Text('せいこう'),);
           } else {
-            return Center(child: Text('少し待ってね'),);
+            return _startModeWidget(context);
           }
         },
       ),
@@ -47,4 +47,11 @@ class _IrooniStartPageState extends State<IrooniStartPage> {
     return Future.delayed(Duration(seconds: 1)).then((_) => 1);
   }
 
+  Widget _startModeWidget(BuildContext context){
+    return Column(
+      children: [
+        
+      ],
+    );
+  }
 }

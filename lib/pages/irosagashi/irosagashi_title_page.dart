@@ -34,19 +34,23 @@ class IrosagashiTitlePage extends StatelessWidget {
               GestureDetector(
                 onTapUp: (details){
                   print('nya-nn');
-                  Navigator.pushNamed(context, '/irosagashi/camera');
+                  Navigator.pushNamed(context, '/irosagashi/question');
                 },
                 behavior: HitTestBehavior.deferToChild,
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   alignment: Alignment.center,
+                  padding: EdgeInsets.all(5),
                   margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
-                    border: Border.all(
-                      color: Color.fromARGB(255, 83, 42, 35),
-                      width: 4.0,
-                    ),
+//                    border: Border.all(
+//                      color: Color.fromARGB(255, 83, 42, 35),
+//                      width: 4.0,
+//                    ),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black, blurRadius: 5,),
+                    ],
                   ),
                   child: Text(
                     'あそぶ',
@@ -68,14 +72,18 @@ class IrosagashiTitlePage extends StatelessWidget {
                 behavior: HitTestBehavior.deferToChild,
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
+                  padding: EdgeInsets.all(5),
                   alignment: Alignment.center,
                   margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
-                    border: Border.all(
-                      color: Color.fromARGB(255, 83, 42, 35),
-                      width: 4.0,
-                    ),
+//                    border: Border.all(
+//                      color: Color.fromARGB(255, 83, 42, 35),
+//                      width: 4.0,
+//                    ),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black, blurRadius: 5,),
+                    ],
                   ),
                   child: Text(
                     'あそびかた',

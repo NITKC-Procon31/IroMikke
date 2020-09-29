@@ -10,18 +10,17 @@ import 'dart:io';
 import 'package:flutter/rendering.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
 
-class IrosagashiColorPickPage extends StatefulWidget {
+class IrooniNigeruColorPickPage extends StatefulWidget {
 
   @override
-  _IrosagashiColorPickPageState createState() => _IrosagashiColorPickPageState();
+  _IrooniNigeruColorPickPageState createState() => _IrooniNigeruColorPickPageState();
 
 }
 
-class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
-  IrosagashiData _irosagashiData;
-  String _imagePath;
+class _IrooniNigeruColorPickPageState extends State<IrooniNigeruColorPickPage> {
+
+  String imagePath;
   GlobalKey paintKey = GlobalKey();
   bool _isPanDowned = false;
   // Snapshotで実装しています
@@ -38,17 +37,15 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
 
   @override
   Widget build(BuildContext context) {
-    _irosagashiData = ModalRoute.of(context).settings.arguments;
-    _imagePath = _irosagashiData.imagePath;
-     //画像を渡される
-    print(_imagePath);
+    imagePath = ModalRoute.of(context).settings.arguments; //画像を渡される
+    print(imagePath);
 
-    Image image = Image.file(File(_imagePath));
+    Image image = Image.file(File(imagePath));
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 235, 126, 1),
-          title: const Text(
-            'いろさがし',
+          backgroundColor: const Color.fromARGB(255, 0, 107, 161),
+          title: Text(
+            'いろおに',
             style: TextStyle(
               fontFamily: 'satsuki',
               fontSize: 40.0,
@@ -94,7 +91,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
                     ),
                     Expanded(
                       child: Container(
-                        color: const Color.fromARGB(255, 235, 126, 1),
+                        color: const Color.fromARGB(255, 0, 107, 161),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -115,9 +112,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
                             ),
                             GestureDetector(
                               onTap: (){
-                                _irosagashiData.setUserSelectedColor(selectedColor.red, selectedColor.green, selectedColor.blue);
                                 print(selectedColor.toString());
-                                Navigator.pushNamedAndRemoveUntil(context, '/irosagashi/answer', ModalRoute.withName('/irosagashi/title'), arguments: _irosagashiData);
                               },
                               child: Container(
                                 //width: MediaQuery.of(context).size.width * 0.45,
@@ -203,7 +198,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
   }
 
   Future<void> loadImageBundleBytes() async {
-    ByteData imageBytes = await rootBundle.load(_imagePath);
+    ByteData imageBytes = await rootBundle.load(imagePath);
     setImageBytes(imageBytes);
   }
 

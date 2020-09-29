@@ -40,6 +40,7 @@ class ZukanTitlePage extends StatelessWidget {
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.9,
                     alignment: Alignment.center,
+                    padding: EdgeInsets.all(5),
                     margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),
@@ -68,6 +69,7 @@ class ZukanTitlePage extends StatelessWidget {
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.9,
                     alignment: Alignment.center,
+                    padding: EdgeInsets.all(5),
                     margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 255, 255, 255),

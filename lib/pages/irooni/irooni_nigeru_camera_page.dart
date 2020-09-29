@@ -3,22 +3,20 @@ import 'dart:io';
 //package
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
 import 'package:path_provider/path_provider.dart';
 //files
 import 'package:iromikke/main.dart';
 
-class IrosagashiCameraPage extends StatefulWidget {
+class IrooniNigeruCameraPage extends StatefulWidget {
 
   @override
-  _IrosagashiCameraPageState createState() => _IrosagashiCameraPageState();
+  _IrooniNigeruCameraPageState createState() => _IrooniNigeruCameraPageState();
 
 }
 
-class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with WidgetsBindingObserver {
-  IrosagashiData _irosagashiData;
+class _IrooniNigeruCameraPageState extends State<IrooniNigeruCameraPage> with WidgetsBindingObserver {
   CameraController controller;
-  String _imagePath;
+  String imagePath;
   Future<void> _initializedControllerF; //なんでエラーなってるかわからないが動く
 
   void initState() {
@@ -53,13 +51,12 @@ class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with Widget
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    _irosagashiData = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 235, 126, 1),
-        title: const Text(
-          'いろさがし',
+        backgroundColor: const Color.fromARGB(255, 0, 107, 161),
+        title: Text(
+          'いろおに',
           style: TextStyle(
             fontFamily: 'satsuki',
             fontSize: 40.0,
@@ -71,7 +68,7 @@ class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with Widget
       body: Column(
         children: [
           Container(
-            color: const Color.fromARGB(255, 215, 106, 1),
+            color: const Color.fromARGB(255, 0, 100, 151),
             padding: EdgeInsets.all(10),
             child: Row(
               children: [
@@ -89,14 +86,14 @@ class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with Widget
           ),
           Expanded(
             child: FutureBuilder<void>(
-              future: _initializedControllerF,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return CameraPreview(controller);
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              }),
+                future: _initializedControllerF,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    return CameraPreview(controller);
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                }),
           ),
         ],
       ),
@@ -113,13 +110,13 @@ class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with Widget
     takePicture().then((String filePath) {
       if (mounted) {
         setState(() {
-          _irosagashiData.imagePath = filePath;
+          imagePath = filePath;
         });
         if (filePath != null) {
           Navigator.pushNamed(
             context,
-            '/irosagashi/colorPick',
-            arguments: _irosagashiData, //画像を渡す部分
+            '/irooni/nigeru/colorPick',
+            arguments: imagePath, //画像を渡す部分
           );
         }
       }

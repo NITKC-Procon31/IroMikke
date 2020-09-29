@@ -43,13 +43,17 @@ class QuizTitlePage extends StatelessWidget{
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   alignment: Alignment.center,
+                  padding: EdgeInsets.all(5),
                   margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
-                    border: Border.all(
-                      color: Color.fromARGB(255, 83, 42, 35),
-                      width: 4.0,
-                    ),
+//                    border: Border.all(
+//                      color: Color.fromARGB(255, 83, 42, 35),
+//                      width: 4.0,
+//                    ),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black, blurRadius: 5,),
+                    ],
                   ),
                   child: Text(
                     'あそぶ',
@@ -72,13 +76,17 @@ class QuizTitlePage extends StatelessWidget{
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   alignment: Alignment.center,
+                  padding: EdgeInsets.all(5),
                   margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 255, 255, 255),
-                    border: Border.all(
-                      color: Color.fromARGB(255, 83, 42, 35),
-                      width: 4.0,
-                    ),
+//                    border: Border.all(
+//                      color: Color.fromARGB(255, 83, 42, 35),
+//                      width: 4.0,
+//                    ),
+                    boxShadow: const [
+                      BoxShadow(color: Colors.black, blurRadius: 5,),
+                    ],
                   ),
                   child: Text(
                     'あそびかた',
