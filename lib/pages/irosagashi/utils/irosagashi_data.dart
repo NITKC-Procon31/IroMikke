@@ -13,6 +13,7 @@ class IrosagashiData {
 
   get kana => _traditionalColor.kana;
   get color => Color.fromARGB(255, _traditionalColor.rgb.r, _traditionalColor.rgb.g, _traditionalColor.rgb.b);
+  get userAnswer => Color.fromARGB(255, _userSelectedColor.r, _userSelectedColor.g, _userSelectedColor.b);
   get imagePath => _imagePath;
 
   IrosagashiData(this._traditionalColor);
@@ -40,5 +41,21 @@ class IrosagashiData {
       }
     }
     return model.getById(index + 1);
+  }
+
+  Color getAnswerLetterColor(){
+    if(_traditionalColor.rgb.distance(RGBColor(0, 0, 0)) <= _traditionalColor.rgb.distance(RGBColor(255, 255, 255))){
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
+  }
+
+  Color getUserLetterColor(){
+    if(_userSelectedColor.distance(RGBColor(0, 0, 0)) <= _userSelectedColor.distance(RGBColor(255, 255, 255))){
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
   }
 }

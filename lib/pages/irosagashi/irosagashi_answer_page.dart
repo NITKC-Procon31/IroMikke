@@ -188,7 +188,8 @@ class IrosagashiAnswerPage extends StatelessWidget {
                 fontFamily: 'satsuki',
                 fontWeight: FontWeight.bold,
                 fontSize: 50.0,
-                color: Colors.black,
+                color: irosagashiData.getUserLetterColor(),
+                backgroundColor: irosagashiData.userAnswer,
               ),
             ),
             Text(

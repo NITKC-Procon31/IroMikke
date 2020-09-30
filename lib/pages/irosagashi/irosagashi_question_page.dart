@@ -32,14 +32,19 @@ class IrosagashiQuestionPage extends StatelessWidget {
             ),
             Container(
               height: MediaQuery.of(context).size.height * 0.15,
+              width: MediaQuery.of(context).size.width * 0.8,
               alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: irosagashiData.color,
+                border: Border.all(color: Color.fromARGB(255, 83, 42, 35), width: 2),
+              ),
               child: Text(
                 irosagashiData.kana,
                 style: TextStyle(
                   fontFamily: 'satsuki',
                   fontWeight: FontWeight.bold,
                   fontSize: 50,
-                  color: Colors.black,
+                  color: irosagashiData.getAnswerLetterColor(),
                   letterSpacing: -8,
                 ),
               ),
