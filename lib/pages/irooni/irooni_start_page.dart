@@ -11,6 +11,7 @@ class _IrooniStartPageState extends State<IrooniStartPage> {
 
   @override
   Widget build(BuildContext context) {
+    final flag = true;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 107, 161),
@@ -32,11 +33,17 @@ class _IrooniStartPageState extends State<IrooniStartPage> {
               return Center(child: Text('エラー'),);
             }
             if (!snapshot.hasData) {
-              return Center(child: Text('ぬる'),);
+      ;        return Center(child: Text('ぬる'),);
             }
-            return Center(child: Text('せいこう'),);
+            //return _iroonPlayerModeWidget(context, true);
+            return RaisedButton(
+              child: Text('てすと'),
+              onPressed: () => Navigator.pushNamed(context, '/irooni/oni/colorChoice'),
+            );
           } else {
-            return _startModeWidget(context);
+            return Center(
+              child: const CircularProgressIndicator(),
+            );
           }
         },
       ),
@@ -47,11 +54,16 @@ class _IrooniStartPageState extends State<IrooniStartPage> {
     return Future.delayed(Duration(seconds: 1)).then((_) => 1);
   }
 
-  Widget _startModeWidget(BuildContext context){
-    return Column(
-      children: [
-        
-      ],
+  Widget _iroonPlayerModeWidget(BuildContext context, bool flag){
+    return RaisedButton(
+      child: Text('てすと'),
+      onPressed: (){
+        if(flag){
+          Navigator.pushNamed(context, 'irooni/oni/colorChoice');
+        } else {
+          Navigator.pushNamed(context, 'irooni/nigeru/question');
+        }
+      },
     );
   }
 }
