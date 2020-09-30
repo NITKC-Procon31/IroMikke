@@ -115,13 +115,13 @@ class Binary {
     Uint8List uint8list = Uint8List.fromList(utf8.encode(str));
     this.putUnsignedShort(uint8list.length);
     uint8list.forEach((int uint8) {
-      this.putUnsignedShort(uint8);
+      this.putUnsignedByte(uint8);
     });
   }
 
   String getString() {
     int count = this.getUnsignedShort();
-    String str = utf8.decode(buffer.buffer.asUint8List(this._readOffset, count * 2));;
+    String str = utf8.decode(buffer.buffer.asUint8List(this._readOffset, count));;
     this._readOffset += count;
 
     return str;
