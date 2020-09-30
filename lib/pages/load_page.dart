@@ -71,9 +71,10 @@ class LoadPage extends StatelessWidget{
     UserModel userModel = Provider.of<UserModel>(context, listen: false);
     ColorModel colorModel = Provider.of<ColorModel>(context, listen: false);
     UserColorModel userColorModel = Provider.of<UserColorModel>(context, listen: false);
-    while(userModel.isNull || colorModel.isNull || userColorModel.isNull){
+    while(userModel.isNull || colorModel.isNull || userColorModel.isNull) {
       await Future.delayed(Duration(milliseconds: 1));
     }
+    print(colorModel.length);
     return 1;
   }
 }

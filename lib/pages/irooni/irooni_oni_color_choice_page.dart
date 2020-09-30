@@ -11,8 +11,11 @@ class IrooniOniColorChoicePage extends StatelessWidget{
   Widget build(BuildContext context) {
     final Math.Random random = Math.Random();
     final ColorModel model = Provider.of<ColorModel>(context, listen: true);
-    List<TraditionalColor> list = List(4);
-    list.forEach((element) {element = model.getById(random.nextInt(model.length) + 1);});
+    print(model.length);
+    List<TraditionalColor> list = List();
+    for(int i=0; i<4; i++){
+      list.add(model.getById(random.nextInt(model.length) + 1));
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 107, 161),
@@ -73,6 +76,15 @@ class _ColorChoiceWidgetState extends State<_ColorChoiceWidget>{
             _colorContainer(context, 3),
           ],
         ),
+        Text(
+          _selectedIndex >= 0 ? _list[_selectedIndex].kana : '',
+          style: TextStyle(
+            fontFamily: 'satsuki',
+            fontWeight: FontWeight.bold,
+            fontSize: 40.0,
+            color: Colors.black,
+          ),
+        ),
         RaisedButton(
           child: Text('けってい'),
           onPressed: () => print(_list[_selectedIndex].kana),
@@ -92,7 +104,7 @@ class _ColorChoiceWidgetState extends State<_ColorChoiceWidget>{
         width: MediaQuery.of(context).size.width * 0.2,
         height: MediaQuery.of(context).size.width * 0.2,
         decoration: BoxDecoration(
-          border: Border.all(color: _selectedIndex == index ? Colors.yellow : Colors.black, width: 2),
+          border: Border.all(color: _selectedIndex == index ? Colors.yellow : Colors.black, width: 3),
           color: Color.fromARGB(255, _list[index].rgb.r, _list[index].rgb.g, _list[index].rgb.b),
         ),
       ),

@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
           '/irosagashi/colorPick': (context) => IrosagashiColorPickPage(),
         },
         //その時が来たらfalseにするのかもしれない
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
