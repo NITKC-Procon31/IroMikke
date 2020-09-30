@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:flutter/rendering.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:iromikke/pages/irosagashi/irosagashi_timer_widget.dart';
 import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
 
 class IrosagashiColorPickPage extends StatefulWidget {
@@ -67,6 +68,7 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
               } else {
                 return Column(
                   children: <Widget>[
+                    IrosagashiTimerWidget(_irosagashiData),
                     RepaintBoundary(
                       key: paintKey,
                       child: GestureDetector(

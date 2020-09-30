@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:iromikke/entity/traditional_color.dart';
@@ -10,13 +12,20 @@ class IrosagashiData {
   String _imagePath;
   TraditionalColor _traditionalColor;
   RGBColor _userSelectedColor;
+  int _second = 60;
+  Timer _timer;
+  bool _isTimeUp = false;
 
   get kana => _traditionalColor.kana;
   get color => Color.fromARGB(255, _traditionalColor.rgb.r, _traditionalColor.rgb.g, _traditionalColor.rgb.b);
   get userAnswer => Color.fromARGB(255, _userSelectedColor.r, _userSelectedColor.g, _userSelectedColor.b);
   get imagePath => _imagePath;
+  get second => _second;
+  get isTimeUp => _isTimeUp;
 
-  IrosagashiData(this._traditionalColor);
+  IrosagashiData(this._traditionalColor){
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {_decrementSecond();});
+  }
 
   set imagePath (String path) => _imagePath = path;
 
@@ -56,6 +65,14 @@ class IrosagashiData {
       return Colors.white;
     } else {
       return Colors.black;
+    }
+  }
+
+  void _decrementSecond(){
+    _second--;
+    if(_second == 0){
+      _isTimeUp = true;
+      _timer.cancel();
     }
   }
 }

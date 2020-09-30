@@ -3,6 +3,7 @@ import 'dart:io';
 //package
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:iromikke/pages/irosagashi/irosagashi_timer_widget.dart';
 import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
 import 'package:path_provider/path_provider.dart';
 //files
@@ -70,23 +71,7 @@ class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with Widget
       ),
       body: Column(
         children: [
-          Container(
-            color: const Color.fromARGB(255, 215, 106, 1),
-            padding: EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Text(
-                  'のこり',
-                  style: TextStyle(
-                    fontFamily: 'satsuki',
-                    color: Colors.white,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          IrosagashiTimerWidget(_irosagashiData),
           Expanded(
             child: FutureBuilder<void>(
               future: _initializedControllerF,

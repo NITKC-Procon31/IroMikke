@@ -104,106 +104,120 @@ class IrosagashiAnswerPage extends StatelessWidget {
   }
 
   Widget _answerWidget(IrosagashiData irosagashiData, BuildContext context) {
-    if (irosagashiData.isCorrected()) {
-      final UserColorModel model = Provider.of<UserColorModel>(context, listen: false);
-      UserColor color = model.getUserColorById(irosagashiData.traditionalColor.id);
-      if (color != null) model.setFlag(color, true);
-
+    if(irosagashiData.isTimeUp){
       return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-            ),
-            Text(
-              'せいかい！',
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                fontSize: 50.0,
-                color: const Color.fromARGB(255, 215, 0, 59),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-            ),
-            Text(
-              'ずかんに',
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                fontSize: 40.0,
-                color: Colors.black,
-              ),
-            ),
-            Text(
-              'とうろくしたよ',
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                fontSize: 40.0,
-                color: Colors.black,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-            ),
-          ],
+        child: Text(
+          'じかんぎれ！',
+          style: TextStyle(
+            fontFamily: 'satsuki',
+            fontWeight: FontWeight.bold,
+            fontSize: 40.0,
+            color: Colors.black,
+          ),
         ),
       );
     } else {
-      final ColorModel model = Provider.of<ColorModel>(context);
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
-            ),
-            Text(
-              'おしい！',
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                fontSize: 50.0,
-                color: const Color.fromARGB(255, 22, 94, 132),
+      if (irosagashiData.isCorrected()) {
+        final UserColorModel model = Provider.of<UserColorModel>(context, listen: false);
+        UserColor color = model.getUserColorById(irosagashiData.traditionalColor.id);
+        if (color != null) model.setFlag(color, true);
+
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.01),
-            ),
-            Text(
-              'それは',
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                fontSize: 40.0,
-                color: Colors.black,
+              Text(
+                'せいかい！',
+                style: TextStyle(
+                  fontFamily: 'satsuki',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50.0,
+                  color: const Color.fromARGB(255, 215, 0, 59),
+                ),
               ),
-            ),
-            Text(
-              irosagashiData.getNearlyColor(model).kana,
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                fontSize: 50.0,
-                color: irosagashiData.getUserLetterColor(),
-                backgroundColor: irosagashiData.userAnswer,
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
               ),
-            ),
-            Text(
-              'ににているよ',
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                fontSize: 40.0,
-                color: Colors.black,
+              Text(
+                'ずかんに',
+                style: TextStyle(
+                  fontFamily: 'satsuki',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40.0,
+                  color: Colors.black,
+                ),
               ),
-            ),
-          ],
-        ),
-      );
+              Text(
+                'とうろくしたよ',
+                style: TextStyle(
+                  fontFamily: 'satsuki',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40.0,
+                  color: Colors.black,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
+              ),
+            ],
+          ),
+        );
+      } else {
+        final ColorModel model = Provider.of<ColorModel>(context);
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
+              ),
+              Text(
+                'おしい！',
+                style: TextStyle(
+                  fontFamily: 'satsuki',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50.0,
+                  color: const Color.fromARGB(255, 22, 94, 132),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.01),
+              ),
+              Text(
+                'それは',
+                style: TextStyle(
+                  fontFamily: 'satsuki',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40.0,
+                  color: Colors.black,
+                ),
+              ),
+              Text(
+                irosagashiData.getNearlyColor(model).kana,
+                style: TextStyle(
+                  fontFamily: 'satsuki',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50.0,
+                  color: irosagashiData.getUserLetterColor(),
+                  backgroundColor: irosagashiData.userAnswer,
+                ),
+              ),
+              Text(
+                'ににているよ',
+                style: TextStyle(
+                  fontFamily: 'satsuki',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40.0,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        );
+      }
     }
   }
 }

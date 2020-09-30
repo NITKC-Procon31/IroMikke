@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iromikke/model/color_model.dart';
+import 'package:iromikke/pages/irosagashi/irosagashi_timer_widget.dart';
 import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
 import 'package:iromikke/pages/irosagashi/utils/irosagashi_provider.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,7 @@ class IrosagashiQuestionPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            IrosagashiTimerWidget(irosagashiData),
             Padding(
               padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
             ),
