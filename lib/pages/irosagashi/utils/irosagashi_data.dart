@@ -19,6 +19,8 @@ class IrosagashiData {
 
   set imagePath (String path) => _imagePath = path;
 
+  TraditionalColor get traditionalColor => this._traditionalColor;
+
   void setUserSelectedColor(int r, int g, int b){
     _userSelectedColor = RGBColor(r, g, b);
   }

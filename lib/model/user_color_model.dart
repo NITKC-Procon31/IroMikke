@@ -21,22 +21,34 @@ class UserColorModel with ChangeNotifier {
     notifyListeners();
   }
 
+  void setFlag(UserColor color, bool flag) async {
+    color.flag = flag;
+    this._update(color);
+  }
+
+  UserColor getUserColorById(int id) {
+    for (final UserColor color in _allColors) {
+      if (color.id == id) {
+        return color;
+      }
+    }
+
+    return null;
+  }
+
   bool isFound(int id) {
-    if (_allColors.length > id) {
-      return _allColors[id].flag;
+    for (final UserColor color in _allColors) {
+      if (color.id == id) {
+        return color.flag;
+      }
     }
 
     return false;
   }
 
-  void update(UserColor color) async {
+  void _update(UserColor color) async {
     await repo.updateColors(color);
     _fetch();
-  }
-
-  void toggleFlag(UserColor color) async {
-    color.flag = !color.flag;
-    this.update(color);
   }
 
   List<UserColor> getAll() => this._allColors;

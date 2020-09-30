@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+
+import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
+
 import 'package:iromikke/model/color_model.dart';
 import 'package:iromikke/model/user_color_model.dart';
-import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
+
+import 'package:iromikke/entity/user_color.dart';
+
 import 'package:provider/provider.dart';
 
-class IrosagashiAnswerPage extends StatelessWidget{
+class IrosagashiAnswerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +104,11 @@ class IrosagashiAnswerPage extends StatelessWidget{
   }
 
   Widget _answerWidget(IrosagashiData irosagashiData, BuildContext context) {
-    if(irosagashiData.isCorrected()){
-      //UserColorModel関連の処理を追記
+    if (irosagashiData.isCorrected()) {
+      final UserColorModel model = Provider.of<UserColorModel>(context, listen: false);
+      UserColor color = model.getUserColorById(irosagashiData.traditionalColor.id);
+      if (color != null) model.setFlag(color, true);
+
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
