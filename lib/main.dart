@@ -22,8 +22,18 @@ import 'package:iromikke/pages/iroquiz/widgets/quiz_score_page.dart';
 import 'package:iromikke/pages/irosagashi/irosagashi_title_page.dart';
 import 'package:iromikke/pages/irosagashi/irosagashi_camera_page.dart';
 import 'package:iromikke/pages/irosagashi/irosagashi_color_pick_page.dart';
+import 'package:iromikke/pages/irosagashi/irosagashi_question_page.dart';
+import 'package:iromikke/pages/irosagashi/irosagashi_answer_page.dart';
 
-// model
+//irooni
+import 'package:iromikke/pages/irooni/irooni_title_page.dart';
+import 'package:iromikke/pages/irooni/irooni_start_page.dart';
+import 'package:iromikke/pages/irooni/irooni_nigeru_camera_page.dart';
+import 'package:iromikke/pages/irooni/irooni_nigeru_color_pick_page.dart';
+import 'package:iromikke/pages/irooni/irooni_oni_color_choice_page.dart';
+
+
+//model
 import 'package:iromikke/model/color_model.dart';
 import 'package:iromikke/model/user_model.dart';
 import 'package:iromikke/model/user_color_model.dart';
@@ -81,6 +91,15 @@ class MyApp extends StatelessWidget {
           '/irosagashi/title': (context) => IrosagashiTitlePage(),
           '/irosagashi/camera': (context) => IrosagashiCameraPage(),
           '/irosagashi/colorPick': (context) => IrosagashiColorPickPage(),
+          '/irosagashi/question': (context) => IrosagashiQuestionPage(),
+          '/irosagashi/answer':(context) => IrosagashiAnswerPage(),
+
+          //irooni
+          '/irooni/title': (context) => IrooniTitlePage(),
+          '/irooni/start': (context) => IrooniStartPage(),
+          '/irooni/nigeru/camera': (context) => IrooniNigeruCameraPage(),
+          '/irooni/nigeru/colorPick': (context) => IrooniNigeruColorPickPage(),
+          '/irooni/oni/colorChoice': (context) => IrooniOniColorChoicePage(),
         },
         //その時が来たらfalseにするのかもしれない
         debugShowCheckedModeBanner: false,
