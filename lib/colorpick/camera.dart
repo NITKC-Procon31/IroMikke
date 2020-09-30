@@ -75,7 +75,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
           Expanded(
             flex: 1,
             child: Container(
-              // color: const Color.fromARGB(a, r, g, b),
+              //color: const Color.fromARGB(a, r, g, b),
               child: Row(
                 children: [
                   Text(

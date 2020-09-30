@@ -59,6 +59,7 @@ flutter:
     - assets/Images/
     - assets/Images/irozukan/
     - assets/Images/iroquiz/iroquiz_background.png
+    - assets/Images/irooni/irooni_background.png
 
   fonts:
     - family: Satsuki
