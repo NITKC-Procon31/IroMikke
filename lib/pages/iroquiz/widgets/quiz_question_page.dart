@@ -4,6 +4,7 @@ import 'package:iromikke/model/color_model.dart';
 
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_data.dart';
+import 'package:iromikke/pages/iroquiz/widgets/iroquiz_timer_widget.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_color_name_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -100,6 +101,7 @@ class QuizQuestionPage extends StatelessWidget{
   Widget _quizWidget(BuildContext context){
     return Column(
       children: [
+        IroquizTimerWidget(),
         ColorNameQuizWidget(_quizData),
       ],
     );

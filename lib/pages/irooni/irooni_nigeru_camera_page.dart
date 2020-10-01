@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:iromikke/pages/irooni/utils/irooni_data.dart';
 //files
 import 'package:iromikke/main.dart';
 
@@ -17,7 +18,8 @@ class IrooniNigeruCameraPage extends StatefulWidget {
 class _IrooniNigeruCameraPageState extends State<IrooniNigeruCameraPage> with WidgetsBindingObserver {
   CameraController controller;
   String imagePath;
-  Future<void> _initializedControllerF; //なんでエラーなってるかわからないが動く
+  Future<void> _initializedControllerF;  //なんでエラーなってるかわからないが動く
+  //IrooniData _irooniData;  色探しと同じようにやってしまいたい
 
   void initState() {
     super.initState();
