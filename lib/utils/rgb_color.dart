@@ -28,7 +28,7 @@ class RGBColor {
     this.b = blue & 0xff;
   }
 
-  List getRGB() => [this._r, this._g, this._b];
+  List<int> getRGB() => [this._r, this._g, this._b];
 
   double distance(RGBColor col) {
     LabColor lab1 = LabColor.fromRGB(this._r, this._g, this._b);
