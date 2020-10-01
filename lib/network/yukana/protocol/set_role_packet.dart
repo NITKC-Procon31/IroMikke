@@ -8,10 +8,12 @@ class SetRolePacket extends DataPacket {
   int _role;
 
   SetRolePacket({int role}) {
-    if (0 <= role && role <= 1) {
-      this._role = role;
-    } else {
-      throw new InvalidRoleException('Invalid role $role');
+    if (role != null) {
+      if (0 <= role && role <= 1) {
+        this._role = role;
+      } else {
+        throw new InvalidRoleException('Invalid role $role');
+      }
     }
   }
 
