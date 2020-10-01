@@ -29,6 +29,7 @@ class RoomInformationReplyPacket extends DataPacket {
     super.decode();
     this.roomId = this.getShort();
     int count = this.getUnsignedByte();
+    this.viewerIdList = [];
     for (; count > 0; count--) {
       this.viewerIdList.add(this.getInt());
     }
