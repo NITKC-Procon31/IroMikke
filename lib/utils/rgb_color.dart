@@ -12,6 +12,12 @@ class RGBColor {
     int.parse(hex.substring(5, 7), radix: 16)
   );
 
+  factory RGBColor.fromList(List<int> list) => RGBColor(
+    list[0],
+    list[1],
+    list[2]
+  );
+
   int get r => _r;
   int get g => _g;
   int get b => _b;
