@@ -13,6 +13,7 @@ void main(){
     int uint8  = 200;
     int uint16 = 50000;
     int uint32 = 4000000000;
+    bool flag  = true;
     String str = "Hello, World!";
 
     buffer.putByte(int8);
@@ -21,6 +22,7 @@ void main(){
     buffer.putUnsignedByte(uint8);
     buffer.putUnsignedShort(uint16);
     buffer.putUnsignedInt(uint32);
+    buffer.putBool(flag);
     buffer.putString(str);
 
     expect(int8,   buffer.getByte());
@@ -29,6 +31,7 @@ void main(){
     expect(uint8,  buffer.getUnsignedByte());
     expect(uint16, buffer.getUnsignedShort());
     expect(uint32, buffer.getUnsignedInt());
+    expect(flag,   buffer.getBool());
     expect(str,    buffer.getString());
   });
 }

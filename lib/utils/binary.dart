@@ -2,6 +2,8 @@ import 'dart:core';
 import 'dart:typed_data';
 import 'dart:convert';
 
+import 'package:scidart/numdart.dart';
+
 class Binary {
 
   final int _bufSize = 1024 * 5;
@@ -125,6 +127,14 @@ class Binary {
     this._readOffset += count;
 
     return str;
+  }
+
+  void putBool(bool value) {
+    this.putUnsignedByte(boolToInt(value));
+  }
+
+  bool getBool() {
+    return intToBool(this.getUnsignedByte());
   }
 
 }
