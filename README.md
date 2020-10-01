@@ -1,8 +1,6 @@
 # IroMikke
 
-うん うん それもまた　ｱｲｶﾂだね。
-
-近日中にREADME書きます。
+第31回高専プロコン 熊本高専 自由部門 「いろみっけ！」
 
 # 利用しているサードパーティ製ライブラリ
 - **[cupertino_icons](https://pub.dev/packages/cupertino_icons)**
@@ -14,4 +12,3 @@
 - **[image](https://pub.dev/packages/image)**
 - **[scidart](https://pub.dev/packages/scidart)**
 - **[http](https://pub.dev/packages/http)**
-- **[web_socket_channel](https://pub.dev/packages/web_socket_channel)**
