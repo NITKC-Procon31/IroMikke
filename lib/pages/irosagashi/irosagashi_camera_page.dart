@@ -69,20 +69,33 @@ class _IrosagashiCameraPageState extends State<IrosagashiCameraPage> with Widget
           ),
         ),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          IrosagashiTimerWidget(_irosagashiData),
-          Expanded(
-            child: FutureBuilder<void>(
-              future: _initializedControllerF,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return CameraPreview(controller);
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              }),
+          Container(
+            constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: AssetImage('assets/Images/irosagashi/irosagashi_background.png')
+              ),
+            ),
           ),
+          Column(
+            children: [
+              IrosagashiTimerWidget(_irosagashiData),
+              Expanded(
+                child: FutureBuilder<void>(
+                    future: _initializedControllerF,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return CameraPreview(controller);
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    }),
+              ),
+            ],
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

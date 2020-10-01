@@ -22,10 +22,10 @@ class IrosagashiTitlePage extends StatelessWidget {
           Container(
             constraints: BoxConstraints.expand(),
             decoration: BoxDecoration(
-//              image: DecorationImage(
-//                fit: BoxFit.fitWidth,
-//                image: AssetImage('assets/Images/iroquiz/iroquiz_background.png'),
-//              ),
+              image: DecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage('assets/Images/irosagashi/irosagashi_background.png'),
+              ),
             ),
           ),
           Column(

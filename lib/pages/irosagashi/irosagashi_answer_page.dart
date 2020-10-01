@@ -27,78 +27,91 @@ class IrosagashiAnswerPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 5,
-              child: _answerWidget(irosagashiData, context),
-            ),
-            Expanded(
-              flex: 5,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, '/irosagashi/question', arguments: irosagashiData);
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      padding: EdgeInsets.all(5),
-                      margin: EdgeInsets.all(5),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(color: Colors.black, blurRadius: 5,),
-                        ],
-                      ),
-                      child: Text(
-                        'つづける',
-                        style: TextStyle(
-                          fontFamily: 'satsuki',
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 215, 0, 59),
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamedAndRemoveUntil(context, '/title', (routes) => false);
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      padding: EdgeInsets.all(5),
-                      margin: EdgeInsets.all(5),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: const [
-                          BoxShadow(color: Colors.black, blurRadius: 5,),
-                        ],
-                      ),
-                      child: Text(
-                        'やめる',
-                        style: TextStyle(
-                          fontFamily: 'satsuki',
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 22, 94, 132),
-                          letterSpacing: -4,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+      body: Stack(
+        children: [
+          Container(
+            constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage('assets/Images/irosagashi/irosagashi_background.png')
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+          Center(
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: _answerWidget(irosagashiData, context),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.pushNamed(context, '/irosagashi/question', arguments: irosagashiData);
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(5),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(color: Colors.black, blurRadius: 5,),
+                            ],
+                          ),
+                          child: Text(
+                            'つづける',
+                            style: TextStyle(
+                              fontFamily: 'satsuki',
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 215, 0, 59),
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.pushNamedAndRemoveUntil(context, '/title', (routes) => false);
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.all(5),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(color: Colors.black, blurRadius: 5,),
+                            ],
+                          ),
+                          child: Text(
+                            'やめる',
+                            style: TextStyle(
+                              fontFamily: 'satsuki',
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 22, 94, 132),
+                              letterSpacing: -4,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -195,14 +208,23 @@ class IrosagashiAnswerPage extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              Text(
-                irosagashiData.getNearlyColor(model).kana,
-                style: TextStyle(
-                  fontFamily: 'satsuki',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 50.0,
-                  color: irosagashiData.getUserLetterColor(),
-                  backgroundColor: irosagashiData.userAnswer,
+              Container(
+                width: MediaQuery.of(context).size.width * 0.9,
+                padding: EdgeInsets.all(5),
+                margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: irosagashiData.userAnswer,
+                  border: Border.all(color: Color.fromARGB(255, 83, 42, 35), width: 2),
+                ),
+                child: Text(
+                  irosagashiData.getNearlyColor(model).kana,
+                  style: TextStyle(
+                    fontFamily: 'satsuki',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 50.0,
+                    color: irosagashiData.getUserLetterColor(),
+                  ),
                 ),
               ),
               Text(
