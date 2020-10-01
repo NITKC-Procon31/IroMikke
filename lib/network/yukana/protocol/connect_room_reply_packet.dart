@@ -1,11 +1,11 @@
 import 'package:iromikke/network/yukana/protocol/data_packet.dart';
 import 'package:iromikke/network/yukana/protocol/packet_type.dart';
 
-class ConnectionRoomReplyPacket extends DataPacket {
+class ConnectRoomReplyPacket extends DataPacket {
 
   int roomId;
 
-  ConnectionRoomReplyPacket({this.roomId});
+  ConnectRoomReplyPacket({this.roomId});
 
   int get id => PacketType.PACKET_CONNECT_ROOM_REPLY;
 

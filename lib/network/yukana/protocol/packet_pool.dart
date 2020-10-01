@@ -1,7 +1,7 @@
 import 'package:iromikke/network/yukana/exception/unknown_packet_exception.dart';
 import 'package:iromikke/network/yukana/protocol/color_notify_packet.dart';
-import 'package:iromikke/network/yukana/protocol/connection_room_reply_packet.dart';
-import 'package:iromikke/network/yukana/protocol/connection_room_request_packet.dart';
+import 'package:iromikke/network/yukana/protocol/connect_room_reply_packet.dart';
+import 'package:iromikke/network/yukana/protocol/connect_room_request_packet.dart';
 import 'package:iromikke/network/yukana/protocol/correct_answer_packet.dart';
 import 'package:iromikke/network/yukana/protocol/data_packet.dart';
 import 'package:iromikke/network/yukana/protocol/leave_room_notify_packet.dart';
@@ -22,7 +22,7 @@ class PacketPool {
         return new ConnectRoomRequestPacket();
         break;
       case PacketType.PACKET_CONNECT_ROOM_REPLY:
-        return new ConnectionRoomReplyPacket();
+        return new ConnectRoomReplyPacket();
         break;
       case PacketType.PACKET_LEAVE_ROOM:
         return new LeaveRoomPacket();
