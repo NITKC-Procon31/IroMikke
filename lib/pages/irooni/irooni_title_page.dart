@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iromikke/model/color_model.dart';
+import 'package:iromikke/pages/irooni/utils/irooni_data.dart';
+import 'package:provider/provider.dart';
 
 class IrooniTitlePage extends StatelessWidget{
 
@@ -69,7 +72,8 @@ class IrooniTitlePage extends StatelessWidget{
               GestureDetector(
                 onTapUp: (details){
                   print('にゃーん');
-                  //追記予定
+                  final ColorModel model = Provider.of<ColorModel>(context, listen: false);
+                  Navigator.pushNamed(context, '/irooni/nigeru/camera', arguments: IrooniData(model.getById(1)));
                 },
                 behavior: HitTestBehavior.deferToChild,
                 child: Container(

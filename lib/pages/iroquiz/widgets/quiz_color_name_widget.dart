@@ -33,23 +33,47 @@ class ColorNameQuizWidget extends StatelessWidget{
                 ),
                 margin: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
               ),
-              Container(
-                width: MediaQuery.of(context).size.height * 0.3,
-                height: MediaQuery.of(context).size.height * 0.3,
-                margin: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
-                decoration: BoxDecoration(
-                  color: answer,
-                  border: Border.all(
-                    color: Color.fromARGB(255, 83, 42, 35),
-                    width: 5.0,
-                  ),
-                ),
-              ),
+              _AnswerColorWidget(_quizData),
             ],
           ),
         ),
         _ColorNameQuizList(_quizData),
       ],
+    );
+  }
+}
+
+class _AnswerColorWidget extends StatefulWidget{
+  QuizData _quizData;
+  _AnswerColorWidget(this._quizData);
+  @override
+  _AnswerColorWidgetState createState() => _AnswerColorWidgetState(this._quizData);
+}
+class _AnswerColorWidgetState extends State<_AnswerColorWidget>{
+  QuizData _quizData;
+  _AnswerColorWidgetState(this._quizData);
+
+  @override
+  Widget build(BuildContext context) {
+    TraditionalColor tColor = _quizData.optionList[_quizData.answerIndex];
+    Color answer = Color.fromARGB(255, tColor.rgb.r, tColor.rgb.g, tColor.rgb.b);
+    return Container(
+      width: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.3,
+      margin: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+      decoration: BoxDecoration(
+        color: answer,
+        border: Border.all(
+          color: Color.fromARGB(255, 83, 42, 35),
+          width: 5.0,
+        ),
+        image: DecorationImage(
+          fit: BoxFit.contain,
+          image: _quizData.userAnswer > -1 ? (
+              _quizData.userAnswer == _quizData.answerIndex ? AssetImage('assets/Images/iroquiz/circle.png') : AssetImage('assets/Images/iroquiz/batu.png')
+          ) : AssetImage('assets/Images/iroquiz/touka.png'),
+        ),
+      ),
     );
   }
 }

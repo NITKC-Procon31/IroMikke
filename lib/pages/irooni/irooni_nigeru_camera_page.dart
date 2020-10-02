@@ -3,6 +3,7 @@ import 'dart:io';
 //package
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:iromikke/pages/irooni/irooni_timer_widget.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:iromikke/pages/irooni/utils/irooni_data.dart';
 //files
@@ -19,7 +20,7 @@ class _IrooniNigeruCameraPageState extends State<IrooniNigeruCameraPage> with Wi
   CameraController controller;
   String imagePath;
   Future<void> _initializedControllerF;  //なんでエラーなってるかわからないが動く
-  //IrooniData _irooniData;  色探しと同じようにやってしまいたい
+  IrooniData _irooniData;  //色探しと同じようにやってしまいたい
 
   void initState() {
     super.initState();
@@ -53,6 +54,7 @@ class _IrooniNigeruCameraPageState extends State<IrooniNigeruCameraPage> with Wi
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    _irooniData = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -69,23 +71,7 @@ class _IrooniNigeruCameraPageState extends State<IrooniNigeruCameraPage> with Wi
       ),
       body: Column(
         children: [
-          Container(
-            color: const Color.fromARGB(255, 0, 100, 151),
-            padding: EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Text(
-                  'のこり',
-                  style: TextStyle(
-                    fontFamily: 'satsuki',
-                    color: Colors.white,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          IrooniTimerWidget(_irooniData),
           Expanded(
             child: FutureBuilder<void>(
                 future: _initializedControllerF,
@@ -112,13 +98,15 @@ class _IrooniNigeruCameraPageState extends State<IrooniNigeruCameraPage> with Wi
     takePicture().then((String filePath) {
       if (mounted) {
         setState(() {
-          imagePath = filePath;
+          _irooniData.imagePath = filePath;
+//          imagePath = filePath;
         });
         if (filePath != null) {
           Navigator.pushNamed(
             context,
             '/irooni/nigeru/colorPick',
-            arguments: imagePath, //画像を渡す部分
+            arguments: this._irooniData, //画像を渡す部分
+//            arguments: imagePath,
           );
         }
       }

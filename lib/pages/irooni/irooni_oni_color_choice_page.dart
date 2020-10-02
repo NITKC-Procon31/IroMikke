@@ -1,5 +1,6 @@
 import 'dart:math' as Math;
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iromikke/entity/traditional_color.dart';
 import 'package:iromikke/model/color_model.dart';
@@ -29,21 +30,45 @@ class IrooniOniColorChoicePage extends StatelessWidget{
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Text(
-              'いろをえらんでね',
-              style: TextStyle(
-                fontFamily: 'satsuki',
-                fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 255, 98, 42),
-                fontSize: 40.0,
+      body: Stack(
+        children: [
+          Container(
+            constraints: BoxConstraints.expand(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage('assets/Images/irooni/irooni_background.png'),
               ),
             ),
-            _ColorChoiceWidget(list),
-          ],
-        ),
+          ),
+          Center(
+            child: Column(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
+                    child: Text(
+                      'いろをえらんでね',
+                      style: TextStyle(
+                        fontFamily: 'satsuki',
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 255, 98, 42),
+                        fontSize: 50.0,
+                        letterSpacing: -8,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 7,
+                  child: _ColorChoiceWidget(list),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -66,6 +91,7 @@ class _ColorChoiceWidgetState extends State<_ColorChoiceWidget>{
 
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -76,18 +102,41 @@ class _ColorChoiceWidgetState extends State<_ColorChoiceWidget>{
             _colorContainer(context, 3),
           ],
         ),
-        Text(
-          _selectedIndex >= 0 ? _list[_selectedIndex].kana : '',
-          style: TextStyle(
-            fontFamily: 'satsuki',
-            fontWeight: FontWeight.bold,
-            fontSize: 40.0,
-            color: Colors.black,
+        Container(
+          padding: EdgeInsets.all(5),
+          child: Text(
+            _selectedIndex >= 0 ? _list[_selectedIndex].kana : '',
+            style: TextStyle(
+              fontFamily: 'satsuki',
+              fontWeight: FontWeight.bold,
+              fontSize: 50.0,
+              color: Colors.black,
+              letterSpacing: -8,
+            ),
           ),
         ),
-        RaisedButton(
-          child: Text('けってい'),
-          onPressed: () => print(_list[_selectedIndex].kana),
+        GestureDetector(
+          onTap: () {
+            print(_list[_selectedIndex].kana);
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width * 0.5,
+            padding: EdgeInsets.all(5),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color.fromARGB(255, 83, 42, 35), width: 2),
+              color: Colors.white,
+            ),
+            child: Text(
+              'けってい',
+              style: TextStyle(
+                fontFamily: 'satsuki',
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 83, 42, 35),
+              ),
+            ),
+          ),
         ),
       ],
     );

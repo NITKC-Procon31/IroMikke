@@ -10,6 +10,8 @@ import 'dart:io';
 import 'package:flutter/rendering.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:iromikke/pages/irooni/irooni_timer_widget.dart';
+import 'package:iromikke/pages/irooni/utils/irooni_data.dart';
 
 class IrooniNigeruColorPickPage extends StatefulWidget {
 
@@ -20,6 +22,7 @@ class IrooniNigeruColorPickPage extends StatefulWidget {
 
 class _IrooniNigeruColorPickPageState extends State<IrooniNigeruColorPickPage> {
 
+  IrooniData _irooniData;
   String imagePath;
   GlobalKey paintKey = GlobalKey();
   bool _isPanDowned = false;
@@ -37,7 +40,9 @@ class _IrooniNigeruColorPickPageState extends State<IrooniNigeruColorPickPage> {
 
   @override
   Widget build(BuildContext context) {
-    imagePath = ModalRoute.of(context).settings.arguments; //画像を渡される
+    _irooniData = ModalRoute.of(context).settings.arguments;
+//    imagePath = ModalRoute.of(context).settings.arguments;//画像を渡される
+    imagePath = _irooniData.imagePath;
     print(imagePath);
 
     Image image = Image.file(File(imagePath));
@@ -54,95 +59,107 @@ class _IrooniNigeruColorPickPageState extends State<IrooniNigeruColorPickPage> {
             ),
           ),
         ),
-        body: StreamBuilder(
-            initialData: Colors.green[500],
-            stream: _stateController.stream,
-            builder: (BuildContext, snapshot) {
-              Color selectedColor = snapshot.data ?? Colors.green;
-              if (!snapshot.hasData) {
-                CircularProgressIndicator(); //取得するまでインジケーター
-              } else {
-                return Column(
-                  children: <Widget>[
-                    RepaintBoundary(
-                      key: paintKey,
-                      child: GestureDetector(
-                        //タッチ座標部分　ドラッグに対応してます
-                        behavior: HitTestBehavior.deferToChild,
-                        onPanDown: (details) {
-                          //初回タップ時のコール
-                          _isPanDowned = true;
-                          searchPixel(details.globalPosition);
-                        },
-                        onPanUpdate: (details) {
-                          //位置変化時にコール
-                          searchPixel(details.globalPosition);
-                        },
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.75,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: image.image,
-                              fit: BoxFit.contain,
+        body: Stack(
+          children: [
+            Container(
+              constraints: BoxConstraints.expand(),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.fitWidth,
+                  image: AssetImage('assets/Images/irooni/irooni_background.png'),
+                ),
+              ),
+            ),
+            StreamBuilder(
+                initialData: Colors.green[500],
+                stream: _stateController.stream,
+                builder: (BuildContext, snapshot) {
+                  Color selectedColor = snapshot.data ?? Colors.green;
+                  if (!snapshot.hasData) {
+                    CircularProgressIndicator(); //取得するまでインジケーター
+                  } else {
+                    return Column(
+                      children: <Widget>[
+                        IrooniTimerWidget(_irooniData),
+                        RepaintBoundary(
+                          key: paintKey,
+                          child: GestureDetector(
+                            //タッチ座標部分　ドラッグに対応してます
+                            behavior: HitTestBehavior.deferToChild,
+                            onPanDown: (details) {
+                              //初回タップ時のコール
+                              _isPanDowned = true;
+                              searchPixel(details.globalPosition);
+                            },
+                            onPanUpdate: (details) {
+                              //位置変化時にコール
+                              searchPixel(details.globalPosition);
+                            },
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.75,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: image.image,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: const Color.fromARGB(255, 0, 107, 161),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(
-                                MediaQuery.of(context).size.width * 0.15,
-                                MediaQuery.of(context).size.height * 0.01,
-                                MediaQuery.of(context).size.width * 0.15,
-                                MediaQuery.of(context).size.height * 0.01
-                              ),
-                              width: MediaQuery.of(context).size.height * 0.1,
-                              height: MediaQuery.of(context).size.height * 0.1,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2.0,),
-                                color: _isPanDowned ? selectedColor : Colors.white,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                print(selectedColor.toString());
-                              },
-                              child: Container(
-                                //width: MediaQuery.of(context).size.width * 0.45,
-                                height: MediaQuery.of(context).size.height * 0.1,
-                                padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 2.0,
-                                    ),
-                                  ],
-                                ),
-                                child: Text(
-                                  'けってい',
-                                  style: TextStyle(
-                                    fontFamily: 'satsuki',
-                                    color: const Color.fromARGB(255, 83, 42, 35),
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: -4.0,
+                        Expanded(
+                          child: Container(
+                            color: const Color.fromARGB(255, 0, 107, 161),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(
+                                      MediaQuery.of(context).size.width * 0.15,
+                                      MediaQuery.of(context).size.height * 0.01,
+                                      MediaQuery.of(context).size.width * 0.15,
+                                      MediaQuery.of(context).size.height * 0.01
+                                  ),
+                                  width: MediaQuery.of(context).size.height * 0.1,
+                                  height: MediaQuery.of(context).size.height * 0.1,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: Colors.white, width: 2.0,),
+                                    color: _isPanDowned ? selectedColor : Colors.white,
                                   ),
                                 ),
-                              ),
+                                GestureDetector(
+                                  onTap: (){
+                                    print(selectedColor.toString());
+                                  },
+                                  child: Container(
+                                    //width: MediaQuery.of(context).size.width * 0.45,
+                                    height: MediaQuery.of(context).size.height * 0.1,
+                                    padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 2.0,
+                                        ),
+                                      ],
+                                    ),
+                                    child: Text(
+                                      'けってい',
+                                      style: TextStyle(
+                                        fontFamily: 'satsuki',
+                                        color: const Color.fromARGB(255, 83, 42, 35),
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: -4.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
 //                    Container(
 //                      // 色の選択確認部分
 //                        margin: EdgeInsets.all(70),
@@ -166,10 +183,12 @@ class _IrooniNigeruColorPickPageState extends State<IrooniNigeruColorPickPage> {
 //                      left: 114,
 //                      top: 95,
 //                    ),
-                  ],
-                );
-              }
-            }));
+                      ],
+                    );
+                  }
+                }),
+          ],
+        ),);
   }
   // globalPosition  = アプリ内の絶対座標
   // localPosition = Widget内の相対座標
