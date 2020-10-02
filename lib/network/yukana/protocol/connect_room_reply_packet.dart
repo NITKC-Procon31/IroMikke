@@ -11,7 +11,7 @@ class ConnectRoomReplyPacket extends DataPacket {
 
   int get type => PacketType.TYPE_DONG;
 
-  String get name => "ConnectionRoomReplyPacket";
+  String get name => "ConnectRoomReplyPacket";
 
   @override
   void encode() {
