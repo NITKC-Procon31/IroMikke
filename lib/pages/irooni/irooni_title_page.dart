@@ -37,7 +37,7 @@ class IrooniTitlePage extends StatelessWidget{
               GestureDetector(
                 onTapUp: (details){
                   print('nya-nn');
-                  Navigator.pushNamed(context, '/irooni/start');
+                  Navigator.pushNamed(context, '/irooni/oni/colorChoice');
                   //Navigator.pushNamed(context, '/irooni/nigeru/camera');
                   //Navigator.pushNamed(context, '/irooni/oni/colorChoice');
                 },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iromikke/pages/irooni/utils/irooni_data.dart';
 
 import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
 
@@ -9,19 +10,19 @@ import 'package:iromikke/entity/user_color.dart';
 
 import 'package:provider/provider.dart';
 
-class IrosagashiAnswerPage extends StatelessWidget {
+class IrooniNigeruAnswerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final IrosagashiData irosagashiData = ModalRoute.of(context).settings.arguments;
+    final IrooniData _irooniData = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 235, 126, 1),
+        backgroundColor: const Color.fromARGB(255, 0, 107, 161),
         title: Text(
-          'いろさがし',
+          'いろおに',
           style: TextStyle(
             fontFamily: 'satsuki',
-            fontSize: 50.0,
+            fontSize: 40.0,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -34,7 +35,7 @@ class IrosagashiAnswerPage extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('assets/Images/irosagashi/irosagashi_background.png')
+                image: AssetImage('assets/Images/irooni/irooni_background.png'),
               ),
             ),
           ),
@@ -43,7 +44,7 @@ class IrosagashiAnswerPage extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 5,
-                  child: _answerWidget(irosagashiData, context),
+                  child: _answerWidget(_irooniData, context),
                 ),
                 Expanded(
                   flex: 5,
@@ -52,7 +53,7 @@ class IrosagashiAnswerPage extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: (){
-                          Navigator.pushNamed(context, '/irosagashi/question', arguments: irosagashiData);
+                          Navigator.pushNamed(context, '/irooni/title');
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.7,
@@ -116,23 +117,23 @@ class IrosagashiAnswerPage extends StatelessWidget {
     );
   }
 
-  Widget _answerWidget(IrosagashiData irosagashiData, BuildContext context) {
-    if(irosagashiData.isTimeUp){
+  Widget _answerWidget(IrooniData _irooniData, BuildContext context) {
+    if(_irooniData.isTimeUp){
       return Center(
         child: Text(
           'じかんぎれ！',
           style: TextStyle(
             fontFamily: 'satsuki',
             fontWeight: FontWeight.bold,
-            fontSize: 40.0,
+            fontSize: 50.0,
             color: Colors.black,
           ),
         ),
       );
     } else {
-      if (irosagashiData.isCorrected()) {
+      if (_irooniData.isCorrected()) {
         final UserColorModel model = Provider.of<UserColorModel>(context, listen: false);
-        UserColor color = model.getUserColorById(irosagashiData.traditionalColor.id);
+        UserColor color = model.getUserColorById(_irooniData.traditionalColor.id);
         if (color != null) model.setFlag(color, true);
 
         return Center(
@@ -143,7 +144,7 @@ class IrosagashiAnswerPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
               ),
               Text(
-                'せいかい！',
+                'セーフ！！！',
                 style: TextStyle(
                   fontFamily: 'satsuki',
                   fontWeight: FontWeight.bold,
@@ -188,7 +189,7 @@ class IrosagashiAnswerPage extends StatelessWidget {
                 padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
               ),
               Text(
-                'おしい！',
+                'アウト！！',
                 style: TextStyle(
                   fontFamily: 'satsuki',
                   fontWeight: FontWeight.bold,
@@ -214,16 +215,16 @@ class IrosagashiAnswerPage extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(0, MediaQuery.of(context).size.height * 0.05, 0, MediaQuery.of(context).size.height * 0.05),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: irosagashiData.userAnswer,
+                  color: _irooniData.userAnswer,
                   border: Border.all(color: Color.fromARGB(255, 83, 42, 35), width: 2),
                 ),
                 child: Text(
-                  irosagashiData.getNearlyColor(model).kana,
+                  _irooniData.getNearlyColor(model).kana,
                   style: TextStyle(
                     fontFamily: 'satsuki',
                     fontWeight: FontWeight.bold,
                     fontSize: 50.0,
-                    color: irosagashiData.getUserLetterColor(),
+                    color: _irooniData.getUserLetterColor(),
                     letterSpacing: -8,
                   ),
                 ),

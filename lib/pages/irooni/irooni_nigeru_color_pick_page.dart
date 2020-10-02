@@ -130,6 +130,8 @@ class _IrooniNigeruColorPickPageState extends State<IrooniNigeruColorPickPage> {
                                 GestureDetector(
                                   onTap: (){
                                     print(selectedColor.toString());
+                                    _irooniData.setUserSelectedColor(selectedColor.red, selectedColor.green, selectedColor.blue);
+                                    Navigator.pushNamedAndRemoveUntil(context, '/irooni/nigeru/answer', ModalRoute.withName('/irooni/title'), arguments: _irooniData);
                                   },
                                   child: Container(
                                     //width: MediaQuery.of(context).size.width * 0.45,

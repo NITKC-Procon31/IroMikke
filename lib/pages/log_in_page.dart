@@ -37,6 +37,7 @@ class LogInPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: Colors.black,
       ),
       body: FutureBuilder(
         future: _checkModel(context),
@@ -52,10 +53,20 @@ class LogInPage extends StatelessWidget {
             return Center(
               child: Column(
                 children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/Images/iromikke_logo_v2.png'),
+                      ),
+                    ),
+                  ),
                   StreamBuilder<String>(
                     stream: _controller.stream.transform(_validator),
                     builder: (context, snapshot) {
                       return TextField(
+
+
                         controller: _textFieldcontroller,
                         onChanged: (String data) {
                           _controller.sink.add(data);
@@ -68,6 +79,28 @@ class LogInPage extends StatelessWidget {
                       );
                     },
                   ),
+                  GestureDetector(
+                    onTap: (){
+                      if(this._buttonAble){
+                      _registerUser(_textFieldcontroller.text);
+                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
+                      }
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5),
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        color: Colors.white,
+                      ),
+                      child: Text(
+                        'けってい',
+                        style: TextStyle(
+                          fontFamily: 'satsuki', fontWeight: FontWeight.bold, fontSize: 40.0, color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
 //                  TextField(
 //                    maxLength: inputMax,
 //                    controller: _TextFieldcontroller,
@@ -76,19 +109,19 @@ class LogInPage extends StatelessWidget {
 //                    },
 //                  ),
                   // たぶんFutureBuilderなりを使ってデータベース操作に対応するはず
-                  RaisedButton(
-                    child: Text('けってい'),
-                    onPressed: (){
-                      if(this._buttonAble){
-                        _registerUser(_textFieldcontroller.text);
-                        Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
-                      }
-                    }
+//                  RaisedButton(
+//                    child: Text('けってい'),
+//                    onPressed: (){
+//                      if(this._buttonAble){
+//                        _registerUser(_textFieldcontroller.text);
+//                        Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
+//                      }
+//                    }
 //                    onPressed: () {
 //                      _registerUser(_textFieldcontroller.text);
 //                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
 //                    },
-                  ),
+                 // ),
                 ],
               ),
             );

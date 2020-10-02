@@ -74,16 +74,20 @@ class QuizQuestionPage extends StatelessWidget{
       floatingActionButton:FloatingActionButton(
         child: Icon(Icons.navigate_next),
         onPressed: () {
-          if(_quizData.pressed){
-            if(_quizData.userAnswer == _quizData.answerIndex){
+          if(_quizData.pressed) {
+            if (_quizData.userAnswer == _quizData.answerIndex) {
               _quizProvider.answerCorrected();
             }
-            if(_quizProvider.quizCount < QuizProvider.quizMax){
-              Navigator.pushNamedAndRemoveUntil(context, '/quiz/question', ModalRoute.withName('/quiz/title'));
+            if (_quizProvider.quizCount < QuizProvider.quizMax) {
+              Navigator.pushNamedAndRemoveUntil(context, '/quiz/question',
+                  ModalRoute.withName('/quiz/title'));
             }
-            else{
-              Navigator.pushNamedAndRemoveUntil(context, '/quiz/score', ModalRoute.withName('/quiz/title'));
+            else {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/quiz/score', ModalRoute.withName('/quiz/title'));
             }
+          } else {
+            Navigator.pushNamed(context, '/zukan/zukan');
           }
         },
         tooltip: 'floating action buton',
