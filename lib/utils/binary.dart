@@ -4,6 +4,9 @@ import 'dart:convert';
 
 import 'package:scidart/numdart.dart';
 
+import 'package:iromikke/network/yukana/protocol/data_packet.dart';
+import 'package:iromikke/network/yukana/protocol/unknown_packet.dart';
+
 class Binary {
 
   final int _bufSize = 1024 * 5;
@@ -127,6 +130,25 @@ class Binary {
     this._readOffset += count;
 
     return str;
+  }
+
+  void putPacket(DataPacket binary) {
+    int length = binary.writeOffset;
+    Uint8List list = binary.buffer.buffer.asUint8List(0, length);
+    this.putUnsignedShort(length);
+    list.forEach((int uint8) {
+      this.putUnsignedByte(uint8);
+    });
+  }
+
+  UnknownPacket getPacket() {
+    int length = this.getUnsignedShort();
+    UnknownPacket packet = UnknownPacket();
+    for (int i = 0; i < length; i++) {
+      packet.putUnsignedByte(this.getUnsignedByte());
+    }
+
+    return packet;
   }
 
   void putBool(bool value) {
