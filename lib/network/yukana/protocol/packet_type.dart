@@ -17,4 +17,6 @@ class PacketType {
   static const PACKET_START_GAME_NOTIFY                 = 0x0b;
   static const PACKET_TIMEOUT_NOTIFY                    = 0x0c;
 
+  static const PACKET_UNKNOWN                           = 0xff;
+
 }

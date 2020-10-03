@@ -1,4 +1,3 @@
-import 'package:iromikke/network/yukana/exception/unknown_packet_exception.dart';
 import 'package:iromikke/network/yukana/protocol/color_notify_packet.dart';
 import 'package:iromikke/network/yukana/protocol/connect_room_reply_packet.dart';
 import 'package:iromikke/network/yukana/protocol/connect_room_request_packet.dart';
@@ -13,6 +12,9 @@ import 'package:iromikke/network/yukana/protocol/send_color_packet.dart';
 import 'package:iromikke/network/yukana/protocol/set_role_packet.dart';
 import 'package:iromikke/network/yukana/protocol/start_game_notify_packet.dart';
 import 'package:iromikke/network/yukana/protocol/timeout_notify_packet.dart';
+import 'package:iromikke/network/yukana/protocol/unknown_packet.dart';
+
+import 'package:iromikke/network/yukana/exception/packet_exception.dart';
 
 class PacketPool {
 
@@ -54,8 +56,10 @@ class PacketPool {
       case PacketType.PACKET_TIMEOUT_NOTIFY:
         return new TimeOutNotifyPacket();
         break;
+      case PacketType.PACKET_UNKNOWN:
+        return new UnknownPacket();
       default:
-        throw new UnknownPacketException('Unknown packet id : $id');
+        throw PacketException('Unknown DataPacket id : $id');
         break;
     }
   }
