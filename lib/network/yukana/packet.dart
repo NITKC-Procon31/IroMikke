@@ -26,6 +26,7 @@ abstract class Packet extends Binary {
 
     this.putUnsignedByte(this._dataPackets.length);
     this._dataPackets.forEach((packet) {
+      packet.decode();
       this.putPacket(packet);
     });
   }
