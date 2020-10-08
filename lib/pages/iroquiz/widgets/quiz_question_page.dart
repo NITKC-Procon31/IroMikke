@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:iromikke/entity/traditional_color.dart';
 import 'package:iromikke/model/color_model.dart';
+import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_type.dart';
 
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_data.dart';
 import 'package:iromikke/pages/iroquiz/widgets/iroquiz_timer_widget.dart';
 import 'package:iromikke/pages/iroquiz/widgets/quiz_color_name_widget.dart';
+import 'package:iromikke/pages/iroquiz/widgets/quiz_color_derivation_widget.dart';
 import 'package:provider/provider.dart';
 
 class QuizQuestionPage extends StatelessWidget{
 
-  QuizProvider _quizProvider;
-  QuizData _quizData;
-
   @override
   Widget build(BuildContext context) {
     ColorModel model = Provider.of<ColorModel>(context, listen: true);
-    _quizProvider = QuizProvider();
-    _quizData = _quizProvider.initQuiz(model);
+    final QuizProvider quizProvider = QuizProvider();
+    final QuizData quizData = quizProvider.initQuiz(model);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 150, 211, 28),
@@ -42,7 +41,7 @@ class QuizQuestionPage extends StatelessWidget{
               ),
             ),
           ),
-          _quizWidget(context),
+          _quizWidget(context, quizData),
           //画面遷移テスト用のボタン
 //          RaisedButton(
 //            child: Text('てすと'),
@@ -74,11 +73,11 @@ class QuizQuestionPage extends StatelessWidget{
       floatingActionButton:FloatingActionButton(
         child: Icon(Icons.navigate_next),
         onPressed: () {
-          if(_quizData.pressed) {
-            if (_quizData.userAnswer == _quizData.answerIndex) {
-              _quizProvider.answerCorrected();
+          if(quizData.pressed) {
+            if (quizData.userAnswer == quizData.answerIndex) {
+              quizProvider.answerCorrected();
             }
-            if (_quizProvider.quizCount < QuizProvider.quizMax) {
+            if (quizProvider.quizCount < QuizProvider.quizMax) {
               Navigator.pushNamedAndRemoveUntil(context, '/quiz/question',
                   ModalRoute.withName('/quiz/title'));
             }
@@ -102,11 +101,26 @@ class QuizQuestionPage extends StatelessWidget{
 //    return 1;
 //  }
 
-  Widget _quizWidget(BuildContext context){
+  Widget _quizWidget(BuildContext context, QuizData quizData){
+    Widget quizWidget;
+    switch (quizData.quizMode){
+      case QuizType.colorName:
+        quizWidget = ColorNameQuizWidget(quizData);
+        break;
+      case QuizType.colorOrigin:
+        quizWidget = ColorOriginQuizWidget(quizData);
+        break;
+      case QuizType.colorMix:
+        Navigator.pushNamedAndRemoveUntil(context, '/quiz/title', ModalRoute.withName('/title'));
+        break;
+      default:
+        Navigator.pushNamedAndRemoveUntil(context, '/quiz/title', ModalRoute.withName('/title'));
+    }
+    print('${quizData.quizMode.toString()}ああああ');
     return Column(
       children: [
         IroquizTimerWidget(),
-        ColorNameQuizWidget(_quizData),
+        quizWidget,
       ],
     );
   }

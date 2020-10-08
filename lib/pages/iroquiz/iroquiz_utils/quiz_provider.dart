@@ -6,12 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:iromikke/entity/traditional_color.dart';
 import 'package:iromikke/model/color_model.dart';
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_data.dart';
-
-enum QuizType{
-  colorName,
-  colorMix,
-  colorDerivation,
-}
+import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_type.dart';
+//
+//enum QuizType{
+//  colorName,
+//  colorDerivation,
+//  colorMix,
+//}
 
 //なんちゃってシングルトン化
 //一連の制限時間内では同じインスタンスを使う感じ
@@ -51,13 +52,13 @@ class QuizProvider {
 
   QuizData initQuiz(ColorModel model) {
     _quizCount++;
-    var quizMode = QuizType.colorName;
+    int quizMode = random.nextInt(10) % 2;
     switch (quizMode) {
       case QuizType.colorName:
         return _provideColorNameQuiz(model);
         break;
-      case QuizType.colorDerivation:
-        //return _colorDerivation();
+      case QuizType.colorOrigin:
+        return _provideColorDerivationQuiz(model);
         break;
       case QuizType.colorMix:
         //return _colorMix();
@@ -85,4 +86,27 @@ class QuizProvider {
     return QuizData(QuizType.colorName, optionList, random.nextInt(3));
   }
 
+  QuizData _provideColorDerivationQuiz(ColorModel model) {
+    List<TraditionalColor> optionList = List();
+    int hogehoge = random.nextInt(model.length);
+    TraditionalColor hoge = model.getById(hogehoge + 1);
+    while(hoge.origin == null){
+      hogehoge++;
+      hoge = model.getById(hogehoge % model.length + 1);
+    }
+    optionList.add(hoge);
+
+    int startIndex = random.nextInt(model.length);
+
+    for (int i = 0; i < model.length && optionList.length < 3; i++) {
+      int num = (startIndex + i) % model.length + 1;
+      TraditionalColor temp = model.getById(num);
+      if (optionList[0].id != temp.id && temp.origin != null && optionList[0].rgb.distance(temp.rgb) < 20.0) {
+        optionList.add(temp);
+        i += 50;
+      }
+    }
+
+    return optionList.length == 3 ? QuizData(QuizType.colorOrigin, optionList, random.nextInt(3)) : _provideColorNameQuiz(model);
+  }
 }

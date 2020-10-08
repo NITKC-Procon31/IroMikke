@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iromikke/model/color_model.dart';
+import 'package:iromikke/network/yukana/protocol/connect_room_request_packet.dart';
+import 'package:iromikke/network/yukana/protocol/packet_pool.dart';
+import 'package:iromikke/network/yukana/protocol/packet_type.dart';
 import 'package:iromikke/pages/irooni/utils/irooni_data.dart';
 import 'package:provider/provider.dart';
 
@@ -37,9 +40,9 @@ class IrooniTitlePage extends StatelessWidget{
               GestureDetector(
                 onTapUp: (details){
                   print('nya-nn');
-                  Navigator.pushNamed(context, '/irooni/oni/colorChoice');
+                  //ConnectRoomRequestPacket packet = PacketPool.getPacketById(PacketType.PACKET_CONNECT_ROOM_REQUEST);
                   //Navigator.pushNamed(context, '/irooni/nigeru/camera');
-                  //Navigator.pushNamed(context, '/irooni/oni/colorChoice');
+                  Navigator.pushNamed(context, '/irooni/oni/colorChoice');
                 },
                 behavior: HitTestBehavior.deferToChild,
                 child: Container(
