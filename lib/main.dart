@@ -33,6 +33,7 @@ import 'package:iromikke/pages/irooni/irooni_nigeru_camera_page.dart';
 import 'package:iromikke/pages/irooni/irooni_nigeru_color_pick_page.dart';
 import 'package:iromikke/pages/irooni/irooni_nigeru_answer_page.dart';
 import 'package:iromikke/pages/irooni/irooni_oni_color_choice_page.dart';
+import 'package:iromikke/pages/irooni/irooni_question_page.dart';
 
 
 //model
@@ -103,7 +104,8 @@ class MyApp extends StatelessWidget {
           '/irooni/nigeru/camera': (context) => IrooniNigeruCameraPage(),
           '/irooni/nigeru/colorPick': (context) => IrooniNigeruColorPickPage(),
           '/irooni/nigeru/answer': (context) => IrooniNigeruAnswerPage(),
-              '/irooni/oni/colorChoice': (context) => IrooniOniColorChoicePage(),
+          '/irooni/oni/colorChoice': (context) => IrooniOniColorChoicePage(),
+          '/irooni/nigeru/question': (context) => IrooniNigeruQuestionPage(),
         },
         //その時が来たらfalseにするのかもしれない
         debugShowCheckedModeBanner: false,

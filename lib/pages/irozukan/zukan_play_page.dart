@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:iromikke/model/user_color_model.dart';
+import 'package:iromikke/model/user_model.dart';
 
 import 'package:provider/provider.dart';
 
@@ -22,9 +23,11 @@ import 'package:iromikke/entity/traditional_color.dart';
 class ZukanPlayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ColorModel cmodel = Provider.of(context);
+    UserModel umodel = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 126, 137, 161),
+        backgroundColor: const Color.fromARGB(255, 126, 137, 161),
         title: Text(
           'いろずかん',
           style: TextStyle(
@@ -89,7 +92,7 @@ class ZukanPlayPage extends StatelessWidget {
         Color color =
             Color.fromARGB(255, tColor.rgb.r, tColor.rgb.g, tColor.rgb.b);
         return _iroZukanRow(context, color,
-            userColorModel.isFound(index + 1) ? tColor.kana : '？？？');
+            userColorModel.isFound(index + 1) ? tColor.kana : '？？？', tColor.id);
       },
       separatorBuilder: (context, index) {
         return Container(
@@ -100,7 +103,7 @@ class ZukanPlayPage extends StatelessWidget {
     ));
   }
 
-  Widget _iroZukanRow(BuildContext context, Color color, String name) {
+  Widget _iroZukanRow(BuildContext context, Color color, String name, int id) {
     return GestureDetector(
       onTap: () {
         showDialog(
@@ -109,9 +112,12 @@ class ZukanPlayPage extends StatelessWidget {
             return AlertDialog(
               title: Text("この色に変える？"),
               actions: <Widget>[
-                //FlatButton(child: Text("うん！"),
-              //  onPressed:
-                //),
+//                FlatButton(child: Text("うん！"),
+//                onPressed: (){
+//                    UserModel model = Provider.of(context);
+//                    model.uiColor = id;
+//                  },
+//                ),
                 //FlatButton(child: Text("いやだ"),
                 //onPressed: 
               //),

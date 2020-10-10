@@ -12,7 +12,7 @@ class LoadPage extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'satsuki', fontWeight: FontWeight.bold, fontSize: 40.0),),
+        title: Text('いろみっけ!', style: TextStyle(color: Colors.white, fontFamily: 'satsuki', fontWeight: FontWeight.bold, fontSize: 40.0),),
       ),
       body: Stack(
         children: [
@@ -33,12 +33,34 @@ class LoadPage extends StatelessWidget{
                   return Text('ぬる');
                 }
                 UserModel model = Provider.of<UserModel>(context, listen: false);
-                return Center(
-                  child: RaisedButton(
-                    child: Text('てすと'),
-                    onPressed: () => model.viewerId == 0 ?
-                      Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false) :
-                      Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false),
+                return GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    model.viewerId == 0 ? Navigator.pushNamed(context, '/login') : Navigator.pushNamedAndRemoveUntil(context, '/title', (route) => false);
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fitWidth,
+                            image: AssetImage('assets/Images/iromikke_logo_v2.png'),
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'タッチではじめる',
+                        style: TextStyle(
+                          fontFamily: 'satsuki',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 40.0,
+                        ),
+                      ),
+                    ],
                   ),
                 );
               } else {
@@ -52,7 +74,7 @@ class LoadPage extends StatelessWidget{
                         decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/Images/iromikke_logo_v2.png'),
-                            )
+                            ),
                         ),
                       ),
                       const CircularProgressIndicator(),

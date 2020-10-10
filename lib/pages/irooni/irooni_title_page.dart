@@ -1,15 +1,26 @@
+import 'dart:convert';
+import 'dart:io';
+import '';
 import 'package:flutter/material.dart';
+import 'package:iromikke/entity/user.dart';
 import 'package:iromikke/model/color_model.dart';
+import 'package:iromikke/model/user_model.dart';
+import 'package:iromikke/network/yukana/ding_packet.dart';
 import 'package:iromikke/network/yukana/protocol/connect_room_request_packet.dart';
 import 'package:iromikke/network/yukana/protocol/packet_pool.dart';
 import 'package:iromikke/network/yukana/protocol/packet_type.dart';
 import 'package:iromikke/pages/irooni/utils/irooni_data.dart';
+import 'package:iromikke/pages/irooni/utils/irooni_web_socket_provider.dart';
 import 'package:provider/provider.dart';
 
 class IrooniTitlePage extends StatelessWidget{
-
   @override
   Widget build(BuildContext context) {
+    final ColorModel colorModel = Provider.of<ColorModel>(context, listen: false);
+    final UserModel userModel = Provider.of<UserModel>(context, listen: false);
+    WebSocketProvider provider = WebSocketProvider.newProvider();
+    provider.connectSocket();
+    print(provider.webSocket != null);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 107, 161),
@@ -38,13 +49,13 @@ class IrooniTitlePage extends StatelessWidget{
             children: [
               _irooniTitle(context),
               GestureDetector(
-                onTapUp: (details){
-                  print('nya-nn');
-                  //ConnectRoomRequestPacket packet = PacketPool.getPacketById(PacketType.PACKET_CONNECT_ROOM_REQUEST);
-                  //Navigator.pushNamed(context, '/irooni/nigeru/camera');
-                  Navigator.pushNamed(context, '/irooni/oni/colorChoice');
-                },
                 behavior: HitTestBehavior.deferToChild,
+                onTap: (){
+                  print('nya-nn');
+                  _sendCRRPacket(context, userModel, provider);
+                  Navigator.pushNamed(context, '/irooni/start');
+                  //Navigator.pushNamed(context, '/irooni/nigeru/question');
+                },
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
                   alignment: Alignment.center,
@@ -75,8 +86,7 @@ class IrooniTitlePage extends StatelessWidget{
               GestureDetector(
                 onTapUp: (details){
                   print('にゃーん');
-                  final ColorModel model = Provider.of<ColorModel>(context, listen: false);
-                  Navigator.pushNamed(context, '/irooni/nigeru/camera', arguments: IrooniData(model.getById(1)));
+                  Navigator.pushNamed(context, '/irooni/nigeru/camera', arguments: IrooniData(colorModel.getById(1)));
                 },
                 behavior: HitTestBehavior.deferToChild,
                 child: Container(
@@ -111,6 +121,16 @@ class IrooniTitlePage extends StatelessWidget{
         ],
       ),
     );
+  }
+
+  void _sendCRRPacket(BuildContext context, UserModel model, WebSocketProvider provider){
+    DingPacket packet = new DingPacket();
+    ConnectRoomRequestPacket crrPacket = PacketPool.getPacketById(PacketType.PACKET_CONNECT_ROOM_REQUEST);
+    crrPacket.viewerId = model.viewerId;
+    crrPacket.userId = model.userId;
+    packet.addPacket(crrPacket);
+    packet.encode();
+    provider.sendPacket(packet);
   }
 
   Widget _irooniTitle(BuildContext context){

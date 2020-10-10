@@ -119,7 +119,7 @@ class QuizQuestionPage extends StatelessWidget{
     print('${quizData.quizMode.toString()}ああああ');
     return Column(
       children: [
-        IroquizTimerWidget(),
+        IroquizTimerWidget(quizData),
         quizWidget,
       ],
     );

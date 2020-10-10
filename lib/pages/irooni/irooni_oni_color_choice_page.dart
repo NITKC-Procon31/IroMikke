@@ -4,6 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iromikke/entity/traditional_color.dart';
 import 'package:iromikke/model/color_model.dart';
+import 'package:iromikke/network/yukana/ding_packet.dart';
+import 'package:iromikke/network/yukana/protocol/packet_pool.dart';
+import 'package:iromikke/network/yukana/protocol/packet_type.dart';
+import 'package:iromikke/network/yukana/protocol/send_color_packet.dart';
+import 'package:iromikke/pages/irooni/utils/irooni_web_socket_provider.dart';
 import 'package:provider/provider.dart';
 
 class IrooniOniColorChoicePage extends StatelessWidget{
@@ -118,6 +123,7 @@ class _ColorChoiceWidgetState extends State<_ColorChoiceWidget>{
         GestureDetector(
           onTap: () {
             print(_list[_selectedIndex].kana);
+            _sendSCPacket();
           },
           child: Container(
             width: MediaQuery.of(context).size.width * 0.5,
@@ -140,6 +146,16 @@ class _ColorChoiceWidgetState extends State<_ColorChoiceWidget>{
         ),
       ],
     );
+  }
+
+  void _sendSCPacket(){
+    WebSocketProvider provider = WebSocketProvider();
+    DingPacket packet = new DingPacket();
+    SendColorPacket scPacket = PacketPool.getPacketById(PacketType.PACKET_SEND_COLOR);
+    scPacket.colorId = _list[_selectedIndex].id;
+    packet.addPacket(scPacket);
+    packet.encode();
+    provider.sendPacket(packet);
   }
 
   Widget _colorContainer(BuildContext context, int index){

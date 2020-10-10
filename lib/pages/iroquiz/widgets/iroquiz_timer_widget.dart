@@ -1,22 +1,33 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_data.dart';
 import 'package:iromikke/pages/iroquiz/iroquiz_utils/quiz_provider.dart';
 import 'package:iromikke/pages/irosagashi/utils/irosagashi_data.dart';
 
 class IroquizTimerWidget extends StatefulWidget{
+  QuizData _quizData;
+
+  IroquizTimerWidget(this._quizData);
+
   @override
-  _IroquizTimerWidgetState createState() => _IroquizTimerWidgetState();
+  _IroquizTimerWidgetState createState() => _IroquizTimerWidgetState(this._quizData);
 }
 
 class _IroquizTimerWidgetState extends State<IroquizTimerWidget> {
   Timer _timer;
   int _maxSecond = 20;
   QuizProvider _quizProvider = QuizProvider();
+  QuizData _quizData;
+
+  _IroquizTimerWidgetState(this._quizData);
 
   @override
   void initState(){
     _timer  = Timer.periodic(Duration(seconds: 1), (timer) {setState(() {
+      if(_quizData.userAnswer > -1){
+        _timer.cancel();
+      }
       _maxSecond--;
       print(_maxSecond);
       if(_maxSecond <= 0){

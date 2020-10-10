@@ -130,7 +130,9 @@ class _IrosagashiColorPickPageState extends State<IrosagashiColorPickPage> {
                                   onTap: (){
                                     _irosagashiData.setUserSelectedColor(selectedColor.red, selectedColor.green, selectedColor.blue);
                                     print(selectedColor.toString());
-                                    Navigator.pushNamedAndRemoveUntil(context, '/irosagashi/answer', ModalRoute.withName('/irosagashi/title'), arguments: _irosagashiData);
+                                    if(_isPanDowned){
+                                      Navigator.pushNamedAndRemoveUntil(context, '/irosagashi/answer', ModalRoute.withName('/irosagashi/title'), arguments: _irosagashiData);
+                                    }
                                   },
                                   child: Container(
                                     //width: MediaQuery.of(context).size.width * 0.45,
