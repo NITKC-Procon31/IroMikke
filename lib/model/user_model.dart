@@ -29,32 +29,32 @@ class UserModel with ChangeNotifier {
   bool get isNull => this._user == null;
 
   set name(String name) {
-    _user.name = name;
+    this._user.name = name;
     this._updateUser();
   }
 
   set userId(int userId) {
-    _user.userId = userId;
+    this._user.userId = userId;
     this._updateUser();
   }
 
   set viewerId(int viewerId) {
-    _user.viewerId = viewerId;
+    this._user.viewerId = viewerId;
     this._updateUser();
   }
 
   set highScore(int score) {
-    _user.highScore = score;
+    this._user.highScore = score;
     this._updateUser();
   }
 
   set uiColor(int id) {
-    _user.uiColor = id;
+    this._user.uiColor = id;
     this._updateUser();
   }
 
   void _updateUser() async {
-    await repo.updateProfile(_user);
+    await repo.updateProfile(this._user);
     _fetch();
   }
 

@@ -18,7 +18,7 @@ class User {
     'id': this.id,
     'name': this.name,
     'user_id': this.userId,
-    'viewer_id': this.userId,
+    'viewer_id': this.viewerId,
     'high_score': this.highScore,
     'ui_color': this.uiColor
   };
