@@ -31,6 +31,7 @@ dependencies:
   image: ^2.1.14
   scidart: ^0.0.1-dev.6
   http: ^0.12.2
+  web_socket_channel: ^1.1.0
 
 dev_dependencies:
   flutter_test:
