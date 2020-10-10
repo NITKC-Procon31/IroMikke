@@ -20,13 +20,19 @@ import 'package:iromikke/entity/traditional_color.dart';
 // ---
 
 class ZukanPlayPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 126, 137, 161),
-        title: Text('いろずかん', style: TextStyle(color: Colors.white, fontFamily: 'satsuki', fontWeight: FontWeight.bold, fontSize: 40.0),),
+        title: Text(
+          'いろずかん',
+          style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'satsuki',
+              fontWeight: FontWeight.bold,
+              fontSize: 40.0),
+        ),
       ),
       body: Stack(
         children: [
@@ -35,7 +41,8 @@ class ZukanPlayPage extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
-                image: AssetImage('assets/Images/irozukan/irozukan_background_2.png'),
+                image: AssetImage(
+                    'assets/Images/irozukan/irozukan_background_2.png'),
               ),
             ),
           ),
@@ -69,31 +76,50 @@ class ZukanPlayPage extends StatelessWidget {
   }
 
   Widget _iroZukanList(BuildContext context) {
-    final ColorModel colorModel = Provider.of<ColorModel>(context, listen: true);
-    final UserColorModel userColorModel = Provider.of<UserColorModel>(context, listen: true);
+    final ColorModel colorModel =
+        Provider.of<ColorModel>(context, listen: true);
+    final UserColorModel userColorModel =
+        Provider.of<UserColorModel>(context, listen: true);
     print(colorModel.length);
     return Scrollbar(
         child: ListView.separated(
-          itemCount: colorModel.length,
-          itemBuilder: (context, index){
-            final TraditionalColor tColor = colorModel.getById(index + 1);
-            Color color = Color.fromARGB(255, tColor.rgb.r, tColor.rgb.g, tColor.rgb.b);
-            return _iroZukanRow(context, color, userColorModel.isFound(index + 1) ? tColor.kana : '？？？');
-          },
-          separatorBuilder: (context, index){
-            return Container(
-              height: 7.0,
-              color: Colors.white,
-            );
-          },
-        )
-    );
+      itemCount: colorModel.length,
+      itemBuilder: (context, index) {
+        final TraditionalColor tColor = colorModel.getById(index + 1);
+        Color color =
+            Color.fromARGB(255, tColor.rgb.r, tColor.rgb.g, tColor.rgb.b);
+        return _iroZukanRow(context, color,
+            userColorModel.isFound(index + 1) ? tColor.kana : '？？？');
+      },
+      separatorBuilder: (context, index) {
+        return Container(
+          height: 7.0,
+          color: Colors.white,
+        );
+      },
+    ));
   }
 
   Widget _iroZukanRow(BuildContext context, Color color, String name) {
     return GestureDetector(
       onTap: () {
-        print(name);
+        showDialog(
+          context: context,
+          builder: ( _ ){
+            return AlertDialog(
+              title: Text("この色に変える？"),
+              actions: <Widget>[
+                //FlatButton(child: Text("うん！"),
+              //  onPressed:
+                //),
+                //FlatButton(child: Text("いやだ"),
+                //onPressed: 
+              //),
+              ]
+              );
+          }
+          );
+
       },
       child: Card(
         elevation: 0,
@@ -107,7 +133,10 @@ class ZukanPlayPage extends StatelessWidget {
             height: 50.0,
             decoration: BoxDecoration(
               color: color,
-              border: Border.all(color: Colors.white, width: 4.0,),
+              border: Border.all(
+                color: Colors.white,
+                width: 4.0,
+              ),
             ),
           ),
           title: Text(
