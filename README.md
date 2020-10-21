@@ -12,3 +12,4 @@
 - **[image](https://pub.dev/packages/image)**
 - **[scidart](https://pub.dev/packages/scidart)**
 - **[http](https://pub.dev/packages/http)**
+- **[web_socket_channel](https://pub.dev/packages/web_socket_channel)**
